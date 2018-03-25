@@ -42,7 +42,12 @@ namespace AngularJSAuthentication.API
 
             return user;
         }
+        public ApplicationUser ValidateUser(string userName, string password)
+        {
+            ApplicationUser user = context.Login(userName, password);
 
+            return user;
+        }
         public Client FindClient(string clientId)
         {
             var client = _ctx.Clients.Find(clientId);

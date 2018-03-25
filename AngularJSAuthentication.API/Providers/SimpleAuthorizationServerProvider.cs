@@ -1,4 +1,5 @@
 ﻿using AngularJSAuthentication.API.Entities;
+using LeadWomb.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
@@ -86,7 +87,7 @@ namespace AngularJSAuthentication.API.Providers
 
             using (AuthRepository _repo = new AuthRepository())
             {
-                IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
+                ApplicationUser user =  _repo.ValidateUser(context.UserName, context.Password);
 
                 if (user == null)
                 {

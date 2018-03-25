@@ -42,7 +42,7 @@ app.config(function ($routeProvider) {
 
 });
 
-var serviceBase = 'http://localhost:80/';
+var serviceBase = 'http://api.victorcalls.com';
 //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
 app.constant('ngAuthSettings', {
     apiServiceBaseUri: serviceBase,

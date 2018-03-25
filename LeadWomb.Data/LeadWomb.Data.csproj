@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountAdapter.cs">
+      <DependentUpon>AccountAdapter.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AccountAdapter.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -26,8 +26,8 @@ namespace LeadWomb.Data.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=10.0.0.3;Initial Catalog=LeadPolice;User ID=LeadPolice;Password=modin" +
-            "agar")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=184.168.194.62;Initial Catalog=LeadPolice;User ID=LeadPolice;Password" +
+            "=Modinagar@7")]
         public string LeadPoliceConnectionString {
             get {
                 return ((string)(this["LeadPoliceConnectionString"]));

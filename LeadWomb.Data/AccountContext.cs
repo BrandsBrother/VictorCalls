@@ -28,16 +28,35 @@ namespace LeadWomb.Data
            
         }
 
-        public bool Login(string userName, string password)
+        public ApplicationUser Login(string userName, string password)
         {
-            if (tableAdapter.sp_login(userName, password) != null)
+            ApplicationUser user = null;
+            sp_loginTableAdapter tableAdapter = new sp_loginTableAdapter();
+            AccountAdapter.sp_loginDataTable table = tableAdapter.GetUser(userName, password);
+            if (table != null && table.Rows.Count > 0)
             {
-                return true;
+                user = new ApplicationUser();
+                foreach (AccountAdapter.sp_loginRow row in table.Rows)
+                {
+                    user.AccessFailedCount = row.AccessFailedCount;
+                    user.CompanyId = row.CompanyId;
+                    user.CreatedDateTime = row.CreatedDateTime;
+                    user.Email = row.IsEmailNull()?null: row.Email;
+                    user.FirstName = row.FirstName;
+                    user.LastName = row.LastName;
+                    user.LockoutEnabled =  row.LockoutEnabled;
+                    user.LockoutEndDateUtc = row.IsLockoutEndDateUtcNull()?(DateTime?)null: row.LockoutEndDateUtc;
+                    user.Password = row.PasswordHash;
+                    user.PhoneNumber = row.IsPhoneNumberNull()?null: row.PhoneNumber;
+                    user.PhoneNumberConfirmed =  row.PhoneNumberConfirmed;
+                    user.RoleId = row.RoleId;
+                    user.SecurityStamp = row.IsSecurityStampNull()?null: row.SecurityStamp;
+                    user.TwoFactorEnabled = row.TwoFactorEnabled;
+                    user.UserName = row.UserName;
+
+                }
             }
-            else
-            {
-                return false;
-            }
+            return user;
         }
 
         public List<ApplicationUser> GetUsersByCompanyId(long companyId)
