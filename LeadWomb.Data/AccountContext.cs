@@ -53,6 +53,7 @@ namespace LeadWomb.Data
                     user.SecurityStamp = row.IsSecurityStampNull()?null: row.SecurityStamp;
                     user.TwoFactorEnabled = row.TwoFactorEnabled;
                     user.UserName = row.UserName;
+                    user.Id = row.Id;
 
                 }
             }
@@ -89,5 +90,7 @@ namespace LeadWomb.Data
             }
             return users;
         }
+
+        
     }
 }

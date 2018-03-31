@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeadWomb.Data", "LeadWomb.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeadWomb.Model", "LeadWomb.Model\LeadWomb.Model.csproj", "{BFFEC3D0-7332-40B4-94AE-788F149F147E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{81F82DB7-064E-4969-8575-D41C3C3DDC3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -25,12 +25,13 @@ namespace AngularJSAuthentication.API.Controllers
             leadRepository = new LeadsRepository();
         }
         [Route("")]
-        public IHttpActionResult Get(long CompanyId, int statusID, int? AssignedTo)
+        public IHttpActionResult Get(string userName, int? statusID)
         {
 
 
-            return Ok(leadRepository.GetLeads(CompanyId, statusID, AssignedTo));
+            return Ok(leadRepository.GetLeads(userName,statusID));
         }
+
 
         // GET api/leads/5
         public string Get(int id)

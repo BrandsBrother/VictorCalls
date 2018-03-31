@@ -37,8 +37,13 @@ app.config(function ($routeProvider) {
         controller: "associateController",
         templateUrl: "/app/views/associate.html"
     });
+    $routeProvider.when("/index", {
+        controller: "indexController",
+        templateUrl: "/app/views/dashboard.html",
+        
+    });
 
-    $routeProvider.otherwise({ redirectTo: "/home" });
+    $routeProvider.otherwise({ redirectTo: "/login" });
 
 });
 
@@ -53,7 +58,18 @@ app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 });
 
-app.run(['authService', function (authService) {
+app.run(['authService','$location', function (authService,$location) {
+    
+  
     authService.fillAuthData();
+   
+    //if (!authService.authentication.isAuth) {
+        
+    //    window.location = 'http://localhost:32150/Page1.html';
+    //}
+    ////if ($location.path()!='' &&  !authService.authentication.isAuth)
+    ////{
+    ////    $location.path('/index');
+    ////}
 }]);
 

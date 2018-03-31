@@ -11,10 +11,10 @@ namespace LeadWomb.Data
 {
     public class LeadsRepository
     {
-        private GetLeadsByCompanyIdandStatusIdTableAdapter adapter = null;
+        private sp_GetLeadsByUserNameTableAdapter adapter = null;
         public LeadsRepository()
         {
-            adapter = new GetLeadsByCompanyIdandStatusIdTableAdapter();
+            adapter = new sp_GetLeadsByUserNameTableAdapter();
         }
         /// <summary>
         /// 
@@ -23,10 +23,10 @@ namespace LeadWomb.Data
         /// <param name="StatusId"></param>
         /// <param name="AssignedTo"></param>
         /// <returns></returns>
-        public IList<Leads> GetLeads(long CompanyId, int StatusId, int? AssignedTo)
+        public IList<Leads> GetLeads(string userName, int? statusID)
         {
           IList<Leads> leads = null;
-          LeadWombDataset.GetLeadsByCompanyIdandStatusIdDataTable dataTable = adapter.GetLeadsByCompanyIdandStatusId(CompanyId,StatusId,AssignedTo.HasValue?AssignedTo:null);
+          LeadWombDataset.sp_GetLeadsByUserNameDataTable dataTable = adapter.GetLeadsByUserName(userName, statusID);
           if (dataTable != null && dataTable.Rows.Count > 0)
           {
               leads = new List<Leads>();
@@ -36,7 +36,7 @@ namespace LeadWomb.Data
               {
                  Leads lead = new Leads();
                  lead.LeadId = Convert.ToInt32(row[dataTable.Lead_IDColumn]);
-                 if (row[dataTable.BuilderInterestColumn] != DBNull.Value && row[dataTable.BuilderInterestColumn] != string.Empty)
+                 if (row[dataTable.BuilderInterestColumn] != DBNull.Value && row[dataTable.BuilderInterestColumn].ToString() != string.Empty)
                  {
                      lead.BuilderInterest = Convert.ToBoolean(row[dataTable.BuilderInterestColumn]);
                  }
@@ -76,7 +76,7 @@ namespace LeadWomb.Data
          ////</summary>
         public bool UpdateLeads(Leads lead)
         {
-            adapter.UpdateLeads(
+            new GetLeadsByCompanyIdandStatusIdTableAdapter().UpdateLeads(
                 lead.LeadId, lead.EditUserId, DateTimeOffset.Now, lead.Name, lead.Email, lead.PhoneNumber, lead.QueryRemarks, lead.TypeOfProperty, lead.StatusId,
                 lead.RangeFrom, lead.RangeTo, lead.CompactLabel, Utilities.CheckDateTimeIfNullOrEmpty(lead.RecivedOn), lead.ProjectName, lead.AssignedTo, lead.BuilderInterest
                 , lead.StatusId, Utilities.CheckDateTimeOffsetIfNullOrEmpty(lead.StatusDate), lead.CompanyId);
