@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Leads.cs" />
+    <Compile Include="LeadStatusCounts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatusList.cs" />
     <Compile Include="Utilities.cs" />

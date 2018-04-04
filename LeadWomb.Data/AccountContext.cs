@@ -59,7 +59,36 @@ namespace LeadWomb.Data
             }
             return user;
         }
-
+        public List<ApplicationUser> GetUsersOfCompany(string userName, string roleName)
+        {
+            List<ApplicationUser> users = null;
+            sp_GetUsersOfCompanyandRoleIDTableAdapter adapter = new sp_GetUsersOfCompanyandRoleIDTableAdapter();
+            AccountAdapter.sp_GetUsersOfCompanyandRoleIDDataTable table = adapter.GetUsersOfCompany(userName, roleName);
+            if (table != null && table.Rows.Count > 0)
+            {
+                users = new List<ApplicationUser>();
+                foreach (AccountAdapter.sp_GetUsersOfCompanyandRoleIDRow row in table.Rows)
+                {
+                    ApplicationUser user = new ApplicationUser();
+                    user.Id = row.Id;
+                    user.FirstName = row.FirstName;
+                    user.AccessFailedCount = row.AccessFailedCount;
+                    user.CompanyId = row.CompanyId;
+                    user.CreatedDateTime = row.CreatedDateTime;
+                    user.Email = row.IsEmailNull() ? string.Empty : user.Email;
+                    user.LastName = row.LastName;
+                    user.LockoutEnabled = row.LockoutEnabled;
+                    user.LockoutEndDateUtc = row.IsLockoutEndDateUtcNull() ? (DateTime?)null : row.LockoutEndDateUtc;
+                    user.PhoneNumber = row.PhoneNumber;
+                    user.RoleId = row.RoleId;
+                    user.SecurityStamp = row.SecurityStamp;
+                    user.TwoFactorEnabled = row.TwoFactorEnabled;
+                    user.UserName = row.UserName;
+                    users.Add(user);
+                }
+            }
+            return users;
+        }
         public List<ApplicationUser> GetUsersByCompanyId(long companyId)
         {
             List<ApplicationUser> users = null;
@@ -90,6 +119,18 @@ namespace LeadWomb.Data
             }
             return users;
         }
+
+        //public LeadStatusCounts GetStatusCountsByUserName(string userName)
+        //{
+        //    LeadStatusCounts statusCounts = null;
+        //    Get tableAdapter = new sp_loginTableAdapter();
+        //    AccountAdapter.sp_loginDataTable table = tableAdapter.GetStatusCountsByUserName(userName);
+        //    if (table != null && table.Rows.Count > 0)
+        //    { 
+        //       foreach(AccountAdapter.)
+        //    }
+        //    return statusCounts;
+        //}
 
         
     }

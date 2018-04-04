@@ -31,17 +31,41 @@ namespace AngularJSAuthentication.API.Controllers
 
             return Ok(leadRepository.GetLeads(userName,statusID));
         }
+        [Route("LeadStatusCounts")]
+        [HttpGet]
+        public LeadStatusCounts LeadStatusCounts(string userName)
+        {
+            LeadStatusCounts obj = new LeadStatusCounts();
+            obj.ClosureCount = 23;
+            obj.CurrentLeadsCount = 24;
+            obj.DeadCount = 25;
+            obj.FollowUpsCount = 26;
+            obj.NotConnectedCount = 27;
+            obj.OtherProjectsCount = 28;
+            obj.PendingLeadsCount = 29;
+            obj.PlotCount = 30;
+            obj.RentCount = 31;
+            return obj;
+
+        }
+        //[Route("")]
+        //public IHttpActionResult Get(long CompanyId, int statusID, int? AssignedTo)
+        //{
 
 
+        //    return Ok(leadRepository.GetLeads(CompanyId, statusID, AssignedTo));
+        //}
         // GET api/leads/5
         public string Get(int id)
         {
             return "value";
         }
-
+           [Route("")]
         // POST api/leads
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody]Leads value)
         {
+            leadRepository.AddLead(value);
+            return Ok();
         }
 
         // PUT api/leads/5
@@ -52,7 +76,7 @@ namespace AngularJSAuthentication.API.Controllers
 
         // DELETE api/leads/5
         public void Delete(int id)
-        {
+        {   
         }
     }
 }

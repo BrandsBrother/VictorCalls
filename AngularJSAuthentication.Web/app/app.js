@@ -42,6 +42,11 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/dashboard.html",
         
     });
+    $routeProvider.when("/dashboard", {
+        controller: "leadsController",
+        templateUrl: "/app/views/dashboard.html",
+
+    });
 
     $routeProvider.otherwise({ redirectTo: "/login" });
 

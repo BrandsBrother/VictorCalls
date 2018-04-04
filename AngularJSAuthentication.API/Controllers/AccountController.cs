@@ -348,7 +348,13 @@ namespace AngularJSAuthentication.API.Controllers
 
             return parsedToken;
         }
+        //public List<ApplicationUser> GetCompanyUsersByRoleId(string userName, string? roleName)
+        //{
+        //    List<ApplicationUser> users = null;
 
+           
+        //    return users;
+        //}
         private JObject GenerateLocalAccessTokenResponse(string userName)
         {
 

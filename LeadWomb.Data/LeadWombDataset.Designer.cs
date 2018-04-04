@@ -1159,10 +1159,10 @@ namespace LeadWomb.Data {
                         bool BuilderInterest, 
                         string CmpctLabel, 
                         long CompanyId, 
-                        System.DateTimeOffset CreateDateTimeOffset, 
-                        int CreateUser_ID, 
-                        System.DateTimeOffset EditDateTimeOffset, 
-                        int EditUser_ID, 
+                        System.DateTime CreateDateTimeOffset, 
+                        string CreateUser_ID, 
+                        System.DateTime EditDateTimeOffset, 
+                        string EditUser_ID, 
                         string Email, 
                         string Name, 
                         string PhoneNumber, 
@@ -1172,7 +1172,7 @@ namespace LeadWomb.Data {
                         int RangeTo, 
                         System.DateTime ReceivedOn, 
                         int Status, 
-                        System.DateTimeOffset StatusDate, 
+                        System.DateTime StatusDate, 
                         int StatusId, 
                         int TypeOfProperty) {
                 sp_GetLeadsByUserNameRow rowsp_GetLeadsByUserNameRow = ((sp_GetLeadsByUserNameRow)(this.NewRow()));
@@ -1254,13 +1254,13 @@ namespace LeadWomb.Data {
                 base.Columns.Add(this.columnCmpctLabel);
                 this.columnCompanyId = new global::System.Data.DataColumn("CompanyId", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCompanyId);
-                this.columnCreateDateTimeOffset = new global::System.Data.DataColumn("CreateDateTimeOffset", typeof(global::System.DateTimeOffset), null, global::System.Data.MappingType.Element);
+                this.columnCreateDateTimeOffset = new global::System.Data.DataColumn("CreateDateTimeOffset", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreateDateTimeOffset);
-                this.columnCreateUser_ID = new global::System.Data.DataColumn("CreateUser_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnCreateUser_ID = new global::System.Data.DataColumn("CreateUser_ID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreateUser_ID);
-                this.columnEditDateTimeOffset = new global::System.Data.DataColumn("EditDateTimeOffset", typeof(global::System.DateTimeOffset), null, global::System.Data.MappingType.Element);
+                this.columnEditDateTimeOffset = new global::System.Data.DataColumn("EditDateTimeOffset", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEditDateTimeOffset);
-                this.columnEditUser_ID = new global::System.Data.DataColumn("EditUser_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnEditUser_ID = new global::System.Data.DataColumn("EditUser_ID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEditUser_ID);
                 this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmail);
@@ -1282,15 +1282,16 @@ namespace LeadWomb.Data {
                 base.Columns.Add(this.columnReceivedOn);
                 this.columnStatus = new global::System.Data.DataColumn("Status", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatus);
-                this.columnStatusDate = new global::System.Data.DataColumn("StatusDate", typeof(global::System.DateTimeOffset), null, global::System.Data.MappingType.Element);
+                this.columnStatusDate = new global::System.Data.DataColumn("StatusDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatusDate);
                 this.columnStatusId = new global::System.Data.DataColumn("StatusId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatusId);
                 this.columnTypeOfProperty = new global::System.Data.DataColumn("TypeOfProperty", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTypeOfProperty);
-                this.columnAssignedTo.MaxLength = 256;
+                this.columnAssignedTo.MaxLength = 128;
                 this.columnCmpctLabel.MaxLength = 2147483647;
-                this.columnCreateUser_ID.AllowDBNull = false;
+                this.columnCreateUser_ID.MaxLength = 128;
+                this.columnEditUser_ID.MaxLength = 128;
                 this.columnEmail.MaxLength = 80;
                 this.columnLead_ID.AutoIncrement = true;
                 this.columnLead_ID.AutoIncrementSeed = -1;
@@ -2078,10 +2079,10 @@ namespace LeadWomb.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTimeOffset CreateDateTimeOffset {
+            public System.DateTime CreateDateTimeOffset {
                 get {
                     try {
-                        return ((global::System.DateTimeOffset)(this[this.tablesp_GetLeadsByUserName.CreateDateTimeOffsetColumn]));
+                        return ((global::System.DateTime)(this[this.tablesp_GetLeadsByUserName.CreateDateTimeOffsetColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CreateDateTimeOffset\' in table \'sp_GetLeadsByUserName\' is D" +
@@ -2095,9 +2096,14 @@ namespace LeadWomb.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int CreateUser_ID {
+            public string CreateUser_ID {
                 get {
-                    return ((int)(this[this.tablesp_GetLeadsByUserName.CreateUser_IDColumn]));
+                    try {
+                        return ((string)(this[this.tablesp_GetLeadsByUserName.CreateUser_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CreateUser_ID\' in table \'sp_GetLeadsByUserName\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablesp_GetLeadsByUserName.CreateUser_IDColumn] = value;
@@ -2106,10 +2112,10 @@ namespace LeadWomb.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTimeOffset EditDateTimeOffset {
+            public System.DateTime EditDateTimeOffset {
                 get {
                     try {
-                        return ((global::System.DateTimeOffset)(this[this.tablesp_GetLeadsByUserName.EditDateTimeOffsetColumn]));
+                        return ((global::System.DateTime)(this[this.tablesp_GetLeadsByUserName.EditDateTimeOffsetColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'EditDateTimeOffset\' in table \'sp_GetLeadsByUserName\' is DBN" +
@@ -2123,10 +2129,10 @@ namespace LeadWomb.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int EditUser_ID {
+            public string EditUser_ID {
                 get {
                     try {
-                        return ((int)(this[this.tablesp_GetLeadsByUserName.EditUser_IDColumn]));
+                        return ((string)(this[this.tablesp_GetLeadsByUserName.EditUser_IDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'EditUser_ID\' in table \'sp_GetLeadsByUserName\' is DBNull.", e);
@@ -2289,10 +2295,10 @@ namespace LeadWomb.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTimeOffset StatusDate {
+            public System.DateTime StatusDate {
                 get {
                     try {
-                        return ((global::System.DateTimeOffset)(this[this.tablesp_GetLeadsByUserName.StatusDateColumn]));
+                        return ((global::System.DateTime)(this[this.tablesp_GetLeadsByUserName.StatusDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'StatusDate\' in table \'sp_GetLeadsByUserName\' is DBNull.", e);
@@ -2394,6 +2400,18 @@ namespace LeadWomb.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCreateDateTimeOffsetNull() {
                 this[this.tablesp_GetLeadsByUserName.CreateDateTimeOffsetColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCreateUser_IDNull() {
+                return this.IsNull(this.tablesp_GetLeadsByUserName.CreateUser_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCreateUser_IDNull() {
+                this[this.tablesp_GetLeadsByUserName.CreateUser_IDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2795,8 +2813,8 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
             this._commandCollection[1].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Lead_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EditUser_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EditDateTimeOffset", global::System.Data.SqlDbType.DateTimeOffset, 10, global::System.Data.ParameterDirection.Input, 34, 7, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EditUser_ID", global::System.Data.SqlDbType.NVarChar, 128, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EditDateTimeOffset", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 80, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PhoneNumber", global::System.Data.SqlDbType.VarChar, 14, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2808,10 +2826,10 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CmpctLabel", global::System.Data.SqlDbType.Text, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReceivedOn", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProjName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssignedTo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssignedTo", global::System.Data.SqlDbType.NVarChar, 128, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BuilderInterest", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StatusId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StatusDate", global::System.Data.SqlDbType.DateTimeOffset, 10, global::System.Data.ParameterDirection.Input, 34, 7, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StatusDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CompanyId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -2847,10 +2865,10 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int UpdateLeads(
+        public virtual object UpdateLeads(
                     global::System.Nullable<int> Lead_ID, 
-                    global::System.Nullable<int> EditUser_ID, 
-                    global::System.Nullable<global::System.DateTimeOffset> EditDateTimeOffset, 
+                    string EditUser_ID, 
+                    global::System.Nullable<global::System.DateTime> EditDateTimeOffset, 
                     string Name, 
                     string Email, 
                     string PhoneNumber, 
@@ -2862,10 +2880,10 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
                     string CmpctLabel, 
                     global::System.Nullable<global::System.DateTime> ReceivedOn, 
                     string ProjName, 
-                    global::System.Nullable<int> AssignedTo, 
+                    string AssignedTo, 
                     global::System.Nullable<bool> BuilderInterest, 
                     global::System.Nullable<int> StatusId, 
-                    global::System.Nullable<global::System.DateTimeOffset> StatusDate, 
+                    global::System.Nullable<global::System.DateTime> StatusDate, 
                     global::System.Nullable<long> CompanyId) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             if ((Lead_ID.HasValue == true)) {
@@ -2874,14 +2892,14 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
             else {
                 command.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((EditUser_ID.HasValue == true)) {
-                command.Parameters[2].Value = ((int)(EditUser_ID.Value));
-            }
-            else {
+            if ((EditUser_ID == null)) {
                 command.Parameters[2].Value = global::System.DBNull.Value;
             }
+            else {
+                command.Parameters[2].Value = ((string)(EditUser_ID));
+            }
             if ((EditDateTimeOffset.HasValue == true)) {
-                command.Parameters[3].Value = ((System.DateTimeOffset)(EditDateTimeOffset.Value));
+                command.Parameters[3].Value = ((System.DateTime)(EditDateTimeOffset.Value));
             }
             else {
                 command.Parameters[3].Value = global::System.DBNull.Value;
@@ -2952,11 +2970,11 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
             else {
                 command.Parameters[14].Value = ((string)(ProjName));
             }
-            if ((AssignedTo.HasValue == true)) {
-                command.Parameters[15].Value = ((int)(AssignedTo.Value));
+            if ((AssignedTo == null)) {
+                command.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                command.Parameters[15].Value = global::System.DBNull.Value;
+                command.Parameters[15].Value = ((string)(AssignedTo));
             }
             if ((BuilderInterest.HasValue == true)) {
                 command.Parameters[16].Value = ((bool)(BuilderInterest.Value));
@@ -2971,7 +2989,7 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
                 command.Parameters[17].Value = global::System.DBNull.Value;
             }
             if ((StatusDate.HasValue == true)) {
-                command.Parameters[18].Value = ((System.DateTimeOffset)(StatusDate.Value));
+                command.Parameters[18].Value = ((System.DateTime)(StatusDate.Value));
             }
             else {
                 command.Parameters[18].Value = global::System.DBNull.Value;
@@ -2987,16 +3005,22 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -3186,6 +3210,230 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
             LeadWombDataset.sp_GetLeadsByUserNameDataTable dataTable = new LeadWombDataset.sp_GetLeadsByUserNameDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class QueriesTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.IDbCommand[] _commandCollection;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.IDbCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.IDbCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlClient.SqlConnection(global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandText = "dbo.CreateLeads";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandType = global::System.Data.CommandType.StoredProcedure;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateUser_ID", global::System.Data.SqlDbType.NVarChar, 128, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDateTimeOffset", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EditUser_ID", global::System.Data.SqlDbType.NVarChar, 128, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EditDateTimeOffset", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 80, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PhoneNumber", global::System.Data.SqlDbType.VarChar, 14, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QueryRemarks", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeOfProperty", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RangeFrom", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RangeTo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CmpctLabel", global::System.Data.SqlDbType.Text, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReceivedOn", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProjName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssignedTo", global::System.Data.SqlDbType.NVarChar, 128, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BuilderInterest", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StatusId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StatusDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CompanyId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual object CreateLeads(
+                    string CreateUser_ID, 
+                    global::System.Nullable<global::System.DateTime> CreateDateTimeOffset, 
+                    string EditUser_ID, 
+                    global::System.Nullable<global::System.DateTime> EditDateTimeOffset, 
+                    string Name, 
+                    string Email, 
+                    string PhoneNumber, 
+                    string QueryRemarks, 
+                    global::System.Nullable<int> TypeOfProperty, 
+                    global::System.Nullable<int> Status, 
+                    global::System.Nullable<int> RangeFrom, 
+                    global::System.Nullable<int> RangeTo, 
+                    string CmpctLabel, 
+                    global::System.Nullable<global::System.DateTime> ReceivedOn, 
+                    string ProjName, 
+                    string AssignedTo, 
+                    global::System.Nullable<bool> BuilderInterest, 
+                    global::System.Nullable<int> StatusId, 
+                    global::System.Nullable<global::System.DateTime> StatusDate, 
+                    global::System.Nullable<long> CompanyId) {
+            global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[0]));
+            if ((CreateUser_ID == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(CreateUser_ID));
+            }
+            if ((CreateDateTimeOffset.HasValue == true)) {
+                command.Parameters[2].Value = ((System.DateTime)(CreateDateTimeOffset.Value));
+            }
+            else {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((EditUser_ID == null)) {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[3].Value = ((string)(EditUser_ID));
+            }
+            if ((EditDateTimeOffset.HasValue == true)) {
+                command.Parameters[4].Value = ((System.DateTime)(EditDateTimeOffset.Value));
+            }
+            else {
+                command.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Name == null)) {
+                command.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[5].Value = ((string)(Name));
+            }
+            if ((Email == null)) {
+                command.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[6].Value = ((string)(Email));
+            }
+            if ((PhoneNumber == null)) {
+                command.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[7].Value = ((string)(PhoneNumber));
+            }
+            if ((QueryRemarks == null)) {
+                command.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[8].Value = ((string)(QueryRemarks));
+            }
+            if ((TypeOfProperty.HasValue == true)) {
+                command.Parameters[9].Value = ((int)(TypeOfProperty.Value));
+            }
+            else {
+                command.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((Status.HasValue == true)) {
+                command.Parameters[10].Value = ((int)(Status.Value));
+            }
+            else {
+                command.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((RangeFrom.HasValue == true)) {
+                command.Parameters[11].Value = ((int)(RangeFrom.Value));
+            }
+            else {
+                command.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((RangeTo.HasValue == true)) {
+                command.Parameters[12].Value = ((int)(RangeTo.Value));
+            }
+            else {
+                command.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((CmpctLabel == null)) {
+                command.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[13].Value = ((string)(CmpctLabel));
+            }
+            if ((ReceivedOn.HasValue == true)) {
+                command.Parameters[14].Value = ((System.DateTime)(ReceivedOn.Value));
+            }
+            else {
+                command.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            if ((ProjName == null)) {
+                command.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[15].Value = ((string)(ProjName));
+            }
+            if ((AssignedTo == null)) {
+                command.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[16].Value = ((string)(AssignedTo));
+            }
+            if ((BuilderInterest.HasValue == true)) {
+                command.Parameters[17].Value = ((bool)(BuilderInterest.Value));
+            }
+            else {
+                command.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            if ((StatusId.HasValue == true)) {
+                command.Parameters[18].Value = ((int)(StatusId.Value));
+            }
+            else {
+                command.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            if ((StatusDate.HasValue == true)) {
+                command.Parameters[19].Value = ((System.DateTime)(StatusDate.Value));
+            }
+            else {
+                command.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            if ((CompanyId.HasValue == true)) {
+                command.Parameters[20].Value = ((long)(CompanyId.Value));
+            }
+            else {
+                command.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     

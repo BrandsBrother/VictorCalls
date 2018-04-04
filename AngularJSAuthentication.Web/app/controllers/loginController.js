@@ -13,7 +13,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
 
         authService.login($scope.loginData).then(function (response) {addEventListener
 
-            $location.path('/orders');
+            $location.path('/dashboard');
 
         },
          function (err) {

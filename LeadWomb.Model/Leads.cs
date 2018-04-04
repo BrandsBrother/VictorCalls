@@ -22,11 +22,11 @@ namespace LeadWomb.Model
     {
         
         public int LeadId { get; set; }
-        public int CreateUserID { get; set; }
+        public string CreateUserID { get; set; }
 
         public DateTime CreateDateTime { get; set; }
 
-        public int? EditUserId { get; set; }
+        public string EditUserId { get; set; }
 
         public DateTime? EditDateTime { get; set; }
 
@@ -48,11 +48,11 @@ namespace LeadWomb.Model
 
         public string CompactLabel { get; set; }
 
-        public DateTime RecivedOn { get; set; }
+        public DateTime? RecivedOn { get; set; }
 
         public string ProjectName { get; set; }
 
-        public int? AssignedTo { get; set; }
+        public string AssignedTo { get; set; }
 
         public bool? BuilderInterest { get; set; }
 

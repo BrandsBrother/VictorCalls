@@ -30,7 +30,7 @@ namespace LeadWomb.Data
           if (dataTable != null && dataTable.Rows.Count > 0)
           {
               leads = new List<Leads>();
-              DateTimeOffset createDateTimeOffset;
+              DateTime createDateTimeOffset;
               DateTime editDateTime = DateTime.MinValue;
               foreach (DataRow row in dataTable.Rows)
               {
@@ -45,11 +45,13 @@ namespace LeadWomb.Data
                      lead.CompactLabel = row[dataTable.CmpctLabelColumn].ToString();
                  }
                  lead.CompanyId = Convert.ToInt64(row[dataTable.CompanyIdColumn]);
-                 if (DateTimeOffset.TryParse(row[dataTable.CreateDateTimeOffsetColumn].ToString(), out createDateTimeOffset))
+                 if (DateTime.TryParse(row[dataTable.CreateDateTimeOffsetColumn].ToString(), out createDateTimeOffset))
                  {
-                     lead.CreateDateTime = createDateTimeOffset.DateTime;
+                     lead.CreateDateTime = createDateTimeOffset;
                  }
-                 lead.CreateUserID = Convert.ToInt32(row[dataTable.CreateUser_IDColumn]);
+                 lead.CreateUserID = row[dataTable.CreateUser_IDColumn].ToString();
+                  lead.EditUserId = row[dataTable.EditUser_IDColumn]!=null? row[dataTable.EditUser_IDColumn].ToString():string.Empty;
+                  lead.AssignedTo = row[dataTable.AssignedToColumn] != null ? row[dataTable.AssignedToColumn].ToString() : string.Empty;
 
                  if (row[dataTable.EmailColumn] != DBNull.Value)
                   {
@@ -77,10 +79,21 @@ namespace LeadWomb.Data
         public bool UpdateLeads(Leads lead)
         {
             new GetLeadsByCompanyIdandStatusIdTableAdapter().UpdateLeads(
-                lead.LeadId, lead.EditUserId, DateTimeOffset.Now, lead.Name, lead.Email, lead.PhoneNumber, lead.QueryRemarks, lead.TypeOfProperty, lead.StatusId,
-                lead.RangeFrom, lead.RangeTo, lead.CompactLabel, Utilities.CheckDateTimeIfNullOrEmpty(lead.RecivedOn), lead.ProjectName, lead.AssignedTo, lead.BuilderInterest
-                , lead.StatusId, Utilities.CheckDateTimeOffsetIfNullOrEmpty(lead.StatusDate), lead.CompanyId);
+                lead.LeadId,lead.EditUserId , DateTime.Now, lead.Name, lead.Email, lead.PhoneNumber, lead.QueryRemarks, lead.TypeOfProperty, lead.StatusId,
+                lead.RangeFrom, lead.RangeTo, lead.CompactLabel, lead.RecivedOn.HasValue?lead.RecivedOn:(DateTime?)null, lead.ProjectName, lead.AssignedTo, lead.BuilderInterest
+                , lead.StatusId, lead.StatusDate, lead.CompanyId);
             return true;
+        }
+
+        public int AddLead(Leads lead)
+        {
+            QueriesTableAdapter adapter = new QueriesTableAdapter();
+            object r = adapter.CreateLeads(lead.CreateUserID,DateTime.Now,lead.EditUserId,lead.EditDateTime.HasValue?lead.EditDateTime.Value:(DateTime?)null,
+                lead.Name,lead.Email,lead.PhoneNumber,lead.QueryRemarks,lead.TypeOfProperty,lead.Status,lead.RangeFrom
+                , lead.RangeTo,lead.CompactLabel,lead.RecivedOn.HasValue?lead.RecivedOn:(DateTime?)null,lead.ProjectName,lead.AssignedTo,lead.BuilderInterest,lead.StatusId,
+                lead.StatusDate==DateTime.MinValue?(DateTime?)null:lead.StatusDate,lead.CompanyId);
+            return 0;
+           
         }
 
     }

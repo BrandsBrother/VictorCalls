@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-ng-app="AngularAuthApp">
+<html data-ng-app="AngularAuthApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,8 +50,8 @@
         <div id="status"></div>
     </div>
     <!-- Site wrapper -->
-    <div class="wrapper">
-        <header class="main-header">
+    <div class="wrapper" data-ng-controller="indexController">
+        <header class="main-header" data-ng-hide="!authentication.isAuth">
             <a href="index.html" class="logo">
                 <!-- Logo -->
                 <span class="logo-mini">
@@ -361,7 +361,7 @@
         </header>
         <!-- =============================================== -->
         <!-- Left side column. contains the sidebar -->
-        <aside class="main-sidebar">
+        <aside class="main-sidebar" data-ng-hide="!authentication.isAuth">
             <!-- sidebar -->
             <div class="sidebar">
                 <!-- sidebar menu -->
@@ -726,20 +726,10 @@
         </aside>
         <!-- =============================================== -->
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="header-icon">
-                    <i class="fa fa-dashboard"></i>
-                </div>
-                <div class="header-title">
-                    <h1>CRM Admin Dashboard</h1>
-                    <small>Very detailed & featured admin.</small>
-                </div>
-            </section>
-            <!-- Main content -->
-            <!-- /.content -->
+        <div class="content-wrapper" data-ng-view="">
+
         </div>
+
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <strong>Copyright &copy; 2016-2017 <a href="#">Thememinister</a>.</strong> All rights reserved.
@@ -872,6 +862,8 @@
 
     <!-- Load app main script -->
     <script src="app/app.js?v=2"></script>
+    <script src="app/services/leadsService.js?v=2"></script>
+
 
     <!-- Load services -->
     <script src="app/services/authInterceptorService.js?v=2"></script>
@@ -887,6 +879,6 @@
     <script src="app/controllers/refreshController.js?v=2"></script>
     <script src="app/controllers/tokensManagerController.js?v=2"></script>
     <script src="app/controllers/associateController.js?v=2"></script>
+    <script src="app/controllers/leadsController.js?v =2"></script>
 </body>
 </html>
-
