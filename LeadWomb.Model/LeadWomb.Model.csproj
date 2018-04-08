@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="LeadItems.cs" />
     <Compile Include="Leads.cs" />
     <Compile Include="LeadStatusCounts.cs" />
+    <Compile Include="LeadStatusCountsType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatusList.cs" />
     <Compile Include="Utilities.cs" />

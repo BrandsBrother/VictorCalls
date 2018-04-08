@@ -36,31 +36,8 @@ namespace LeadWomb.Model
 
         public string PhoneNumber { get; set; }
 
-        public string QueryRemarks { get; set; }
-
-        public int TypeOfProperty { get; set; }
-
-        public int Status { get; set; }
-
-        public int RangeFrom { get; set; }
-
-        public int RangeTo { get; set; }
-
-        public string CompactLabel { get; set; }
-
-        public DateTime? RecivedOn { get; set; }
-
-        public string ProjectName { get; set; }
-
-        public string AssignedTo { get; set; }
-
-        public bool? BuilderInterest { get; set; }
-
-        public int StatusId { get; set; }
-
-        public DateTime StatusDate { get; set; }
-
-        public long? CompanyId { get; set; }
+        public List<LeadItems> Items { get; set; }
+  
 
     }
 }

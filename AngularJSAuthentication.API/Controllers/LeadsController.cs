@@ -19,10 +19,12 @@ namespace AngularJSAuthentication.API.Controllers
         //}
 
         private LeadsRepository leadRepository = null;
+        private AccountContext accountContext = null;
         // GET api/leads
         public LeadsController()
         {
             leadRepository = new LeadsRepository();
+            accountContext = new AccountContext();
         }
         [Route("")]
         public IHttpActionResult Get(string userName, int? statusID)
@@ -33,19 +35,9 @@ namespace AngularJSAuthentication.API.Controllers
         }
         [Route("LeadStatusCounts")]
         [HttpGet]
-        public LeadStatusCounts LeadStatusCounts(string userName)
+        public IHttpActionResult LeadStatusCounts(string userName)
         {
-            LeadStatusCounts obj = new LeadStatusCounts();
-            obj.ClosureCount = 23;
-            obj.CurrentLeadsCount = 24;
-            obj.DeadCount = 25;
-            obj.FollowUpsCount = 26;
-            obj.NotConnectedCount = 27;
-            obj.OtherProjectsCount = 28;
-            obj.PendingLeadsCount = 29;
-            obj.PlotCount = 30;
-            obj.RentCount = 31;
-            return obj;
+            return Ok(accountContext.GetStatusCountsByUserName(userName));
 
         }
         //[Route("")]
@@ -67,7 +59,7 @@ namespace AngularJSAuthentication.API.Controllers
             leadRepository.AddLead(value);
             return Ok();
         }
-
+        [HttpPut]
         // PUT api/leads/5
         public void Put([FromBody]Leads value)
         {

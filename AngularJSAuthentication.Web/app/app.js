@@ -48,7 +48,7 @@ app.config(function ($routeProvider) {
 
     });
 
-    $routeProvider.otherwise({ redirectTo: "/login" });
+    $routeProvider.otherwise({ redirectTo: "/dashboard" });
 
 });
 
@@ -67,6 +67,10 @@ app.run(['authService','$location', function (authService,$location) {
     
   
     authService.fillAuthData();
+    if (!authService.authentication.isAuth)
+    {
+        $location.path('/login');
+    }
    
     //if (!authService.authentication.isAuth) {
         

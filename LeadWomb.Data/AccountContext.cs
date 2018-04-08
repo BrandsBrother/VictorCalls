@@ -132,6 +132,70 @@ namespace LeadWomb.Data
         //    return statusCounts;
         //}
 
+        public LeadStatusCounts GetStatusCountsByUserName(string userName)
+        {
+            LeadStatusCounts user = new LeadStatusCounts();
+            sp_GetStatusCountByUserNameTableAdapter tableAdapter = new sp_GetStatusCountByUserNameTableAdapter();
+            AccountAdapter.sp_GetStatusCountByUserNameDataTable table = tableAdapter.GetStatusCountByUserName(userName);
+            int rowCount = 0;
+            foreach(AccountAdapter.sp_GetStatusCountByUserNameRow row in table.Rows)
+            {
+                switch (rowCount)
+                { 
+                    case 0:
+                        user.CurrentLeadsCount = row.PhoneNumberCount;
+                        break;
+                    case 1:
+                        user.NoWorkCount = row.PhoneNumberCount;
+                        break;
+                    case 2:
+                        user.NoWorkCount = row.PhoneNumberCount;
+                        break;
+                    case 3:
+                        user.FollowUpsCount = row.PhoneNumberCount;
+                        break;
+                    case 4:
+                        user.VisitOnCounts = row.PhoneNumberCount;
+                        break;
+                    case 5:
+                        user.VisitDoneCount = row.PhoneNumberCount;
+                        break;
+                    case 6:
+                        user.VisitDeadCount = row.PhoneNumberCount;
+                        break;
+                    case 7:
+                        user.OtherProjectsCount = row.PhoneNumberCount;
+                        break;
+                    case 8:
+                        user.ResaleCount = row.PhoneNumberCount;
+                        break;
+                    case 9:
+                        user.AlreadyBookedCount = row.PhoneNumberCount;
+                        break;
+                    case 10:
+                        user.BookedDone = row.PhoneNumberCount;
+                        break;
+                    case 11:
+                        user.DeadCount = row.PhoneNumberCount;
+                        break;
+                    case 12:
+                        user.RentCount = row.PhoneNumberCount;
+                        break;
+                    case 13:
+                        user.PlotCount = row.PhoneNumberCount;
+                        break;
+                    case 14:
+                        user.DuplicateCount = row.PhoneNumberCount;
+                        break;
+                }
+                    
+                rowCount++;
+                
+                     
+            }
+            return user;
+        }
+
         
     }
 }
