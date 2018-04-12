@@ -7,24 +7,27 @@
         <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
+                    <th>Project Name</th>
                     <th>Phone Number</th>
-                   
+                    <th>Assigned To</th>
                 </tr>
             </thead>
             <tbody>
-                <tr data-ng-repeat="user in users">
+                <tr data-ng-repeat="lead in leads">
                     <td>
-                        {{ user.firstName }}
+                        {{ lead.Name }}
                     </td>
                     <td>
-                        {{ user.lastName }}
+                        {{ lead.ProjName }}
                     </td>
                     <td>
-                        {{ user.phoneNumber }}
+                        {{ lead.phoneNumber }}
                     </td>
-                   
+                    <td>
+                        {{ lead.AssignedTo }}
+                    </td>
+
                 </tr>
             </tbody>
         </table>

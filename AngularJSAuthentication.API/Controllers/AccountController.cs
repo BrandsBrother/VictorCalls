@@ -50,7 +50,12 @@ namespace AngularJSAuthentication.API.Controllers
 
              return Ok();
         }
-
+        [HttpGet]
+        [Route("Users")]
+        public List<ApplicationUser> GetUsersOfCompany(string userName)
+        {
+           return _repo.GetUsersOfCompany(userName, null);
+        }
         // GET api/Account/ExternalLogin
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]

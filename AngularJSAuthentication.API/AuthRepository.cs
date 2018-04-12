@@ -128,5 +128,10 @@ namespace AngularJSAuthentication.API
             _userManager.Dispose();
 
         }
+
+        public List<ApplicationUser> GetUsersOfCompany(string userName, string roleID)
+        {
+           return context.GetUsersOfCompany(userName, null);
+        }
     }
 }

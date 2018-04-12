@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeadWomb.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace LeadWomb.Models
 
         [DataType(DataType.EmailAddress)]
         [Display(Name="Confirm Email")]
-        [Compare("Email",ErrorMessage="The Email and confirmation email do not match.")]
+      
         // Summary:
         //     True if the email is confirmed, default is false
         public virtual bool EmailConfirmed { get; set; }
@@ -90,6 +91,11 @@ namespace LeadWomb.Models
         // Summary:
         //     Is two factor enabled for the user
         public virtual bool TwoFactorEnabled { get; set; }
+
+        /// <summary>
+        /// assigned users
+        /// </summary>
+        public List<AssignedUser> AssignedUsers { get; set; }
         //
         // Summary:
         //     User name

@@ -29,8 +29,6 @@ namespace AngularJSAuthentication.API.Controllers
         [Route("")]
         public IHttpActionResult Get(string userName, int? statusID)
         {
-
-
             return Ok(leadRepository.GetLeads(userName,statusID));
         }
         [Route("LeadStatusCounts")]
@@ -38,6 +36,14 @@ namespace AngularJSAuthentication.API.Controllers
         public IHttpActionResult LeadStatusCounts(string userName)
         {
             return Ok(accountContext.GetStatusCountsByUserName(userName));
+
+        }
+
+        [Route("Company")]
+        [HttpGet]
+        public IHttpActionResult GetLeadsByCompany(string userName,int? statusID)
+        {
+            return Ok(leadRepository.GetLeadsByCompany(userName,statusID));
 
         }
         //[Route("")]

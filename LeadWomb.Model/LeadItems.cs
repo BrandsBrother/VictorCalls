@@ -19,6 +19,8 @@ namespace LeadWomb.Model
 
         public int RangeTo { get; set; }
 
+       
+
         public string CompactLabel { get; set; }
 
         public DateTime? RecivedOn { get; set; }

@@ -6,18 +6,6 @@ using System.Threading.Tasks;
 
 namespace LeadWomb.Model
 {
-
-
-    public class abc
-    {
-        public string test { get; set; }
-
-        public string testa{get;set;}
-
-        public string testb { get; set; }
-    }
-
-
     public class Leads
     {
         
@@ -37,6 +25,8 @@ namespace LeadWomb.Model
         public string PhoneNumber { get; set; }
 
         public List<LeadItems> Items { get; set; }
+
+        public List<AssignedUser> AssignedUsers { get; set; }
   
 
     }
