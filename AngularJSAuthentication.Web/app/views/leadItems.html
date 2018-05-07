@@ -1,0 +1,39 @@
+﻿<h2 class="form-login-heading">Lead Users</h2>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>LeadID : {{selectedLead.leadId}}</th>
+                <th>Name : {{selectedLead.name}}</th>
+            </tr>
+            <tr>
+                <th>Lead Item Id</th>
+                <th>Query Remarks</th>
+                <th>Type Of Property</th>
+                <th>Range</th>
+                <th>Portal Label</th>
+                <th>Project Name</th>
+                <th>Assigned To</th>
+                
+                <th>Status</th>
+                <th>Status Date</th>
+            </tr>
+        </thead>
+
+
+        <tr data-ng-repeat="leadItem in selectedLead.items">
+            <td>{{leadItem.leadItemID}}</td>
+            <td>{{leadItem.queryRemarks}}</td>
+            <td>{{leadItem.typeOfProperty}}</td>
+            <td>{{leadItem.rangeFrom}}-{{leadItem.rangeTo}}</td>
+            <td>{{leadItem.compactLabel}}</td>
+            <td>{{leadItem.projectName}}</td>
+            <td>{{leadItem.userName}}</td>
+            <td>{{leadItem.statusID}}</td>
+            <td>{{leadItem.statusDate}}</td>
+        </tr>
+
+    </table>
+</div>
+
+

@@ -16,7 +16,7 @@ namespace LeadWomb.Data
             
            object id = tableAdapter.Sp_CreateAspNetUser(user.UserName,user.Password,user.SecurityStamp,user.Email,user.EmailConfirmed,
                user.PhoneNumber,user.PhoneNumberConfirmed,user.TwoFactorEnabled,user.LockoutEndDateUtc==DateTime.MinValue?null:user.LockoutEndDateUtc,user.LockoutEnabled,
-                user.AccessFailedCount,user.FirstName,user.LastName,DateTime.Now,user.CompanyId,user.RoleId);
+                user.AccessFailedCount,user.FirstName,user.LastName,DateTime.Now,user.CompanyId,user.Role.RoleID);
            return id.ToString();
         }
         public void UpdateUser(ApplicationUser user)
@@ -24,7 +24,7 @@ namespace LeadWomb.Data
 
            tableAdapter.Sp_UpdateAspNetUser(user.Id ,user.UserName, user.Password, user.SecurityStamp, user.Email, user.EmailConfirmed,
                  user.PhoneNumber, user.PhoneNumberConfirmed, user.TwoFactorEnabled, user.LockoutEndDateUtc, user.LockoutEnabled,
-                 user.AccessFailedCount, user.FirstName, user.LastName, user.CreatedDateTime, user.CompanyId, user.RoleId);
+                 user.AccessFailedCount, user.FirstName, user.LastName, user.CreatedDateTime, user.CompanyId, user.Role.RoleID);
            
         }
 
@@ -50,7 +50,7 @@ namespace LeadWomb.Data
                     user.PhoneNumber = row.IsPhoneNumberNull()?null: row.PhoneNumber;
                     user.PhoneNumberConfirmed =  row.PhoneNumberConfirmed;
                     user.RoleId = row.RoleId;
-                    user.SecurityStamp = row.IsSecurityStampNull()?null: row.SecurityStamp;
+                    user.SecurityStamp = row.IsSecurityStampNull()?string.Empty: row.SecurityStamp;
                     user.TwoFactorEnabled = row.TwoFactorEnabled;
                     user.UserName = row.UserName;
                     user.Id = row.Id;
@@ -59,29 +59,49 @@ namespace LeadWomb.Data
             }
             return user;
         }
+
+        public List<Role> GetRoles()
+        {
+            List<Role> roles = new List<Role>();
+            sp_GetRolesTableAdapter adapter = new sp_GetRolesTableAdapter();
+            AccountAdapter.sp_GetRolesDataTable table = adapter.GetRoles();
+            if (table != null && table.Rows.Count > 0)
+            {
+                foreach (AccountAdapter.sp_GetRolesRow row in table.Rows)
+                {
+                    Role role = new Role();
+                    role.RoleID = row.Id;
+                    role.Name = row.Name;
+                    roles.Add(role);
+                }
+            }
+            return roles;
+        }
         public List<ApplicationUser> GetUsersOfCompany(string userName, string roleName)
         {
             List<ApplicationUser> users = null;
             sp_GetUsersOfCompanyandRoleIDTableAdapter adapter = new sp_GetUsersOfCompanyandRoleIDTableAdapter();
-            AccountAdapter.sp_GetUsersOfCompanyandRoleIDDataTable table = adapter.GetUsersOfCompany(userName, roleName);
+            AccountAdapter.sp_GetUsersOfCompanyandRoleIDDataTable table = adapter.GetUsersOfCompany(userName, (int?)null);
             if (table != null && table.Rows.Count > 0)
             {
                 users = new List<ApplicationUser>();
                 foreach (AccountAdapter.sp_GetUsersOfCompanyandRoleIDRow row in table.Rows)
                 {
                     ApplicationUser user = new ApplicationUser();
+                    user.Role = new Role();
                     user.Id = row.Id;
                     user.FirstName = row.FirstName;
                     user.AccessFailedCount = row.AccessFailedCount;
                     user.CompanyId = row.CompanyId;
                     user.CreatedDateTime = row.CreatedDateTime;
-                    user.Email = row.IsEmailNull() ? string.Empty : user.Email;
+                    user.Email = row.IsEmailNull() ? string.Empty : row.Email;
                     user.LastName = row.LastName;
                     user.LockoutEnabled = row.LockoutEnabled;
                     user.LockoutEndDateUtc = row.IsLockoutEndDateUtcNull() ? (DateTime?)null : row.LockoutEndDateUtc;
                     user.PhoneNumber = row.PhoneNumber;
-                    user.RoleId = row.RoleId;
-                    user.SecurityStamp = row.SecurityStamp;
+                    user.Role.RoleID = row.RoleId.ToString();
+                    user.Role.Name = row.Name;
+                    user.SecurityStamp = row.IsSecurityStampNull() ? string.Empty:row.SecurityStamp;
                     user.TwoFactorEnabled = row.TwoFactorEnabled;
                     user.UserName = row.UserName;
                     users.Add(user);
@@ -111,7 +131,7 @@ namespace LeadWomb.Data
                    user.LockoutEndDateUtc = row.IsLockoutEndDateUtcNull() ? (DateTime?)null : row.LockoutEndDateUtc;
                    user.PhoneNumber = row.PhoneNumber;
                    user.RoleId = row.RoleId;
-                   user.SecurityStamp = row.SecurityStamp;
+                   user.SecurityStamp = row.IsSecurityStampNull()?string.Empty:row.SecurityStamp;
                    user.TwoFactorEnabled = row.TwoFactorEnabled;
                    user.UserName = row.UserName;
                    users.Add(user);

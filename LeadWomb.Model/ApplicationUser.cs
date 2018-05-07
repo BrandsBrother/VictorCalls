@@ -112,8 +112,11 @@ namespace LeadWomb.Models
         /// Created date time
         /// </summary>
         public DateTime CreatedDateTime{get;set;}
-
-        public int RoleId { get; set; }
+        /// <summary>
+        /// Role of user
+        /// </summary>
+        public Role Role { get; set; }
+        public string RoleId { get; set; }
     }
 
    

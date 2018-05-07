@@ -11,5 +11,7 @@ namespace LeadWomb.Model
         public string ID { get; set; }
 
         public string AssignedTo { get; set; }
+
+        public bool Enabled { get; set; }
     }
 }

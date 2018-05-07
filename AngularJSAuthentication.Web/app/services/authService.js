@@ -3,7 +3,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
     var authServiceFactory = {};
-
+    var selectedLead = {};
     var _authentication = {
         isAuth: false,
         userName: "",
@@ -15,7 +15,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         userName: "",
         externalAccessToken: ""
     };
-
+    
     var _saveRegistration = function (registration) {
 
         _logOut();
@@ -154,8 +154,27 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         return deferred.promise;
 
     };
+    var _updateUser = function (registration) {
 
+       
+
+        return $http.put(serviceBase + 'api/account/User', registration).then(function (response) {
+            return response;
+        });
+
+
+    };
+
+    var _getuser = function (registration) {
+
+        return $http.get(serviceBase + 'api/Leads/GetUser', registration).then(function (response) {
+            return response;
+        });
+
+    };
+   
     authServiceFactory.saveRegistration = _saveRegistration;
+    authServiceFactory.updateUser = _updateUser;
     authServiceFactory.login = _login;
     authServiceFactory.logOut = _logOut;
     authServiceFactory.fillAuthData = _fillAuthData;

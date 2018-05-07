@@ -26,7 +26,36 @@ namespace LeadWomb.Model
 
         public List<LeadItems> Items { get; set; }
 
-        public List<AssignedUser> AssignedUsers { get; set; }
+        public string AssignedToUsers
+        {
+            get {
+                string variable = string.Empty;
+                string separator = ",";
+                if (Items != null && Items.Count > 0)
+                {
+                    foreach (LeadItems item in Items)
+                    {
+                        if (variable == string.Empty)
+                        {
+                            separator = string.Empty;
+                        }
+                        else
+                        {
+                            separator = ",";
+                        }
+                        if (item.IsAssigned)
+                        {
+                            variable = variable + separator + item.UserName;
+                        }
+                    }
+                }
+                return variable;
+
+            }
+
+        }
+
+       // public List<AssignedUser> AssignedUsers { get; set; }
   
 
     }

@@ -12,6 +12,7 @@ using System.Web;
 using LeadWomb.Data;
 using LeadWomb.Models;
 using System;
+using LeadWomb.Model;
 namespace AngularJSAuthentication.API
 {
 
@@ -37,6 +38,14 @@ namespace AngularJSAuthentication.API
        
         }
 
+        public void UpdateUser(ApplicationUser userModel)
+        {
+            context.UpdateUser(userModel);
+        }
+        public List<Role> GetRoles()
+        {
+           return  context.GetRoles();
+        }
         public async Task<IdentityUser> FindUser(string userName, string password)
         {
             IdentityUser user = await _userManager.FindAsync(userName, password);

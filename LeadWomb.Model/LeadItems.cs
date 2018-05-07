@@ -38,5 +38,16 @@ namespace LeadWomb.Model
         public long CompanyId { get; set; }
 
         public int LeadItemID { get; set; }
+
+      
+
+        public string UserName { get; set; }
+
+        public bool IsAssigned
+        {
+
+            get;
+            set;
+        }
     }
 }

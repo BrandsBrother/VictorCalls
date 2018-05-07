@@ -28,9 +28,11 @@ namespace LeadWomb.Data {
         
         private sp_GetStatusCountByUserNameDataTable tablesp_GetStatusCountByUserName;
         
+        private UpdateLeadItemDataTable tableUpdateLeadItem;
+        
         private sp_GetLeadsByUserNameDataTable tablesp_GetLeadsByUserName;
         
-        private sp_GetLeadsByCompanyDataTable tablesp_GetLeadsByCompany;
+        private sp_GetEmployeesLocationDataTable tablesp_GetEmployeesLocation;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -66,11 +68,14 @@ namespace LeadWomb.Data {
                 if ((ds.Tables["sp_GetStatusCountByUserName"] != null)) {
                     base.Tables.Add(new sp_GetStatusCountByUserNameDataTable(ds.Tables["sp_GetStatusCountByUserName"]));
                 }
+                if ((ds.Tables["UpdateLeadItem"] != null)) {
+                    base.Tables.Add(new UpdateLeadItemDataTable(ds.Tables["UpdateLeadItem"]));
+                }
                 if ((ds.Tables["sp_GetLeadsByUserName"] != null)) {
                     base.Tables.Add(new sp_GetLeadsByUserNameDataTable(ds.Tables["sp_GetLeadsByUserName"]));
                 }
-                if ((ds.Tables["sp_GetLeadsByCompany"] != null)) {
-                    base.Tables.Add(new sp_GetLeadsByCompanyDataTable(ds.Tables["sp_GetLeadsByCompany"]));
+                if ((ds.Tables["sp_GetEmployeesLocation"] != null)) {
+                    base.Tables.Add(new sp_GetEmployeesLocationDataTable(ds.Tables["sp_GetEmployeesLocation"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -114,6 +119,16 @@ namespace LeadWomb.Data {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public UpdateLeadItemDataTable UpdateLeadItem {
+            get {
+                return this.tableUpdateLeadItem;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public sp_GetLeadsByUserNameDataTable sp_GetLeadsByUserName {
             get {
                 return this.tablesp_GetLeadsByUserName;
@@ -124,9 +139,9 @@ namespace LeadWomb.Data {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public sp_GetLeadsByCompanyDataTable sp_GetLeadsByCompany {
+        public sp_GetEmployeesLocationDataTable sp_GetEmployeesLocation {
             get {
-                return this.tablesp_GetLeadsByCompany;
+                return this.tablesp_GetEmployeesLocation;
             }
         }
         
@@ -203,11 +218,14 @@ namespace LeadWomb.Data {
                 if ((ds.Tables["sp_GetStatusCountByUserName"] != null)) {
                     base.Tables.Add(new sp_GetStatusCountByUserNameDataTable(ds.Tables["sp_GetStatusCountByUserName"]));
                 }
+                if ((ds.Tables["UpdateLeadItem"] != null)) {
+                    base.Tables.Add(new UpdateLeadItemDataTable(ds.Tables["UpdateLeadItem"]));
+                }
                 if ((ds.Tables["sp_GetLeadsByUserName"] != null)) {
                     base.Tables.Add(new sp_GetLeadsByUserNameDataTable(ds.Tables["sp_GetLeadsByUserName"]));
                 }
-                if ((ds.Tables["sp_GetLeadsByCompany"] != null)) {
-                    base.Tables.Add(new sp_GetLeadsByCompanyDataTable(ds.Tables["sp_GetLeadsByCompany"]));
+                if ((ds.Tables["sp_GetEmployeesLocation"] != null)) {
+                    base.Tables.Add(new sp_GetEmployeesLocationDataTable(ds.Tables["sp_GetEmployeesLocation"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -254,16 +272,22 @@ namespace LeadWomb.Data {
                     this.tablesp_GetStatusCountByUserName.InitVars();
                 }
             }
+            this.tableUpdateLeadItem = ((UpdateLeadItemDataTable)(base.Tables["UpdateLeadItem"]));
+            if ((initTable == true)) {
+                if ((this.tableUpdateLeadItem != null)) {
+                    this.tableUpdateLeadItem.InitVars();
+                }
+            }
             this.tablesp_GetLeadsByUserName = ((sp_GetLeadsByUserNameDataTable)(base.Tables["sp_GetLeadsByUserName"]));
             if ((initTable == true)) {
                 if ((this.tablesp_GetLeadsByUserName != null)) {
                     this.tablesp_GetLeadsByUserName.InitVars();
                 }
             }
-            this.tablesp_GetLeadsByCompany = ((sp_GetLeadsByCompanyDataTable)(base.Tables["sp_GetLeadsByCompany"]));
+            this.tablesp_GetEmployeesLocation = ((sp_GetEmployeesLocationDataTable)(base.Tables["sp_GetEmployeesLocation"]));
             if ((initTable == true)) {
-                if ((this.tablesp_GetLeadsByCompany != null)) {
-                    this.tablesp_GetLeadsByCompany.InitVars();
+                if ((this.tablesp_GetEmployeesLocation != null)) {
+                    this.tablesp_GetEmployeesLocation.InitVars();
                 }
             }
         }
@@ -280,10 +304,12 @@ namespace LeadWomb.Data {
             base.Tables.Add(this.tableGetLeadsByCompanyIdandStatusId);
             this.tablesp_GetStatusCountByUserName = new sp_GetStatusCountByUserNameDataTable();
             base.Tables.Add(this.tablesp_GetStatusCountByUserName);
+            this.tableUpdateLeadItem = new UpdateLeadItemDataTable();
+            base.Tables.Add(this.tableUpdateLeadItem);
             this.tablesp_GetLeadsByUserName = new sp_GetLeadsByUserNameDataTable();
             base.Tables.Add(this.tablesp_GetLeadsByUserName);
-            this.tablesp_GetLeadsByCompany = new sp_GetLeadsByCompanyDataTable();
-            base.Tables.Add(this.tablesp_GetLeadsByCompany);
+            this.tablesp_GetEmployeesLocation = new sp_GetEmployeesLocationDataTable();
+            base.Tables.Add(this.tablesp_GetEmployeesLocation);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -300,13 +326,19 @@ namespace LeadWomb.Data {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeUpdateLeadItem() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializesp_GetLeadsByUserName() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializesp_GetLeadsByCompany() {
+        private bool ShouldSerializesp_GetEmployeesLocation() {
             return false;
         }
         
@@ -372,10 +404,13 @@ namespace LeadWomb.Data {
         public delegate void sp_GetStatusCountByUserNameRowChangeEventHandler(object sender, sp_GetStatusCountByUserNameRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void UpdateLeadItemRowChangeEventHandler(object sender, UpdateLeadItemRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void sp_GetLeadsByUserNameRowChangeEventHandler(object sender, sp_GetLeadsByUserNameRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void sp_GetLeadsByCompanyRowChangeEventHandler(object sender, sp_GetLeadsByCompanyRowChangeEvent e);
+        public delegate void sp_GetEmployeesLocationRowChangeEventHandler(object sender, sp_GetEmployeesLocationRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1206,6 +1241,239 @@ namespace LeadWomb.Data {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class UpdateLeadItemDataTable : global::System.Data.TypedTableBase<UpdateLeadItemRow> {
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UpdateLeadItemDataTable() {
+                this.TableName = "UpdateLeadItem";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal UpdateLeadItemDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected UpdateLeadItemDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UpdateLeadItemRow this[int index] {
+                get {
+                    return ((UpdateLeadItemRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UpdateLeadItemRowChangeEventHandler UpdateLeadItemRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UpdateLeadItemRowChangeEventHandler UpdateLeadItemRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UpdateLeadItemRowChangeEventHandler UpdateLeadItemRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UpdateLeadItemRowChangeEventHandler UpdateLeadItemRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddUpdateLeadItemRow(UpdateLeadItemRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UpdateLeadItemRow AddUpdateLeadItemRow() {
+                UpdateLeadItemRow rowUpdateLeadItemRow = ((UpdateLeadItemRow)(this.NewRow()));
+                object[] columnValuesArray = new object[0];
+                rowUpdateLeadItemRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowUpdateLeadItemRow);
+                return rowUpdateLeadItemRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                UpdateLeadItemDataTable cln = ((UpdateLeadItemDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new UpdateLeadItemDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UpdateLeadItemRow NewUpdateLeadItemRow() {
+                return ((UpdateLeadItemRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new UpdateLeadItemRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(UpdateLeadItemRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.UpdateLeadItemRowChanged != null)) {
+                    this.UpdateLeadItemRowChanged(this, new UpdateLeadItemRowChangeEvent(((UpdateLeadItemRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.UpdateLeadItemRowChanging != null)) {
+                    this.UpdateLeadItemRowChanging(this, new UpdateLeadItemRowChangeEvent(((UpdateLeadItemRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.UpdateLeadItemRowDeleted != null)) {
+                    this.UpdateLeadItemRowDeleted(this, new UpdateLeadItemRowChangeEvent(((UpdateLeadItemRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.UpdateLeadItemRowDeleting != null)) {
+                    this.UpdateLeadItemRowDeleting(this, new UpdateLeadItemRowChangeEvent(((UpdateLeadItemRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveUpdateLeadItemRow(UpdateLeadItemRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                LeadWombDataset ds = new LeadWombDataset();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "UpdateLeadItemDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class sp_GetLeadsByUserNameDataTable : global::System.Data.TypedTableBase<sp_GetLeadsByUserNameRow> {
             
             private global::System.Data.DataColumn columnId;
@@ -1251,6 +1519,8 @@ namespace LeadWomb.Data {
             private global::System.Data.DataColumn columnStatusId;
             
             private global::System.Data.DataColumn columnTypeOfProperty;
+            
+            private global::System.Data.DataColumn columnLeadItemId;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1463,6 +1733,14 @@ namespace LeadWomb.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn LeadItemIdColumn {
+                get {
+                    return this.columnLeadItemId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1543,18 +1821,11 @@ namespace LeadWomb.Data {
                         Status,
                         StatusDate,
                         StatusId,
-                        TypeOfProperty};
+                        TypeOfProperty,
+                        null};
                 rowsp_GetLeadsByUserNameRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsp_GetLeadsByUserNameRow);
                 return rowsp_GetLeadsByUserNameRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetLeadsByUserNameRow FindByIdLead_ID(string Id, int Lead_ID) {
-                return ((sp_GetLeadsByUserNameRow)(this.Rows.Find(new object[] {
-                            Id,
-                            Lead_ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1596,6 +1867,7 @@ namespace LeadWomb.Data {
                 this.columnStatusDate = base.Columns["StatusDate"];
                 this.columnStatusId = base.Columns["StatusId"];
                 this.columnTypeOfProperty = base.Columns["TypeOfProperty"];
+                this.columnLeadItemId = base.Columns["LeadItemId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1645,9 +1917,8 @@ namespace LeadWomb.Data {
                 base.Columns.Add(this.columnStatusId);
                 this.columnTypeOfProperty = new global::System.Data.DataColumn("TypeOfProperty", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTypeOfProperty);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId,
-                                this.columnLead_ID}, true));
+                this.columnLeadItemId = new global::System.Data.DataColumn("LeadItemId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeadItemId);
                 this.columnId.AllowDBNull = false;
                 this.columnId.MaxLength = 128;
                 this.columnAssignedTo.ReadOnly = true;
@@ -1666,6 +1937,11 @@ namespace LeadWomb.Data {
                 this.columnPhoneNumber.MaxLength = 14;
                 this.columnProjName.MaxLength = 100;
                 this.columnQueryRemarks.MaxLength = 200;
+                this.columnLeadItemId.AutoIncrement = true;
+                this.columnLeadItemId.AutoIncrementSeed = -1;
+                this.columnLeadItemId.AutoIncrementStep = -1;
+                this.columnLeadItemId.AllowDBNull = false;
+                this.columnLeadItemId.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1797,56 +2073,24 @@ namespace LeadWomb.Data {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class sp_GetLeadsByCompanyDataTable : global::System.Data.TypedTableBase<sp_GetLeadsByCompanyRow> {
+        public partial class sp_GetEmployeesLocationDataTable : global::System.Data.TypedTableBase<sp_GetEmployeesLocationRow> {
             
-            private global::System.Data.DataColumn columnId;
+            private global::System.Data.DataColumn columnUserId;
             
-            private global::System.Data.DataColumn columnAssignedTo;
+            private global::System.Data.DataColumn columnUserName;
             
-            private global::System.Data.DataColumn columnBuilderInterest;
+            private global::System.Data.DataColumn columnLongitude;
             
-            private global::System.Data.DataColumn columnCmpctLabel;
+            private global::System.Data.DataColumn columnLattitude;
             
             private global::System.Data.DataColumn columnCompanyId;
             
-            private global::System.Data.DataColumn columnCreateDateTimeOffset;
-            
-            private global::System.Data.DataColumn columnCreateUser_ID;
-            
-            private global::System.Data.DataColumn columnEditDateTimeOffset;
-            
-            private global::System.Data.DataColumn columnEditUser_ID;
-            
-            private global::System.Data.DataColumn columnEmail;
-            
-            private global::System.Data.DataColumn columnLead_ID;
-            
-            private global::System.Data.DataColumn columnName;
-            
-            private global::System.Data.DataColumn columnPhoneNumber;
-            
-            private global::System.Data.DataColumn columnProjName;
-            
-            private global::System.Data.DataColumn columnQueryRemarks;
-            
-            private global::System.Data.DataColumn columnRangeFrom;
-            
-            private global::System.Data.DataColumn columnRangeTo;
-            
-            private global::System.Data.DataColumn columnReceivedOn;
-            
-            private global::System.Data.DataColumn columnStatus;
-            
-            private global::System.Data.DataColumn columnStatusDate;
-            
-            private global::System.Data.DataColumn columnStatusId;
-            
-            private global::System.Data.DataColumn columnTypeOfProperty;
+            private global::System.Data.DataColumn columnLocationId;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetLeadsByCompanyDataTable() {
-                this.TableName = "sp_GetLeadsByCompany";
+            public sp_GetEmployeesLocationDataTable() {
+                this.TableName = "sp_GetEmployeesLocation";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1854,7 +2098,7 @@ namespace LeadWomb.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal sp_GetLeadsByCompanyDataTable(global::System.Data.DataTable table) {
+            internal sp_GetEmployeesLocationDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1871,40 +2115,40 @@ namespace LeadWomb.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected sp_GetLeadsByCompanyDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected sp_GetEmployeesLocationDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IdColumn {
+            public global::System.Data.DataColumn UserIdColumn {
                 get {
-                    return this.columnId;
+                    return this.columnUserId;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AssignedToColumn {
+            public global::System.Data.DataColumn UserNameColumn {
                 get {
-                    return this.columnAssignedTo;
+                    return this.columnUserName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn BuilderInterestColumn {
+            public global::System.Data.DataColumn LongitudeColumn {
                 get {
-                    return this.columnBuilderInterest;
+                    return this.columnLongitude;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CmpctLabelColumn {
+            public global::System.Data.DataColumn LattitudeColumn {
                 get {
-                    return this.columnCmpctLabel;
+                    return this.columnLattitude;
                 }
             }
             
@@ -1918,137 +2162,9 @@ namespace LeadWomb.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CreateDateTimeOffsetColumn {
+            public global::System.Data.DataColumn LocationIdColumn {
                 get {
-                    return this.columnCreateDateTimeOffset;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CreateUser_IDColumn {
-                get {
-                    return this.columnCreateUser_ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EditDateTimeOffsetColumn {
-                get {
-                    return this.columnEditDateTimeOffset;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EditUser_IDColumn {
-                get {
-                    return this.columnEditUser_ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EmailColumn {
-                get {
-                    return this.columnEmail;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Lead_IDColumn {
-                get {
-                    return this.columnLead_ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NameColumn {
-                get {
-                    return this.columnName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PhoneNumberColumn {
-                get {
-                    return this.columnPhoneNumber;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ProjNameColumn {
-                get {
-                    return this.columnProjName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QueryRemarksColumn {
-                get {
-                    return this.columnQueryRemarks;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RangeFromColumn {
-                get {
-                    return this.columnRangeFrom;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RangeToColumn {
-                get {
-                    return this.columnRangeTo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ReceivedOnColumn {
-                get {
-                    return this.columnReceivedOn;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn StatusColumn {
-                get {
-                    return this.columnStatus;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn StatusDateColumn {
-                get {
-                    return this.columnStatusDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn StatusIdColumn {
-                get {
-                    return this.columnStatusId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TypeOfPropertyColumn {
-                get {
-                    return this.columnTypeOfProperty;
+                    return this.columnLocationId;
                 }
             }
             
@@ -2063,95 +2179,50 @@ namespace LeadWomb.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetLeadsByCompanyRow this[int index] {
+            public sp_GetEmployeesLocationRow this[int index] {
                 get {
-                    return ((sp_GetLeadsByCompanyRow)(this.Rows[index]));
+                    return ((sp_GetEmployeesLocationRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_GetLeadsByCompanyRowChangeEventHandler sp_GetLeadsByCompanyRowChanging;
+            public event sp_GetEmployeesLocationRowChangeEventHandler sp_GetEmployeesLocationRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_GetLeadsByCompanyRowChangeEventHandler sp_GetLeadsByCompanyRowChanged;
+            public event sp_GetEmployeesLocationRowChangeEventHandler sp_GetEmployeesLocationRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_GetLeadsByCompanyRowChangeEventHandler sp_GetLeadsByCompanyRowDeleting;
+            public event sp_GetEmployeesLocationRowChangeEventHandler sp_GetEmployeesLocationRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_GetLeadsByCompanyRowChangeEventHandler sp_GetLeadsByCompanyRowDeleted;
+            public event sp_GetEmployeesLocationRowChangeEventHandler sp_GetEmployeesLocationRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Addsp_GetLeadsByCompanyRow(sp_GetLeadsByCompanyRow row) {
+            public void Addsp_GetEmployeesLocationRow(sp_GetEmployeesLocationRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetLeadsByCompanyRow Addsp_GetLeadsByCompanyRow(
-                        string Id, 
-                        string AssignedTo, 
-                        bool BuilderInterest, 
-                        string CmpctLabel, 
-                        long CompanyId, 
-                        System.DateTime CreateDateTimeOffset, 
-                        string CreateUser_ID, 
-                        System.DateTime EditDateTimeOffset, 
-                        string EditUser_ID, 
-                        string Email, 
-                        string Name, 
-                        string PhoneNumber, 
-                        string ProjName, 
-                        string QueryRemarks, 
-                        int RangeFrom, 
-                        int RangeTo, 
-                        System.DateTime ReceivedOn, 
-                        int Status, 
-                        System.DateTime StatusDate, 
-                        int StatusId, 
-                        int TypeOfProperty) {
-                sp_GetLeadsByCompanyRow rowsp_GetLeadsByCompanyRow = ((sp_GetLeadsByCompanyRow)(this.NewRow()));
+            public sp_GetEmployeesLocationRow Addsp_GetEmployeesLocationRow(string UserId, string UserName, string Longitude, string Lattitude, int CompanyId) {
+                sp_GetEmployeesLocationRow rowsp_GetEmployeesLocationRow = ((sp_GetEmployeesLocationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id,
-                        AssignedTo,
-                        BuilderInterest,
-                        CmpctLabel,
+                        UserId,
+                        UserName,
+                        Longitude,
+                        Lattitude,
                         CompanyId,
-                        CreateDateTimeOffset,
-                        CreateUser_ID,
-                        EditDateTimeOffset,
-                        EditUser_ID,
-                        Email,
-                        null,
-                        Name,
-                        PhoneNumber,
-                        ProjName,
-                        QueryRemarks,
-                        RangeFrom,
-                        RangeTo,
-                        ReceivedOn,
-                        Status,
-                        StatusDate,
-                        StatusId,
-                        TypeOfProperty};
-                rowsp_GetLeadsByCompanyRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowsp_GetLeadsByCompanyRow);
-                return rowsp_GetLeadsByCompanyRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetLeadsByCompanyRow FindByIdLead_ID(string Id, int Lead_ID) {
-                return ((sp_GetLeadsByCompanyRow)(this.Rows.Find(new object[] {
-                            Id,
-                            Lead_ID})));
+                        null};
+                rowsp_GetEmployeesLocationRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsp_GetEmployeesLocationRow);
+                return rowsp_GetEmployeesLocationRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                sp_GetLeadsByCompanyDataTable cln = ((sp_GetLeadsByCompanyDataTable)(base.Clone()));
+                sp_GetEmployeesLocationDataTable cln = ((sp_GetEmployeesLocationDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -2159,130 +2230,74 @@ namespace LeadWomb.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new sp_GetLeadsByCompanyDataTable();
+                return new sp_GetEmployeesLocationDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnId = base.Columns["Id"];
-                this.columnAssignedTo = base.Columns["AssignedTo"];
-                this.columnBuilderInterest = base.Columns["BuilderInterest"];
-                this.columnCmpctLabel = base.Columns["CmpctLabel"];
+                this.columnUserId = base.Columns["UserId"];
+                this.columnUserName = base.Columns["UserName"];
+                this.columnLongitude = base.Columns["Longitude"];
+                this.columnLattitude = base.Columns["Lattitude"];
                 this.columnCompanyId = base.Columns["CompanyId"];
-                this.columnCreateDateTimeOffset = base.Columns["CreateDateTimeOffset"];
-                this.columnCreateUser_ID = base.Columns["CreateUser_ID"];
-                this.columnEditDateTimeOffset = base.Columns["EditDateTimeOffset"];
-                this.columnEditUser_ID = base.Columns["EditUser_ID"];
-                this.columnEmail = base.Columns["Email"];
-                this.columnLead_ID = base.Columns["Lead_ID"];
-                this.columnName = base.Columns["Name"];
-                this.columnPhoneNumber = base.Columns["PhoneNumber"];
-                this.columnProjName = base.Columns["ProjName"];
-                this.columnQueryRemarks = base.Columns["QueryRemarks"];
-                this.columnRangeFrom = base.Columns["RangeFrom"];
-                this.columnRangeTo = base.Columns["RangeTo"];
-                this.columnReceivedOn = base.Columns["ReceivedOn"];
-                this.columnStatus = base.Columns["Status"];
-                this.columnStatusDate = base.Columns["StatusDate"];
-                this.columnStatusId = base.Columns["StatusId"];
-                this.columnTypeOfProperty = base.Columns["TypeOfProperty"];
+                this.columnLocationId = base.Columns["LocationId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnId = new global::System.Data.DataColumn("Id", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
-                this.columnAssignedTo = new global::System.Data.DataColumn("AssignedTo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAssignedTo);
-                this.columnBuilderInterest = new global::System.Data.DataColumn("BuilderInterest", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBuilderInterest);
-                this.columnCmpctLabel = new global::System.Data.DataColumn("CmpctLabel", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCmpctLabel);
-                this.columnCompanyId = new global::System.Data.DataColumn("CompanyId", typeof(long), null, global::System.Data.MappingType.Element);
+                this.columnUserId = new global::System.Data.DataColumn("UserId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserId);
+                this.columnUserName = new global::System.Data.DataColumn("UserName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserName);
+                this.columnLongitude = new global::System.Data.DataColumn("Longitude", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLongitude);
+                this.columnLattitude = new global::System.Data.DataColumn("Lattitude", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLattitude);
+                this.columnCompanyId = new global::System.Data.DataColumn("CompanyId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCompanyId);
-                this.columnCreateDateTimeOffset = new global::System.Data.DataColumn("CreateDateTimeOffset", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCreateDateTimeOffset);
-                this.columnCreateUser_ID = new global::System.Data.DataColumn("CreateUser_ID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCreateUser_ID);
-                this.columnEditDateTimeOffset = new global::System.Data.DataColumn("EditDateTimeOffset", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEditDateTimeOffset);
-                this.columnEditUser_ID = new global::System.Data.DataColumn("EditUser_ID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEditUser_ID);
-                this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEmail);
-                this.columnLead_ID = new global::System.Data.DataColumn("Lead_ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLead_ID);
-                this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnName);
-                this.columnPhoneNumber = new global::System.Data.DataColumn("PhoneNumber", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPhoneNumber);
-                this.columnProjName = new global::System.Data.DataColumn("ProjName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProjName);
-                this.columnQueryRemarks = new global::System.Data.DataColumn("QueryRemarks", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQueryRemarks);
-                this.columnRangeFrom = new global::System.Data.DataColumn("RangeFrom", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRangeFrom);
-                this.columnRangeTo = new global::System.Data.DataColumn("RangeTo", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRangeTo);
-                this.columnReceivedOn = new global::System.Data.DataColumn("ReceivedOn", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnReceivedOn);
-                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatus);
-                this.columnStatusDate = new global::System.Data.DataColumn("StatusDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatusDate);
-                this.columnStatusId = new global::System.Data.DataColumn("StatusId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatusId);
-                this.columnTypeOfProperty = new global::System.Data.DataColumn("TypeOfProperty", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTypeOfProperty);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId,
-                                this.columnLead_ID}, true));
-                this.columnId.AllowDBNull = false;
-                this.columnId.MaxLength = 128;
-                this.columnAssignedTo.ReadOnly = true;
-                this.columnAssignedTo.MaxLength = 2147483647;
-                this.columnCmpctLabel.MaxLength = 2147483647;
+                this.columnLocationId = new global::System.Data.DataColumn("LocationId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLocationId);
+                this.columnUserId.AllowDBNull = false;
+                this.columnUserId.MaxLength = 100;
+                this.columnUserName.MaxLength = 2147483647;
+                this.columnLongitude.AllowDBNull = false;
+                this.columnLongitude.MaxLength = 100;
+                this.columnLattitude.AllowDBNull = false;
+                this.columnLattitude.MaxLength = 100;
                 this.columnCompanyId.AllowDBNull = false;
-                this.columnCreateUser_ID.MaxLength = 128;
-                this.columnEditUser_ID.MaxLength = 128;
-                this.columnEmail.MaxLength = 80;
-                this.columnLead_ID.AutoIncrement = true;
-                this.columnLead_ID.AutoIncrementSeed = -1;
-                this.columnLead_ID.AutoIncrementStep = -1;
-                this.columnLead_ID.AllowDBNull = false;
-                this.columnLead_ID.ReadOnly = true;
-                this.columnName.MaxLength = 100;
-                this.columnPhoneNumber.MaxLength = 14;
-                this.columnProjName.MaxLength = 100;
-                this.columnQueryRemarks.MaxLength = 200;
+                this.columnLocationId.AutoIncrement = true;
+                this.columnLocationId.AutoIncrementSeed = -1;
+                this.columnLocationId.AutoIncrementStep = -1;
+                this.columnLocationId.AllowDBNull = false;
+                this.columnLocationId.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetLeadsByCompanyRow Newsp_GetLeadsByCompanyRow() {
-                return ((sp_GetLeadsByCompanyRow)(this.NewRow()));
+            public sp_GetEmployeesLocationRow Newsp_GetEmployeesLocationRow() {
+                return ((sp_GetEmployeesLocationRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new sp_GetLeadsByCompanyRow(builder);
+                return new sp_GetEmployeesLocationRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(sp_GetLeadsByCompanyRow);
+                return typeof(sp_GetEmployeesLocationRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.sp_GetLeadsByCompanyRowChanged != null)) {
-                    this.sp_GetLeadsByCompanyRowChanged(this, new sp_GetLeadsByCompanyRowChangeEvent(((sp_GetLeadsByCompanyRow)(e.Row)), e.Action));
+                if ((this.sp_GetEmployeesLocationRowChanged != null)) {
+                    this.sp_GetEmployeesLocationRowChanged(this, new sp_GetEmployeesLocationRowChangeEvent(((sp_GetEmployeesLocationRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2290,8 +2305,8 @@ namespace LeadWomb.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.sp_GetLeadsByCompanyRowChanging != null)) {
-                    this.sp_GetLeadsByCompanyRowChanging(this, new sp_GetLeadsByCompanyRowChangeEvent(((sp_GetLeadsByCompanyRow)(e.Row)), e.Action));
+                if ((this.sp_GetEmployeesLocationRowChanging != null)) {
+                    this.sp_GetEmployeesLocationRowChanging(this, new sp_GetEmployeesLocationRowChangeEvent(((sp_GetEmployeesLocationRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2299,8 +2314,8 @@ namespace LeadWomb.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.sp_GetLeadsByCompanyRowDeleted != null)) {
-                    this.sp_GetLeadsByCompanyRowDeleted(this, new sp_GetLeadsByCompanyRowChangeEvent(((sp_GetLeadsByCompanyRow)(e.Row)), e.Action));
+                if ((this.sp_GetEmployeesLocationRowDeleted != null)) {
+                    this.sp_GetEmployeesLocationRowDeleted(this, new sp_GetEmployeesLocationRowChangeEvent(((sp_GetEmployeesLocationRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2308,14 +2323,14 @@ namespace LeadWomb.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.sp_GetLeadsByCompanyRowDeleting != null)) {
-                    this.sp_GetLeadsByCompanyRowDeleting(this, new sp_GetLeadsByCompanyRowChangeEvent(((sp_GetLeadsByCompanyRow)(e.Row)), e.Action));
+                if ((this.sp_GetEmployeesLocationRowDeleting != null)) {
+                    this.sp_GetEmployeesLocationRowDeleting(this, new sp_GetEmployeesLocationRowChangeEvent(((sp_GetEmployeesLocationRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Removesp_GetLeadsByCompanyRow(sp_GetLeadsByCompanyRow row) {
+            public void Removesp_GetEmployeesLocationRow(sp_GetEmployeesLocationRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -2342,7 +2357,7 @@ namespace LeadWomb.Data {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "sp_GetLeadsByCompanyDataTable";
+                attribute2.FixedValue = "sp_GetEmployeesLocationDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3010,6 +3025,21 @@ namespace LeadWomb.Data {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
+        public partial class UpdateLeadItemRow : global::System.Data.DataRow {
+            
+            private UpdateLeadItemDataTable tableUpdateLeadItem;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal UpdateLeadItemRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableUpdateLeadItem = ((UpdateLeadItemDataTable)(this.Table));
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
         public partial class sp_GetLeadsByUserNameRow : global::System.Data.DataRow {
             
             private sp_GetLeadsByUserNameDataTable tablesp_GetLeadsByUserName;
@@ -3364,6 +3394,17 @@ namespace LeadWomb.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int LeadItemId {
+                get {
+                    return ((int)(this[this.tablesp_GetLeadsByUserName.LeadItemIdColumn]));
+                }
+                set {
+                    this[this.tablesp_GetLeadsByUserName.LeadItemIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsAssignedToNull() {
                 return this.IsNull(this.tablesp_GetLeadsByUserName.AssignedToColumn);
             }
@@ -3594,583 +3635,98 @@ namespace LeadWomb.Data {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class sp_GetLeadsByCompanyRow : global::System.Data.DataRow {
+        public partial class sp_GetEmployeesLocationRow : global::System.Data.DataRow {
             
-            private sp_GetLeadsByCompanyDataTable tablesp_GetLeadsByCompany;
+            private sp_GetEmployeesLocationDataTable tablesp_GetEmployeesLocation;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal sp_GetLeadsByCompanyRow(global::System.Data.DataRowBuilder rb) : 
+            internal sp_GetEmployeesLocationRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablesp_GetLeadsByCompany = ((sp_GetLeadsByCompanyDataTable)(this.Table));
+                this.tablesp_GetEmployeesLocation = ((sp_GetEmployeesLocationDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Id {
+            public string UserId {
                 get {
-                    return ((string)(this[this.tablesp_GetLeadsByCompany.IdColumn]));
+                    return ((string)(this[this.tablesp_GetEmployeesLocation.UserIdColumn]));
                 }
                 set {
-                    this[this.tablesp_GetLeadsByCompany.IdColumn] = value;
+                    this[this.tablesp_GetEmployeesLocation.UserIdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string AssignedTo {
-                get {
-                    try {
-                        return ((string)(this[this.tablesp_GetLeadsByCompany.AssignedToColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AssignedTo\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.AssignedToColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool BuilderInterest {
+            public string UserName {
                 get {
                     try {
-                        return ((bool)(this[this.tablesp_GetLeadsByCompany.BuilderInterestColumn]));
+                        return ((string)(this[this.tablesp_GetEmployeesLocation.UserNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'BuilderInterest\' in table \'sp_GetLeadsByCompany\' is DBNull." +
-                                "", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'UserName\' in table \'sp_GetEmployeesLocation\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablesp_GetLeadsByCompany.BuilderInterestColumn] = value;
+                    this[this.tablesp_GetEmployeesLocation.UserNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CmpctLabel {
+            public string Longitude {
                 get {
-                    try {
-                        return ((string)(this[this.tablesp_GetLeadsByCompany.CmpctLabelColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CmpctLabel\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tablesp_GetEmployeesLocation.LongitudeColumn]));
                 }
                 set {
-                    this[this.tablesp_GetLeadsByCompany.CmpctLabelColumn] = value;
+                    this[this.tablesp_GetEmployeesLocation.LongitudeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public long CompanyId {
+            public string Lattitude {
                 get {
-                    return ((long)(this[this.tablesp_GetLeadsByCompany.CompanyIdColumn]));
+                    return ((string)(this[this.tablesp_GetEmployeesLocation.LattitudeColumn]));
                 }
                 set {
-                    this[this.tablesp_GetLeadsByCompany.CompanyIdColumn] = value;
+                    this[this.tablesp_GetEmployeesLocation.LattitudeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime CreateDateTimeOffset {
+            public int CompanyId {
                 get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tablesp_GetLeadsByCompany.CreateDateTimeOffsetColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CreateDateTimeOffset\' in table \'sp_GetLeadsByCompany\' is DB" +
-                                "Null.", e);
-                    }
+                    return ((int)(this[this.tablesp_GetEmployeesLocation.CompanyIdColumn]));
                 }
                 set {
-                    this[this.tablesp_GetLeadsByCompany.CreateDateTimeOffsetColumn] = value;
+                    this[this.tablesp_GetEmployeesLocation.CompanyIdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CreateUser_ID {
+            public int LocationId {
                 get {
-                    try {
-                        return ((string)(this[this.tablesp_GetLeadsByCompany.CreateUser_IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CreateUser_ID\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tablesp_GetEmployeesLocation.LocationIdColumn]));
                 }
                 set {
-                    this[this.tablesp_GetLeadsByCompany.CreateUser_IDColumn] = value;
+                    this[this.tablesp_GetEmployeesLocation.LocationIdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime EditDateTimeOffset {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tablesp_GetLeadsByCompany.EditDateTimeOffsetColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EditDateTimeOffset\' in table \'sp_GetLeadsByCompany\' is DBNu" +
-                                "ll.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.EditDateTimeOffsetColumn] = value;
-                }
+            public bool IsUserNameNull() {
+                return this.IsNull(this.tablesp_GetEmployeesLocation.UserNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EditUser_ID {
-                get {
-                    try {
-                        return ((string)(this[this.tablesp_GetLeadsByCompany.EditUser_IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EditUser_ID\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.EditUser_IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Email {
-                get {
-                    try {
-                        return ((string)(this[this.tablesp_GetLeadsByCompany.EmailColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Email\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.EmailColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Lead_ID {
-                get {
-                    return ((int)(this[this.tablesp_GetLeadsByCompany.Lead_IDColumn]));
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.Lead_IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Name {
-                get {
-                    try {
-                        return ((string)(this[this.tablesp_GetLeadsByCompany.NameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.NameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string PhoneNumber {
-                get {
-                    try {
-                        return ((string)(this[this.tablesp_GetLeadsByCompany.PhoneNumberColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PhoneNumber\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.PhoneNumberColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ProjName {
-                get {
-                    try {
-                        return ((string)(this[this.tablesp_GetLeadsByCompany.ProjNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ProjName\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.ProjNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QueryRemarks {
-                get {
-                    try {
-                        return ((string)(this[this.tablesp_GetLeadsByCompany.QueryRemarksColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QueryRemarks\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.QueryRemarksColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int RangeFrom {
-                get {
-                    try {
-                        return ((int)(this[this.tablesp_GetLeadsByCompany.RangeFromColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'RangeFrom\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.RangeFromColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int RangeTo {
-                get {
-                    try {
-                        return ((int)(this[this.tablesp_GetLeadsByCompany.RangeToColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'RangeTo\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.RangeToColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime ReceivedOn {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tablesp_GetLeadsByCompany.ReceivedOnColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ReceivedOn\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.ReceivedOnColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Status {
-                get {
-                    try {
-                        return ((int)(this[this.tablesp_GetLeadsByCompany.StatusColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Status\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.StatusColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime StatusDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tablesp_GetLeadsByCompany.StatusDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'StatusDate\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.StatusDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int StatusId {
-                get {
-                    try {
-                        return ((int)(this[this.tablesp_GetLeadsByCompany.StatusIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'StatusId\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.StatusIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int TypeOfProperty {
-                get {
-                    try {
-                        return ((int)(this[this.tablesp_GetLeadsByCompany.TypeOfPropertyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TypeOfProperty\' in table \'sp_GetLeadsByCompany\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesp_GetLeadsByCompany.TypeOfPropertyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAssignedToNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.AssignedToColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAssignedToNull() {
-                this[this.tablesp_GetLeadsByCompany.AssignedToColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsBuilderInterestNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.BuilderInterestColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetBuilderInterestNull() {
-                this[this.tablesp_GetLeadsByCompany.BuilderInterestColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCmpctLabelNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.CmpctLabelColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCmpctLabelNull() {
-                this[this.tablesp_GetLeadsByCompany.CmpctLabelColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCreateDateTimeOffsetNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.CreateDateTimeOffsetColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCreateDateTimeOffsetNull() {
-                this[this.tablesp_GetLeadsByCompany.CreateDateTimeOffsetColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCreateUser_IDNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.CreateUser_IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCreateUser_IDNull() {
-                this[this.tablesp_GetLeadsByCompany.CreateUser_IDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEditDateTimeOffsetNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.EditDateTimeOffsetColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEditDateTimeOffsetNull() {
-                this[this.tablesp_GetLeadsByCompany.EditDateTimeOffsetColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEditUser_IDNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.EditUser_IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEditUser_IDNull() {
-                this[this.tablesp_GetLeadsByCompany.EditUser_IDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEmailNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.EmailColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEmailNull() {
-                this[this.tablesp_GetLeadsByCompany.EmailColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNameNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.NameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNameNull() {
-                this[this.tablesp_GetLeadsByCompany.NameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPhoneNumberNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.PhoneNumberColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPhoneNumberNull() {
-                this[this.tablesp_GetLeadsByCompany.PhoneNumberColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsProjNameNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.ProjNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetProjNameNull() {
-                this[this.tablesp_GetLeadsByCompany.ProjNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQueryRemarksNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.QueryRemarksColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQueryRemarksNull() {
-                this[this.tablesp_GetLeadsByCompany.QueryRemarksColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRangeFromNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.RangeFromColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRangeFromNull() {
-                this[this.tablesp_GetLeadsByCompany.RangeFromColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRangeToNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.RangeToColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRangeToNull() {
-                this[this.tablesp_GetLeadsByCompany.RangeToColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsReceivedOnNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.ReceivedOnColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetReceivedOnNull() {
-                this[this.tablesp_GetLeadsByCompany.ReceivedOnColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsStatusNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.StatusColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetStatusNull() {
-                this[this.tablesp_GetLeadsByCompany.StatusColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsStatusDateNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.StatusDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetStatusDateNull() {
-                this[this.tablesp_GetLeadsByCompany.StatusDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsStatusIdNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.StatusIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetStatusIdNull() {
-                this[this.tablesp_GetLeadsByCompany.StatusIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTypeOfPropertyNull() {
-                return this.IsNull(this.tablesp_GetLeadsByCompany.TypeOfPropertyColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTypeOfPropertyNull() {
-                this[this.tablesp_GetLeadsByCompany.TypeOfPropertyColumn] = global::System.Convert.DBNull;
+            public void SetUserNameNull() {
+                this[this.tablesp_GetEmployeesLocation.UserNameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4246,6 +3802,40 @@ namespace LeadWomb.Data {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class UpdateLeadItemRowChangeEvent : global::System.EventArgs {
+            
+            private UpdateLeadItemRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UpdateLeadItemRowChangeEvent(UpdateLeadItemRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UpdateLeadItemRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public class sp_GetLeadsByUserNameRowChangeEvent : global::System.EventArgs {
             
             private sp_GetLeadsByUserNameRow eventRow;
@@ -4280,22 +3870,22 @@ namespace LeadWomb.Data {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class sp_GetLeadsByCompanyRowChangeEvent : global::System.EventArgs {
+        public class sp_GetEmployeesLocationRowChangeEvent : global::System.EventArgs {
             
-            private sp_GetLeadsByCompanyRow eventRow;
+            private sp_GetEmployeesLocationRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetLeadsByCompanyRowChangeEvent(sp_GetLeadsByCompanyRow row, global::System.Data.DataRowAction action) {
+            public sp_GetEmployeesLocationRowChangeEvent(sp_GetEmployeesLocationRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetLeadsByCompanyRow Row {
+            public sp_GetEmployeesLocationRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4764,6 +4354,254 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class UpdateLeadItemTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public UpdateLeadItemTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "LeadPolice.UpdateLeadItem";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QueryRemarks", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeOfProperty", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RangeFrom", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RangeTo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CmpctLabel", global::System.Data.SqlDbType.Text, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReceivedOn", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProjName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssignedTo", global::System.Data.SqlDbType.NVarChar, 128, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BuilderInterest", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StatusId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StatusDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CompanyId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeadItemID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual LeadWombDataset.UpdateLeadItemDataTable UpdateLeadItem(string QueryRemarks, global::System.Nullable<int> TypeOfProperty, global::System.Nullable<int> Status, global::System.Nullable<int> RangeFrom, global::System.Nullable<int> RangeTo, string CmpctLabel, global::System.Nullable<global::System.DateTime> ReceivedOn, string ProjName, string AssignedTo, global::System.Nullable<bool> BuilderInterest, global::System.Nullable<int> StatusId, global::System.Nullable<global::System.DateTime> StatusDate, global::System.Nullable<long> CompanyId, global::System.Nullable<int> LeadItemID) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((QueryRemarks == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(QueryRemarks));
+            }
+            if ((TypeOfProperty.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(TypeOfProperty.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Status.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Status.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((RangeFrom.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(RangeFrom.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((RangeTo.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(RangeTo.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((CmpctLabel == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(CmpctLabel));
+            }
+            if ((ReceivedOn.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((System.DateTime)(ReceivedOn.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((ProjName == null)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(ProjName));
+            }
+            if ((AssignedTo == null)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(AssignedTo));
+            }
+            if ((BuilderInterest.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((bool)(BuilderInterest.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((StatusId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((int)(StatusId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((StatusDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((System.DateTime)(StatusDate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((CompanyId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[13].Value = ((long)(CompanyId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((LeadItemID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[14].Value = ((int)(LeadItemID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            LeadWombDataset.UpdateLeadItemDataTable dataTable = new LeadWombDataset.UpdateLeadItemDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class sp_GetLeadsByUserNameTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -4898,6 +4736,7 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
             tableMapping.ColumnMappings.Add("StatusDate", "StatusDate");
             tableMapping.ColumnMappings.Add("StatusId", "StatusId");
             tableMapping.ColumnMappings.Add("TypeOfProperty", "TypeOfProperty");
+            tableMapping.ColumnMappings.Add("LeadItemId", "LeadItemId");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -4954,7 +4793,7 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class sp_GetLeadsByCompanyTableAdapter : global::System.ComponentModel.Component {
+    public partial class sp_GetEmployeesLocationTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -4968,7 +4807,7 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public sp_GetLeadsByCompanyTableAdapter() {
+        public sp_GetEmployeesLocationTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -5065,29 +4904,13 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "sp_GetLeadsByCompany";
-            tableMapping.ColumnMappings.Add("Id", "Id");
-            tableMapping.ColumnMappings.Add("AssignedTo", "AssignedTo");
-            tableMapping.ColumnMappings.Add("BuilderInterest", "BuilderInterest");
-            tableMapping.ColumnMappings.Add("CmpctLabel", "CmpctLabel");
+            tableMapping.DataSetTable = "sp_GetEmployeesLocation";
+            tableMapping.ColumnMappings.Add("UserId", "UserId");
+            tableMapping.ColumnMappings.Add("UserName", "UserName");
+            tableMapping.ColumnMappings.Add("Longitude", "Longitude");
+            tableMapping.ColumnMappings.Add("Lattitude", "Lattitude");
             tableMapping.ColumnMappings.Add("CompanyId", "CompanyId");
-            tableMapping.ColumnMappings.Add("CreateDateTimeOffset", "CreateDateTimeOffset");
-            tableMapping.ColumnMappings.Add("CreateUser_ID", "CreateUser_ID");
-            tableMapping.ColumnMappings.Add("EditDateTimeOffset", "EditDateTimeOffset");
-            tableMapping.ColumnMappings.Add("EditUser_ID", "EditUser_ID");
-            tableMapping.ColumnMappings.Add("Email", "Email");
-            tableMapping.ColumnMappings.Add("Lead_ID", "Lead_ID");
-            tableMapping.ColumnMappings.Add("Name", "Name");
-            tableMapping.ColumnMappings.Add("PhoneNumber", "PhoneNumber");
-            tableMapping.ColumnMappings.Add("ProjName", "ProjName");
-            tableMapping.ColumnMappings.Add("QueryRemarks", "QueryRemarks");
-            tableMapping.ColumnMappings.Add("RangeFrom", "RangeFrom");
-            tableMapping.ColumnMappings.Add("RangeTo", "RangeTo");
-            tableMapping.ColumnMappings.Add("ReceivedOn", "ReceivedOn");
-            tableMapping.ColumnMappings.Add("Status", "Status");
-            tableMapping.ColumnMappings.Add("StatusDate", "StatusDate");
-            tableMapping.ColumnMappings.Add("StatusId", "StatusId");
-            tableMapping.ColumnMappings.Add("TypeOfProperty", "TypeOfProperty");
+            tableMapping.ColumnMappings.Add("LocationId", "LocationId");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -5104,18 +4927,17 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sp_GetLeadsByCompany";
+            this._commandCollection[0].CommandText = "LeadPolice.sp_GetEmployeesLocation";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userName", global::System.Data.SqlDbType.NVarChar, 256, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@statusid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual LeadWombDataset.sp_GetLeadsByCompanyDataTable GetLeadsByCompany(string userName, global::System.Nullable<int> statusid) {
+        public virtual LeadWombDataset.sp_GetEmployeesLocationDataTable GetEmployeesLocation(string userName) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((userName == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -5123,13 +4945,7 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((string)(userName));
             }
-            if ((statusid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(statusid.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            LeadWombDataset.sp_GetLeadsByCompanyDataTable dataTable = new LeadWombDataset.sp_GetLeadsByCompanyDataTable();
+            LeadWombDataset.sp_GetEmployeesLocationDataTable dataTable = new LeadWombDataset.sp_GetEmployeesLocationDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -5162,7 +4978,7 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.IDbCommand[1];
+            this._commandCollection = new global::System.Data.IDbCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlClient.SqlConnection(global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandText = "dbo.CreateLeads";
@@ -5188,6 +5004,21 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StatusId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StatusDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CompanyId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Connection = new global::System.Data.SqlClient.SqlConnection(global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).CommandText = "dbo.sp_GetLeadsByCompany";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).CommandType = global::System.Data.CommandType.StoredProcedure;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userName", global::System.Data.SqlDbType.NVarChar, 256, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@statusid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Connection = new global::System.Data.SqlClient.SqlConnection(global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).CommandText = "LeadPolice.sp_CreateLocation";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).CommandType = global::System.Data.CommandType.StoredProcedure;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userName", global::System.Data.SqlDbType.NVarChar, 256, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitude", global::System.Data.SqlDbType.NVarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@lattitude", global::System.Data.SqlDbType.NVarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5334,6 +5165,92 @@ namespace LeadWomb.Data.LeadWombDatasetTableAdapters {
             }
             else {
                 command.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual object sp_GetLeadsByCompany(string userName, global::System.Nullable<int> statusid) {
+            global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[1]));
+            if ((userName == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(userName));
+            }
+            if ((statusid.HasValue == true)) {
+                command.Parameters[2].Value = ((int)(statusid.Value));
+            }
+            else {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual object sp_CreateLocation(string userName, string longitude, string lattitude) {
+            global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[2]));
+            if ((userName == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(userName));
+            }
+            if ((longitude == null)) {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[2].Value = ((string)(longitude));
+            }
+            if ((lattitude == null)) {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[3].Value = ((string)(lattitude));
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 

@@ -16,7 +16,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-
+using LeadWomb.Model;
 namespace AngularJSAuthentication.API.Controllers
 {
     [RoutePrefix("api/Account")]
@@ -49,6 +49,13 @@ namespace AngularJSAuthentication.API.Controllers
            
 
              return Ok();
+        }
+        [HttpPut]
+        [Route("User")]
+        public IHttpActionResult UpdateUser(ApplicationUser user)
+        {
+            _repo.UpdateUser(user);
+            return Ok();
         }
         [HttpGet]
         [Route("Users")]
@@ -194,7 +201,12 @@ namespace AngularJSAuthentication.API.Controllers
             return Ok(accessTokenResponse);
 
         }
-
+        [HttpGet]
+        [Route("Roles")]
+        public IHttpActionResult Roles()
+        {            
+            return Ok(_repo.GetRoles());
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

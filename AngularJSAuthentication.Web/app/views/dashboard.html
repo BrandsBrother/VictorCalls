@@ -5,7 +5,7 @@
             <i class="fa fa-dashboard"></i>
         </div>
         <div class="header-title">
-            <h1>CRM Admin Dashboard</h1>
+            <h1>VictorCalls Dashboard</h1>
             <small>Very detailed & featured admin.</small>
         </div>
     </section>
@@ -22,7 +22,7 @@
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>New Leads</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(16,'New Leads')">New Leads</button></h3>
                     </div>
                 </div>
             </div>
@@ -36,35 +36,35 @@
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>No Work</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(2,'No Work')">No Work</button></h3>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div id="cardbox3">
                     <div class="statistic-box">
-                        <i class="fa fa-money fa-3x"></i>
+                        <i class="fa fa-user-secret fa-3x"></i>
                         <div class="counter-number pull-right">
                             <i class="ti ti-money"></i><span class="count-number">{{leadsCount.notConnectedCount}}</span>
                             <span class="slight">
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>Not Connected</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(3,'Not Connected')">Not Connected</button></h3>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div id="cardbox4">
                     <div class="statistic-box">
-                        <i class="fa fa-files-o fa-3x"></i>
+                        <i class="fa fa-user-secret fa-3x"></i>
                         <div class="counter-number pull-right">
                             <span class="count-number">{{leadsCount.followUpsCount}}</span>
                             <span class="slight">
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>s
-                        <h3>Follow Ups</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(4,'Follow Ups')">Follow Ups</button></h3>
                     </div>
                 </div>
             </div>
@@ -81,35 +81,35 @@
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>Visit On</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(5,'Visit On')">Visit On</button></h3>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div id="cardbox3">
                     <div class="statistic-box">
-                        <i class="fa fa-money fa-3x"></i>
+                        <i class="fa fa-user-secret fa-3x"></i>
                         <div class="counter-number pull-right">
                             <i class="ti ti-money"></i><span class="count-number">{{leadsCount.visitDoneCount}}</span>
                             <span class="slight">
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>Visit Done</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(6,'Visit Done')">Visit Done</button></h3>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div id="cardbox4">
                     <div class="statistic-box">
-                        <i class="fa fa-files-o fa-3x"></i>
+                        <i class="fa fa-user-secret fa-3x"></i>
                         <div class="counter-number pull-right">
                             <span class="count-number">{{leadsCount.visitDeadCount}}</span>
                             <span class="slight">
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>Visit Dead</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(7,'Visit Done')">Visit Done</button></h3>
                     </div>
                 </div>
             </div>
@@ -117,14 +117,14 @@
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
             <div id="cardbox1">
                 <div class="statistic-box">
-                    <i class="fa fa-user-plus fa-3x"></i>
+                    <i class="fa fa-user-secret fa-3x"></i>
                     <div class="counter-number pull-right">
                         <span class="count-number">{{leadsCount.otherProjectsCount}}</span>
                         <span class="slight">
                             <i class="fa fa-play fa-rotate-270"> </i>
                         </span>
                     </div>
-                    <h3>Other Projects</h3>
+                    <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(8,'Other Projects')">Other Projects</button></h3>
                 </div>
             </div>
         </div>
@@ -133,14 +133,14 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div id="cardbox1">
                     <div class="statistic-box">
-                        <i class="fa fa-user-plus fa-3x"></i>
+                        <i class="fa fa-user-secret fa-3x"></i>
                         <div class="counter-number pull-right">
                             <span class="count-number">{{leadsCount.resaleCount}}</span>
                             <span class="slight">
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>Resale</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(9,'Resale')">Resale</button></h3>
                     </div>
                 </div>
             </div>
@@ -154,35 +154,35 @@
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>Already Booked</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(10,'Already Booked')">Already Booked</button></h3>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div id="cardbox3">
                     <div class="statistic-box">
-                        <i class="fa fa-money fa-3x"></i>
+                        <i class="fa fa-user-secret fa-3x"></i>
                         <div class="counter-number pull-right">
                             <i class="ti ti-money"></i><span class="count-number">{{leadsCount.bookedDone}}</span>
                             <span class="slight">
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>Booking Done</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(11,'Booking Done')">Booking Done</button></h3>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div id="cardbox4">
                     <div class="statistic-box">
-                        <i class="fa fa-files-o fa-3x"></i>
+                        <i class="fa fa-user-secret fa-3x"></i>
                         <div class="counter-number pull-right">
                             <span class="count-number">{{leadsCount.deadCount}}</span>
                             <span class="slight">
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>Dead</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(12,'Dead')">Dead</button></h3>
                     </div>
                 </div>
             </div>
@@ -191,14 +191,14 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div id="cardbox1">
                     <div class="statistic-box">
-                        <i class="fa fa-user-plus fa-3x"></i>
+                        <i class="fa fa-user-secret fa-3x"></i>
                         <div class="counter-number pull-right">
-                            <span class="count-number">{{leadsCount.alreadyBookedCount}}</span>
+                            <span class="count-number">{{leadsCount.rentCount}}</span>
                             <span class="slight">
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>Rent</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(13,'Rent')">Rent</button></h3>
                     </div>
                 </div>
             </div>
@@ -212,21 +212,21 @@
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>Plot</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(14,'Plot')">Plot</button></h3>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div id="cardbox3">
                     <div class="statistic-box">
-                        <i class="fa fa-money fa-3x"></i>
+                        <i class="fa fa-user-secret fa-3x"></i>
                         <div class="counter-number pull-right">
                             <i class="ti ti-money"></i><span class="count-number">{{leadsCount.duplicateCount}}</span>
                             <span class="slight">
                                 <i class="fa fa-play fa-rotate-270"> </i>
                             </span>
                         </div>
-                        <h3>Duplicate</h3>
+                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(15,'Duplicate')">Duplicate</button></h3>
                     </div>
                 </div>
             </div>

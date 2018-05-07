@@ -12,11 +12,7 @@ namespace AngularJSAuthentication.API.Controllers
     public class LeadsController : ApiController
     {
 
-        //[HttpPut]
-        //public void Test([FromBody]abc test)
-        //{
-        //    abc t = test;
-        //}
+     
 
         private LeadsRepository leadRepository = null;
         private AccountContext accountContext = null;
@@ -71,10 +67,30 @@ namespace AngularJSAuthentication.API.Controllers
         {
             leadRepository.UpdateLeads(value);
         }
-
+        [HttpPut]
+        [Route("LeadItem")]
+        // PUT api/leads/5
+        public void Put([FromBody]LeadItems value)
+        {
+            leadRepository.UpdateLeadItem(value);
+        }
         // DELETE api/leads/5
         public void Delete(int id)
         {   
         }
+        [HttpGet]
+        [Route("Locations")]
+        public IHttpActionResult GetEmployeesLocation(string userName)
+        {
+            return Ok(leadRepository.GetEmployeesLocation(userName));
+        }
+        [HttpPost]
+        [Route("Location")]
+        public IHttpActionResult Location(string userName, string lng, string lat)
+        {
+            leadRepository.CreateLocation(userName, lng, lat);
+            return Ok();
+        }
+
     }
 }
