@@ -1,238 +1,274 @@
 ﻿
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="header-icon">
-            <i class="fa fa-dashboard"></i>
-        </div>
-        <div class="header-title">
-            <h1>VictorCalls Dashboard</h1>
-            <small>Very detailed & featured admin.</small>
-        </div>
-    </section>
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox1">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-plus fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <span class="count-number">{{leadsCount.currentLeadsCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(16,'New Leads')">New Leads</button></h3>
+
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">My Dashboard</li>
+    </ol>
+    <!-- Icon Cards-->
+    <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white  o-hidden h-100" style="background: linear-gradient(to bottom right, #33ccdd, #297cd0)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
                     </div>
+                    <div class="mr-5">{{leadsCount.rawLeadsCount}} Raw Leads!</div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox2">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right" >
-                            <span class="count-number">{{leadsCount.noWorkCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(2,'No Work')">No Work</button></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox3">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <i class="ti ti-money"></i><span class="count-number">{{leadsCount.notConnectedCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(3,'Not Connected')">Not Connected</button></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox4">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <span class="count-number">{{leadsCount.followUpsCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>s
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(4,'Follow Ups')">Follow Ups</button></h3>
-                    </div>
-                </div>
+                <a class="card-footer text-white clearfix small z-1" href="" data-ng-click="showLeads(16,'Raw Leads')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
             </div>
         </div>
-        <div class="row">
-          
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox2">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <span class="count-number">{{leadsCount.visitOnCounts}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(5,'Visit On')">Visit On</button></h3>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white  o-hidden h-100" style="background: linear-gradient(to bottom right, #FFA500, #FF7F50)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
                     </div>
+                    <div class="mr-5">{{leadsCount.currentLeadsCount}} New Leads</div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox3">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <i class="ti ti-money"></i><span class="count-number">{{leadsCount.visitDoneCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(6,'Visit Done')">Visit Done</button></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox4">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <span class="count-number">{{leadsCount.visitDeadCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(7,'Visit Done')">Visit Done</button></h3>
-                    </div>
-                </div>
-            </div>
-        
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="cardbox1">
-                <div class="statistic-box">
-                    <i class="fa fa-user-secret fa-3x"></i>
-                    <div class="counter-number pull-right">
-                        <span class="count-number">{{leadsCount.otherProjectsCount}}</span>
-                        <span class="slight">
-                            <i class="fa fa-play fa-rotate-270"> </i>
-                        </span>
-                    </div>
-                    <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(8,'Other Projects')">Other Projects</button></h3>
-                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(1,'New Leads')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
             </div>
         </div>
-            </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox1">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <span class="count-number">{{leadsCount.resaleCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(9,'Resale')">Resale</button></h3>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #83DC0B, #63A905)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
                     </div>
+                    <div class="mr-5">{{leadsCount.noWorkCount}} No Work</div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox2">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <span class="count-number">{{leadsCount.alreadyBookedCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(10,'Already Booked')">Already Booked</button></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox3">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <i class="ti ti-money"></i><span class="count-number">{{leadsCount.bookedDone}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(11,'Booking Done')">Booking Done</button></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox4">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <span class="count-number">{{leadsCount.deadCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(12,'Dead')">Dead</button></h3>
-                    </div>
-                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(2,'No Work')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox1">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <span class="count-number">{{leadsCount.rentCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(13,'Rent')">Rent</button></h3>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #F2D243, #ffa700)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
                     </div>
+                    <div class="mr-5" style="text-shadow: 1px 1px grey; color:white;">{{leadsCount.notConnectedCount}} Not Connected</div>
                 </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(3,'Not Connected')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox2">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <span class="count-number">{{leadsCount.plotCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(14,'Plot')">Plot</button></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div id="cardbox3">
-                    <div class="statistic-box">
-                        <i class="fa fa-user-secret fa-3x"></i>
-                        <div class="counter-number pull-right">
-                            <i class="ti ti-money"></i><span class="count-number">{{leadsCount.duplicateCount}}</span>
-                            <span class="slight">
-                                <i class="fa fa-play fa-rotate-270"> </i>
-                            </span>
-                        </div>
-                        <h3><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-ng-click="showLeads(15,'Duplicate')">Duplicate</button></h3>
-                    </div>
-                </div>
-            </div>
-           
         </div>
-        
-        
-        </section>
-    <!-- /.content -->
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #33ccdd, #297cd0)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5">{{leadsCount.followUpsCount}} Follow Ups</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(4,'Follow Ups')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #FFA500, #FF7F50)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5">{{leadsCount.visitOnCount}} Visit On</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(5,'Visit On')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white  o-hidden h-100" style="background: linear-gradient(to bottom right, #83DC0B, #63A905)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5">{{leadsCount.visitDoneCount}} Visit Done</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(6,'Visit Done')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #F2D243, #ffa700)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5" style="text-shadow: 1px 1px grey; color:white;">{{leadsCount.visitDeadCount}} Visit dead</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(7,'Visit Dead')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #33ccdd, #297cd0)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5">{{leadsCount.otherProjectsCount}} Other Projects</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(8,'Other Projects')" >
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #FFA500, #FF7F50)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5">{{leadsCount.resaleCount}} Resale</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(9,'Resale')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #83DC0B, #63A905)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5">{{leadsCount.alreadyBookedCount}} Alread Booked</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(10,'Already Booked')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #F2D243, #ffa700)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5" style="text-shadow: 1px 1px grey; color:white;">{{leadsCount.bookedDone}} Booking Done</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(11,'Booking Done')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #33ccdd, #297cd0)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5">{{leadsCount.deadCount}} Dead</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(12,'Dead')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #FFA500, #FF7F50)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5">{{leadsCount.rentCount}} Rent</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(13,'Rent')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #83DC0B, #63A905)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5">{{leadsCount.plotCount}} Plot</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(14,'Plot')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background: linear-gradient(to bottom right, #F2D243, #ffa700)">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <img src="assets\images\klkl.svg">
+                    </div>
+                    <div class="mr-5" style="text-shadow: 1px 1px grey; color:white;">{{leadsCount.duplicateCount}} Duplicate</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" data-ng-click="showLeads(15,'Duplicate')">
+                    <span class="float-left">View Details</span>
+                    <span class="float-right">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

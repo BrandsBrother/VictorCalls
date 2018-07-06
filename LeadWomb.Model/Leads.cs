@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LeadWomb.Model
 {
-    public class Leads
+    public class Leads : VictorCallsBase
     {
         
         public int LeadId { get; set; }
@@ -26,6 +26,29 @@ namespace LeadWomb.Model
 
         public List<LeadItems> Items { get; set; }
 
+        public long CompanyId { get; set; }
+
+        public bool IsAssigned { get; set; }
+        public string CmpctLabel { get; set; }
+
+        public List<LeadItems> AssignedUsers
+        {
+            
+            get {
+                List<LeadItems> items = new List<LeadItems>();
+                if (Items != null && Items.Count > 0)
+                {
+                    foreach (LeadItems item in Items)
+                    {
+                        if (item.IsAssigned)
+                        {
+                            items.Add(item);
+                        }
+                    }
+                }
+                return items;
+            }
+        }
         public string AssignedToUsers
         {
             get {
@@ -54,6 +77,24 @@ namespace LeadWomb.Model
             }
 
         }
+        public string LeadSource
+        {
+            get {
+                if (Status == 2)
+                {
+                    return "99acres";
+                }
+                else if (Status == 1)
+                { return "magicbricks"; }
+                else
+                {
+                    return "raw";
+                }
+            }
+        }
+
+        public int Status { get;set;}
+        public List<LeadItems> Assignees { get; set; }
 
        // public List<AssignedUser> AssignedUsers { get; set; }
   

@@ -64,7 +64,10 @@ namespace AngularJSAuthentication.API
 
             return client;
         }
-
+        public void DeleteUser(string userID)
+        {
+            context.DeleteUserByUserID(userID);
+        }
         public async Task<bool> AddRefreshToken(RefreshToken token)
         {
 

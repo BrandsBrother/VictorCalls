@@ -39,11 +39,7 @@ namespace AngularJSAuthentication.API.Controllers
         [Route("Register")]
         public IHttpActionResult Register(ApplicationUser userModel)
         {
-            // if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-
+           
               _repo.RegisterUser(userModel);
 
            
@@ -62,6 +58,14 @@ namespace AngularJSAuthentication.API.Controllers
         public List<ApplicationUser> GetUsersOfCompany(string userName)
         {
            return _repo.GetUsersOfCompany(userName, null);
+        }
+
+        [HttpDelete]
+        [Route("Users")]
+        public IHttpActionResult DeleteUser(string userId)
+        {
+            _repo.DeleteUser(userId);
+            return Ok();
         }
         // GET api/Account/ExternalLogin
         [OverrideAuthentication]
@@ -378,7 +382,7 @@ namespace AngularJSAuthentication.API.Controllers
             var tokenExpiration = TimeSpan.FromDays(1);
 
             ClaimsIdentity identity = new ClaimsIdentity(OAuthDefaults.AuthenticationType);
-
+            
             identity.AddClaim(new Claim(ClaimTypes.Name, userName));
             identity.AddClaim(new Claim("role", "user"));
 
@@ -394,6 +398,7 @@ namespace AngularJSAuthentication.API.Controllers
 
             JObject tokenResponse = new JObject(
                                         new JProperty("userName", userName),
+                                        new JProperty("role", "user"),
                                         new JProperty("access_token", accessToken),
                                         new JProperty("token_type", "bearer"),
                                         new JProperty("expires_in", tokenExpiration.TotalSeconds.ToString()),

@@ -109,6 +109,13 @@ namespace LeadWomb.Data
             }
             return users;
         }
+
+        public object DeleteUserByUserID(string userID)
+        {
+            QueriesTableAdapter adapter = new QueriesTableAdapter();
+            return adapter.DeleteUserByUserID(userID);
+        
+        }
         public List<ApplicationUser> GetUsersByCompanyId(long companyId)
         {
             List<ApplicationUser> users = null;
@@ -160,52 +167,56 @@ namespace LeadWomb.Data
             int rowCount = 0;
             foreach(AccountAdapter.sp_GetStatusCountByUserNameRow row in table.Rows)
             {
+                rowCount = row.StatusID;
                 switch (rowCount)
                 { 
-                    case 0:
-                        user.CurrentLeadsCount = row.PhoneNumberCount;
-                        break;
                     case 1:
-                        user.NoWorkCount = row.PhoneNumberCount;
+                        user.CurrentLeadsCount = row.PhoneNumberCount;
                         break;
                     case 2:
                         user.NoWorkCount = row.PhoneNumberCount;
                         break;
                     case 3:
-                        user.FollowUpsCount = row.PhoneNumberCount;
+                        user.NoWorkCount = row.PhoneNumberCount;
                         break;
                     case 4:
-                        user.VisitOnCounts = row.PhoneNumberCount;
+                        user.FollowUpsCount = row.PhoneNumberCount;
                         break;
                     case 5:
-                        user.VisitDoneCount = row.PhoneNumberCount;
+                        user.VisitOnCounts = row.PhoneNumberCount;
                         break;
                     case 6:
-                        user.VisitDeadCount = row.PhoneNumberCount;
+                        user.VisitDoneCount = row.PhoneNumberCount;
                         break;
                     case 7:
-                        user.OtherProjectsCount = row.PhoneNumberCount;
+                        user.VisitDeadCount = row.PhoneNumberCount;
                         break;
                     case 8:
-                        user.ResaleCount = row.PhoneNumberCount;
+                        user.OtherProjectsCount = row.PhoneNumberCount;
                         break;
                     case 9:
-                        user.AlreadyBookedCount = row.PhoneNumberCount;
+                        user.ResaleCount = row.PhoneNumberCount;
                         break;
                     case 10:
-                        user.BookedDone = row.PhoneNumberCount;
+                        user.AlreadyBookedCount = row.PhoneNumberCount;
                         break;
                     case 11:
-                        user.DeadCount = row.PhoneNumberCount;
+                        user.BookedDone = row.PhoneNumberCount;
                         break;
                     case 12:
-                        user.RentCount = row.PhoneNumberCount;
+                        user.DeadCount = row.PhoneNumberCount;
                         break;
                     case 13:
-                        user.PlotCount = row.PhoneNumberCount;
+                        user.RentCount = row.PhoneNumberCount;
                         break;
                     case 14:
+                        user.PlotCount = row.PhoneNumberCount;
+                        break;
+                    case 15:
                         user.DuplicateCount = row.PhoneNumberCount;
+                        break;
+                    case 16:
+                        user.RawLeadsCount = row.PhoneNumberCount;
                         break;
                 }
                     

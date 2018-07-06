@@ -55,6 +55,22 @@ app.controller('userController', ['$scope', 'usersService', '$timeout', '$locati
     $scope.createUser = function () {
         $location.path("/AddUser");
     };
+    $scope.deleteUser = function (user)
+    {
+        if (confirm('Are you sure you want to delete user ?')) {
+            if (confirm('Really?')) {
+                usersService.deleteUser(user.id);
+                usersService.getUsers().then(function (results) {
+
+                    $scope.users = results.data;
+
+                }, function (error) {
+                    //alert(error.data.message);
+                });
+            }
+        }
+        
+    };
     var text = "";
     $scope.updateUser = function (registration) {
         $scope.message = "";

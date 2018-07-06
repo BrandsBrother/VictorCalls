@@ -85,12 +85,20 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/Location.html",
 
     });
+    $routeProvider.when("/refreshLeads", {
+        controller: "leadsController",
+        templateUrl: "/app/views/leads.html",
+
+    });
     
 
     $routeProvider.otherwise({ redirectTo: "/login" });
 
 });
-
+//$scope.$on('$routeChangeStart', function ($event, next, current) {
+//    // ... you could trigger something here ...
+//    alert('route changed sucess');
+//});
 var serviceBase = 'http://api.victorcalls.com/';
 //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
 app.constant('ngAuthSettings', {

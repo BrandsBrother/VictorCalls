@@ -38,5 +38,7 @@ namespace LeadWomb.Model
 
         public int DuplicateCount { get; set; }
 
+        public int RawLeadsCount { get; set; }
+
     }
 }

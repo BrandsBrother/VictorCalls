@@ -15,6 +15,11 @@ app.factory('usersService', ['$http', 'ngAuthSettings','authService', function (
             return results;
         });
     };
+    var _deleteUser = function (userID) {
+        return $http.delete(serviceBase + 'api/Account/Users?userID=' + userID).then(function (results) {
+            return results;
+        });
+    };
     var registration = {};
     var _setListUser = function (user) {
         registration = user;
@@ -26,6 +31,7 @@ app.factory('usersService', ['$http', 'ngAuthSettings','authService', function (
     usersServiceFactory.setListUser = _setListUser;
     usersServiceFactory.getUsers = _getUsers;
     usersServiceFactory.getRoles = _getRoles;
+    usersServiceFactory.deleteUser = _deleteUser;
     return usersServiceFactory;
 
 }]);
