@@ -1,0 +1,27 @@
+﻿<form class="form-login" role="form">
+    <h2 class="form-login-heading">Get Project Data</h2>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Project ID</th>
+                    <th>Project Name</th>
+                    <th>Project Description</th>
+                    <th>Distict</th>
+                    <th>Longtitute</th>
+                    <th>Latitute</th>
+                    <th>Company ID</th>
+                </tr>
+            </thead>
+            <tr data-ng-repeat="ptr in project">
+                <td>{{ptr.projectId}}</td>
+                <td>{{ptr.projectName}}</td>
+                <td>{{ptr.proDescription}}</td>
+                <td>{{ptr.distict}}</td>
+                <td>{{ptr.longtitute}}</td>
+                <td>{{ptr.latitute}}</td>
+                <td>{{ptr.companyId}}</td>
+            </tr>
+            </table>
+        </div>
+    </form>
