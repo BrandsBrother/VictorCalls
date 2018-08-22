@@ -5,14 +5,24 @@ app.controller('signupController', ['$scope', '$location', '$timeout', 'authServ
     $scope.message = "";
     $scope.selectedRole = {};
     $scope.registration = {};
-
+    $scope.selectedProject = {};
     $scope.registration.companyId = 1;
     $scope.roles = [];
+    $scope.Projects = [];
 
     var text = "";
     usersService.getRoles().then(function (results) {
 
         $scope.roles = results.data;
+
+    }, function (error) {
+        //alert(error.data.message);
+        });
+
+
+    usersService.getProjects().then(function (results) {
+
+        $scope.Projects = results.data;
 
     }, function (error) {
         //alert(error.data.message);
@@ -29,6 +39,7 @@ app.controller('signupController', ['$scope', '$location', '$timeout', 'authServ
         }
         else {
             $scope.registration.role = $scope.selectedRole;
+            $scope.registration.project = $scope.selectedProject;
             authService.saveRegistration($scope.registration).then(function (response) {
 
                 $scope.savedSuccessfully = true;

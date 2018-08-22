@@ -66,11 +66,13 @@
     <Content Include="app\controllers\locationController.js" />
     <Content Include="app\controllers\loginController.js" />
     <Content Include="app\controllers\ordersController.js" />
+    <Content Include="app\controllers\projectController.js" />
     <Content Include="app\controllers\refreshController.js" />
     <Content Include="app\controllers\signupController.js" />
     <Content Include="app\controllers\updateuserController.js" />
     <Content Include="app\services\dataService.js" />
     <Content Include="app\services\locationService.js" />
+    <Content Include="app\services\projectService.js" />
     <Content Include="app\services\tokensManagerController.js" />
     <Content Include="app\controllers\userController.js" />
     <Content Include="app\services\authInterceptorService.js" />
@@ -79,6 +81,7 @@
     <Content Include="app\services\ordersService.js" />
     <Content Include="app\services\tokensManagerService.js" />
     <Content Include="app\services\usersService.js" />
+    <Content Include="app\views\AssignLeads.html" />
     <Content Include="app\views\associate.html" />
     <Content Include="app\views\dashboard.html" />
     <Content Include="app\views\home.html" />
@@ -87,6 +90,7 @@
     <Content Include="app\views\Location.html" />
     <Content Include="app\views\login.html" />
     <Content Include="app\views\orders.html" />
+    <Content Include="app\views\Projects.html" />
     <Content Include="app\views\refresh.html" />
     <Content Include="app\views\signup.html" />
     <Content Include="app\views\tokens.html" />

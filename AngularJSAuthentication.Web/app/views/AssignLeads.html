@@ -1,0 +1,47 @@
+﻿<h2 class="form-login-heading">{{label}}</h2>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Lead Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Lead Source</th>
+                <th>Interests</th>
+                <th>Assigned To Users</th>
+                <th>Users</th>
+                <td>
+                    <!--<select ng-change="changeevt()" ng-model="selected" ng-options="lead.items[0].userName  for lead in leads"></select>-->
+                </td>
+            </tr>
+        </thead>
+
+
+        <tr data-ng-repeat="lead in leads">
+            <td>{{lead.leadId}}</td>
+            <td>{{lead.name}}</td>
+            <td>{{lead.email}}</td>
+            <td>{{lead.phoneNumber}}</td>
+            <td>{{lead.leadSource}}</td>
+            <td>{{lead.cmpctLabel}}</td>
+            <td><b>{{lead.assignedToUsers}}</b></td>
+
+     
+         
+            <td>
+                <div class="container">
+                    <!-- Trigger the modal with a button -->
+                </div>
+            </td>
+        </tr>
+
+
+
+
+
+
+    </table>
+</div>
+
+

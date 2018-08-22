@@ -1,0 +1,81 @@
+-- =============================================                        
+-- Author:  <Author,,Name>                        
+-- Create date: <Create Date,,>                        
+-- Description: <Description,,>                        
+-- =============================================                        
+CREATE PROCEDURE [dbo].[CreateLeads]                        
+ -- Add the parameters for the stored procedure here                        
+                            
+ @CreateUser_ID nvarchar(128),                        
+ @CreateDateTimeOffset datetime,                        
+ @EditUser_ID nvarchar(128),                        
+ @EditDateTimeOffset datetime,                        
+ @Name varchar(100),                        
+ @Email varchar(80) ,                        
+ @PhoneNumber varchar(14),                        
+ @QueryRemarks varchar(200) ,                        
+ @TypeOfProperty int,                        
+ @Status int,                        
+ @RangeFrom int,                        
+ @RangeTo int,                        
+ @CmpctLabel text,                        
+ @ReceivedOn datetime,                        
+ @ProjName varchar(100),                        
+ @AssignedTo nvarchar(128),                        
+ @BuilderInterest bit,                        
+ @StatusId int,                        
+ @StatusDate datetime,                        
+ @CompanyId bigint,    
+ @ID varchar(100)                      
+AS                        
+BEGIN                        
+ -- SET NOCOUNT ON added to prevent extra result sets from                        
+ -- interfering with SELECT statements.                        
+ SET NOCOUNT ON;                        
+                        
+    -- Insert statements for procedure here                        
+       
+        
+        
+        IF @ID is null    
+        BEGIN    
+			If Exists(Select 1 from Leads where PhoneNumber = @PhoneNumber)
+				Update Leads set 
+				EditUser_ID = ISNULL(@EditUser_ID,EditUser_ID),
+				EditDateTimeOffset = ISNULL(@EditDateTimeOffset,EditDateTimeOffset),
+				Name = ISNUll(@Name,Name),
+				Email = ISNULL(@Email,Email),
+				PhoneNumber = ISNULL(@PhoneNumber,PhoneNumber),
+				CompanyId = IsNull(@CompanyId,CompanyId),
+				CmpctLabel = ISNULL(@CmpctLabel,CmpctLabel),
+				ReceivedOn = ISNull(GETDATE(),ReceivedOn),
+				Status = ISNULL(@Status,Status) 
+				where PhoneNumber = @PhoneNumber
+		Else
+				Insert into Leads(CreateUser_ID,CreateDateTimeOffset,EditUser_ID,EditDateTimeOffset,                        
+		  Name,Email,PhoneNumber,IsAssigned,CompanyId,CmpctLabel,ReceivedOn,Status) Values (@CreateUser_ID,@CreateDateTimeOffset,                        
+		  @EditUser_ID,@EditDateTimeOffset,@Name,@Email,@PhoneNumber,0,@CompanyId,@CmpctLabel,GetDate(),@Status)     
+        END                    
+	ELSE  
+		  BEGIN                 
+			  IF NOT EXISTS (Select 1 from Leads where ID = @ID)
+				  If NOT Exists(Select 1 from Leads where PhoneNumber = @PhoneNumber)
+				  Insert into Leads(CreateUser_ID,CreateDateTimeOffset,EditUser_ID,EditDateTimeOffset,                        
+				  Name,Email,PhoneNumber,IsAssigned,CompanyId,CmpctLabel,ReceivedOn,Status,ID) Values (@CreateUser_ID,@CreateDateTimeOffset,                        
+				  @EditUser_ID,@EditDateTimeOffset,@Name,@Email,@PhoneNumber,0,@CompanyId,@CmpctLabel,GetDate(),@Status,@ID)     
+		  ELSE
+			 Update Leads set 
+					EditUser_ID = ISNULL(@EditUser_ID,EditUser_ID),
+					EditDateTimeOffset = ISNULL(@EditDateTimeOffset,EditDateTimeOffset),
+					Name = ISNUll(@Name,Name),
+					Email = ISNULL(@Email,Email),
+					PhoneNumber = ISNULL(@PhoneNumber,PhoneNumber),
+					CompanyId = IsNull(@CompanyId,CompanyId),
+					CmpctLabel = ISNULL(@CmpctLabel,CmpctLabel),
+					ReceivedOn = ISNull(GETDATE(),ReceivedOn),
+					ID = ISNULL(@ID,ID),
+					Status = ISNULL(@Status,Status)
+					where PhoneNumber =@PhoneNumber
+		  END           
+                         
+END 

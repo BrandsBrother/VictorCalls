@@ -1,7 +1,11 @@
 ﻿<h2 class="form-login-heading">{{label}}</h2>
 <div class="container">
     <table class="table table-striped">
+        
         <thead>
+            <tr>
+                <button ></button>
+            </tr>
             <tr>
                 <th>Lead Id</th>
                 <th>Name</th>
@@ -19,6 +23,7 @@
 
 
         <tr data-ng-repeat="lead in leads">
+            <td><input type="checkbox" ng-model="{{lead.isSelected}}" ng-true-value="'YES'" ng-false-value="'NO'"/></td>
             <td>{{lead.leadId}}</td>
             <td>{{lead.name}}</td>
             <td>{{lead.email}}</td>

@@ -1,0 +1,1 @@
+﻿select * from AspNetUsers where username = 'vedagya19'

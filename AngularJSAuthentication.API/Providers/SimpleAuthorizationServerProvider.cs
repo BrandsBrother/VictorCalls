@@ -78,7 +78,7 @@ namespace AngularJSAuthentication.API.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            ApplicationUser user = null;
+            ApplicationUser user = null;     
 
             var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
 
@@ -101,6 +101,7 @@ namespace AngularJSAuthentication.API.Providers
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
             identity.AddClaim(new Claim(ClaimTypes.Role,user.RoleId ));
             identity.AddClaim(new Claim("sub", context.UserName));
+            identity.AddClaim(new Claim("CompanyId", user.CompanyId.ToString()));
 
             var props = new AuthenticationProperties(new Dictionary<string, string>
                 {
@@ -112,6 +113,9 @@ namespace AngularJSAuthentication.API.Providers
                     },
                 {
                     "roleid",user.RoleId 
+                },
+                {
+                    "CompanyId",user.CompanyId.ToString()
                 }
 
                 });

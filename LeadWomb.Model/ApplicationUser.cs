@@ -7,7 +7,7 @@ using System.Web;
 
 namespace LeadWomb.Models
 {
-    public class ApplicationUser
+    public class ApplicationUser : ITokeneable
     {
         [Required]
         [Display(Name = "User name")]
@@ -116,7 +116,22 @@ namespace LeadWomb.Models
         /// Role of user
         /// </summary>
         public Role Role { get; set; }
+        /// <summary>
+        /// Project of user
+        /// </summary>
+        public Project Project { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string RoleId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ProjectId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Token { get; set; }
     }
 
    

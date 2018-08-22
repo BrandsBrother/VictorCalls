@@ -7,6 +7,7 @@ app.controller('leadsController', ['$scope', 'leadsService','$location','$route'
         loadPromise;
     $scope.selectedOptions = [];
     $scope.leads = [];
+    $scope.assignedLeads = [];
     $scope.selectedLead = leadsService.getSelectedLead();
     leadsService.getLeads().then(function (results) {
       

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LeadWomb.Model
 {
-    public class LeadItems
+    public class LeadItems : ITokeneable
     {
         public int LeadID { get; set; }
         public string QueryRemarks { get; set; }
@@ -49,5 +49,7 @@ namespace LeadWomb.Model
             get;
             set;
         }
+        public string Token { get; set; }
+
     }
 }

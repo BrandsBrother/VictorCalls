@@ -17,13 +17,25 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using LeadWomb.Model;
+using System.IO;
+using System.Data.Sql;
+using System.Data.SqlClient;
+using System.Data;
+using System.Net.Http.Headers;
+using System.Reflection;
+using Newtonsoft.Json;
+using System.Text;
+using FcmSharp;
+using AngularJSAuthentication.API;
+using AngularJSAuthentication.API.Notifications;
+
 namespace AngularJSAuthentication.API.Controllers
 {
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
         private AuthRepository _repo = null;
-
+       
         private IAuthenticationManager Authentication
         {
             get { return Request.GetOwinContext().Authentication; }
@@ -31,6 +43,7 @@ namespace AngularJSAuthentication.API.Controllers
 
         public AccountController()
         {
+           
             _repo = new AuthRepository();
         }
 
@@ -39,12 +52,25 @@ namespace AngularJSAuthentication.API.Controllers
         [Route("Register")]
         public IHttpActionResult Register(ApplicationUser userModel)
         {
-           
-              _repo.RegisterUser(userModel);
 
+            _repo.RegisterUser(userModel);
            
+            List<ApplicationUser> users = _repo.GetProjectUsers(userModel.ProjectId);
+            IEnumerable<ITokeneable> tokens = users.Cast<ITokeneable>();
+            new VictorCallsNotifications().SendNotification(tokens, "Data updated notifications", false, false,true, false);
 
-             return Ok();
+            return Ok();
+        }
+        [Authorize]
+        [HttpPost]
+        [Route("Project")]
+        public IHttpActionResult CreateProject([FromBody]Project project)
+        {
+            _repo.CreateProject(project);
+            List<ApplicationUser> users = _repo.GetCompanyUsers(project.CompanyId);
+            IEnumerable<ITokeneable> tokens =  users.Cast<ITokeneable>();
+            new VictorCallsNotifications().SendNotification(tokens, "Data update notification", false, true, false, false);
+            return Ok();
         }
         [HttpPut]
         [Route("User")]
@@ -57,7 +83,250 @@ namespace AngularJSAuthentication.API.Controllers
         [Route("Users")]
         public List<ApplicationUser> GetUsersOfCompany(string userName)
         {
-           return _repo.GetUsersOfCompany(userName, null);
+            return _repo.GetUsersOfCompany(userName, null);
+        }
+        [HttpGet]
+        [Route("Projects")]
+        public IHttpActionResult GetProjects(string userName)
+        {
+            return Ok(_repo.GetProjects(userName));
+        }
+       
+
+        [HttpGet]
+        [Route("Project/{projectID:int}/Documents")]
+        public IHttpActionResult GetDocuments(int projectID)
+        {
+
+            return Ok(_repo.GetProjectDocuments(projectID));        //return Request.CreateResponse(HttpStatusCode.Created);
+
+        }
+        [HttpGet]
+        [Route("Project/{projectID:int}/Users")]
+        public IHttpActionResult GetProjectUsers(int projectID)
+        {
+            return Ok(_repo.GetProjectUsers(projectID));        //return Request.CreateResponse(HttpStatusCode.Created);
+        }
+        [HttpGet]
+        [Route("Project/Documents")]
+        public List<Document> GetDocuments(string userName)
+        {
+            return _repo.GetDocuments(userName);
+        }
+
+
+
+        [HttpGet]
+        [Route("path")]
+        public string getpath()
+        {
+            return HttpContext.Current.Server.MapPath("~/UploadFile/");
+        }
+        [HttpGet]
+        [Route("Project/{projectID:int}/Document/{documentID:int}")]
+        public async Task<IHttpActionResult> GetDocument(int projectID, int documentID)
+        {
+            string downloadFilePath = string.Empty;
+
+            string fileName = string.Empty;
+            Document document = _repo.GetDocument(projectID, documentID);
+            downloadFilePath = HttpContext.Current.Server.MapPath("~/UploadFile/" + document.Name);
+            //Check if the file exists. If the file doesn't exist, throw a file not found exception
+            if (!System.IO.File.Exists(downloadFilePath))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+
+            var dataBytes = File.ReadAllBytes(downloadFilePath);
+            //adding bytes to memory stream   
+            var dataStream = new MemoryStream(dataBytes);
+
+            HttpResponseMessage httpResponseMessage = Request.CreateResponse(HttpStatusCode.OK);
+            httpResponseMessage.Content = new StreamContent(dataStream);
+            httpResponseMessage.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+            httpResponseMessage.Content.Headers.ContentDisposition.FileName = document.Name;
+            httpResponseMessage.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+            return ResponseMessage(httpResponseMessage);
+        }
+        [HttpGet]
+        [Route("CompanyIntegrations")]
+        public IHttpActionResult GetCompanyIntegrations()
+        {
+            return Ok(_repo.GetCompanyIntegrations());
+        }
+        [HttpPost]
+        [Route("Company")]        
+        public IHttpActionResult AddCompany([FromBody]Company company)
+        {
+            return Ok(_repo.AddCompany(company));
+        }
+        [Authorize]
+        [HttpPut]
+        [Route("Company/{companyId:long}")]
+        public IHttpActionResult UpdateCompany(long companyId, Company company)
+        {
+
+            company.CompanyId = companyId;
+            return Ok(_repo.UpdateCompany(companyId, company));
+        }
+        [HttpGet]
+        [Route("Companies")]
+        [Authorize]
+        public IHttpActionResult GetCompanies()
+        {
+            ClaimsIdentity identity = User.Identity as ClaimsIdentity;
+            foreach (Claim claim in identity.Claims)
+            {
+                string name = claim.Subject.Name;
+                string value = claim.Value;
+            }
+            return Ok(_repo.GetCompanies());
+        }
+        [HttpGet]
+        [Route("Company/{companyId:long}")]
+        public IHttpActionResult GetCompanyByCompanyId(long companyId)
+        {
+            return Ok(_repo.GetCompanybyCompanyId(companyId));
+        }
+        [HttpGet]
+        [Route("Company/{companyId:long}/Integrations")]
+        public IHttpActionResult GetIntegrations(long companyID)
+        {
+            return Ok(_repo.GetIntegrations(companyID));
+        }
+        [HttpGet]
+        [Route("Company/Integrations/{integrationID:int}")]
+        public IHttpActionResult GetIntegrationByID(int integrationID)
+        {
+            return Ok(_repo.GetIntegrationByID(integrationID));
+        }
+        [HttpPost]
+        [Route("Company/{companyId:long}/Integrations")]
+        public IHttpActionResult CreateIntegration(Integration integration)
+        {
+            _repo.CreateIntegration(integration);
+            return Ok();
+
+        }
+        [HttpPut]
+        [Route("Company/{companyID:long}/Integrations/{integrationID:int}")]
+        public IHttpActionResult UpdateIntegration(int integrationID,Integration integration)
+        {
+            integration.ID = integrationID;
+            _repo.UpdateIntegration(integration);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("Project/{projectID:int}/Document")]
+        public async Task<IHttpActionResult> ProjectDocument(int projectID)
+        {
+           
+            string root = HttpContext.Current.Server.MapPath("~/UploadFile");
+            string fileWithoutQuote = string.Empty;
+            // Read the form data.
+            var provider = new MultipartFormDataStreamProvider(root);
+            await Request.Content.ReadAsMultipartAsync(provider);
+           
+            if (provider.FileData.Count > 0 && provider.FileData[0] != null)
+            {
+                MultipartFileData file = provider.FileData[0];
+
+                //clean the file name
+                fileWithoutQuote = file.Headers.ContentDisposition.FileName.Substring(1, file.Headers.ContentDisposition.FileName.Length - 2);
+
+                //get current file directory on the server
+                var directory = Path.GetDirectoryName(file.LocalFileName);
+
+                if (directory != null)
+                {
+                    //generate new random file name (not mandatory)
+                    var randomFileName = string.Concat(directory,"\\" + fileWithoutQuote );
+                    var fileExtension = Path.GetExtension(fileWithoutQuote);
+                    var newfilename = Path.ChangeExtension(randomFileName, fileExtension);
+                 if (File.Exists(randomFileName))
+                    {
+                        // Note that no lock is put on the
+                        // file and the possibility exists
+                        // that another process could do
+                        // something with it between
+                        // the calls to Exists and Delete.
+                        File.Delete(randomFileName);
+                    }
+
+                    //Move file to rename existing upload file name with new random filr name
+                    File.Move(file.LocalFileName, randomFileName);
+                }
+            }
+            if (provider.FormData.Count > 0)
+            {
+                Document document = new Document();
+                document.ProjectID = Convert.ToInt32(provider.FormData["projectID"]);
+                document.Name = fileWithoutQuote;
+                document.Link = provider.FormData["link"];
+                _repo.CreateDocument(document);
+            }
+            List<ApplicationUser> users = _repo.GetProjectUsers(projectID);
+            IEnumerable<ITokeneable> tokens = users.Cast<ITokeneable>();
+            new VictorCallsNotifications().SendNotification(tokens, "Data updated notifications",
+                false, false, false, true);
+            return Ok();        //return Request.CreateResponse(HttpStatusCode.Created);
+           
+        }
+        [HttpPut]
+        [Route("User/{userName}/Token/{token}")]
+        public IHttpActionResult AddToken([FromUri]string userName, [FromUri]string token)
+        {
+           token = token.Replace("COLON",":");
+           return Ok(_repo.AddToken(userName, token));
+        }
+
+        [HttpPost]
+        [Route("Notify")]
+        public IHttpActionResult Notify()
+        {
+            WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+            tRequest.Method = "post";
+            //serverKey - Key from Firebase cloud messaging server  
+            tRequest.Headers.Add(string.Format("Authorization: key={0}", "AAAA3Mgl_0Y:APA91bFKigkhtGaXIKoGL60v8hTOT-a4u7OwZ_Y98jK8AlRcqQUcLjmtDHMCuY9i5am54h7XMQzgWSpQS5YusFJ5P5Nym2YqccghCf4EMeVtGcGemwKf_bOsXCqM86GK3r2hCSoDt3yAlp5v2UncAh6gQ1h3UF6YnA"));
+            //Sender Id - From firebase project setting  
+            tRequest.Headers.Add(string.Format("Sender: id={0}", "948250738502"));
+            tRequest.ContentType = "application/json";
+            var payload = new
+            {
+                to = "diox9F1_T4M:APA91bEcwFciZZZIPabKZIVWYSZk5RxfWXTx0nwjnZiz8WWvjThva1BVPGkLQCUBnnaViKcxd0_M40hLCq8q0QEi-PTBZtWjm6T9Px4lzhKr9uIv0dM2or44eB5iG8T_RiDHqGD6tzwtXaoxUtu6rq_v96WFdb4I0A",
+                priority = "high",
+                content_available = true,
+                notification = new
+                {
+                    body = "Test",
+                    title = "Test",
+                    badge = 1
+                },
+            };
+
+
+
+            string postbody = JsonConvert.SerializeObject(payload).ToString();
+            Byte[] byteArray = Encoding.UTF8.GetBytes(postbody);
+            tRequest.ContentLength = byteArray.Length;
+            using (Stream dataStream = tRequest.GetRequestStream())
+            {
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                using (WebResponse tResponse = tRequest.GetResponse())
+                {
+                    using (Stream dataStreamResponse = tResponse.GetResponseStream())
+                    {
+                        if (dataStreamResponse != null) using (StreamReader tReader = new StreamReader(dataStreamResponse))
+                            {
+                                String sResponseFromServer = tReader.ReadToEnd();
+                                //result.Response = sResponseFromServer;
+                            }
+                    }
+                }
+            }
+            return Ok();
         }
 
         [HttpDelete]
@@ -208,7 +477,7 @@ namespace AngularJSAuthentication.API.Controllers
         [HttpGet]
         [Route("Roles")]
         public IHttpActionResult Roles()
-        {            
+        {
             return Ok(_repo.GetRoles());
         }
         protected override void Dispose(bool disposing)
@@ -220,7 +489,26 @@ namespace AngularJSAuthentication.API.Controllers
 
             base.Dispose(disposing);
         }
+        [HttpPost]
+        [Route("Document")]
+        public HttpResponseMessage PostDocument()
+        {
+            var httpRequest = HttpContext.Current.Request;
+            if (httpRequest.Files.Count < 1)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
 
+            foreach (string file in httpRequest.Files)
+            {
+                var postedFile = httpRequest.Files[file];
+                var filePath = HttpContext.Current.Server.MapPath("~/" + postedFile.FileName);
+                postedFile.SaveAs(filePath);
+                // NOTE: To store in memory use postedFile.InputStream
+            }
+
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
         #region Helpers
 
         private IHttpActionResult GetErrorResult(IdentityResult result)
@@ -373,7 +661,7 @@ namespace AngularJSAuthentication.API.Controllers
         //{
         //    List<ApplicationUser> users = null;
 
-           
+
         //    return users;
         //}
         private JObject GenerateLocalAccessTokenResponse(string userName)
@@ -382,7 +670,7 @@ namespace AngularJSAuthentication.API.Controllers
             var tokenExpiration = TimeSpan.FromDays(1);
 
             ClaimsIdentity identity = new ClaimsIdentity(OAuthDefaults.AuthenticationType);
-            
+
             identity.AddClaim(new Claim(ClaimTypes.Name, userName));
             identity.AddClaim(new Claim("role", "user"));
 

@@ -1,0 +1,131 @@
+package com.gap.school.distance;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.json.simple.JSONObject;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
+
+import com.google.android.gcm.server.Message;
+import com.google.android.gcm.server.MulticastResult;
+import com.google.android.gcm.server.Result;
+import com.google.android.gcm.server.Sender;
+public class TestPushNOtification {
+	
+	public final static String AUTH_KEY_FCM = "AAAAeGF1D6E:APA91bE3b5HmaW7sf9z8ztQx19QXLiIlj9SIHFqL_KymOPOyuwCDO1xdvJW3ul5DMRSIgLd7nGdlC5WOORNXJfyvHtJtIDR7L8aqiDRySIrcoowfOZO7AbBboQvLR4t-gKD9RDFm6M79";
+	public final static String API_URL_FCM = "https://fcm.googleapis.com/fcm/send";	 
+	    public static String sendPushNotification(String deviceToken,String messsage)
+	            throws IOException {
+	        String result = "";
+	        URL url = new URL(API_URL_FCM);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection(); 
+	        conn.setUseCaches(false);
+	        conn.setDoInput(true);
+	        conn.setDoOutput(true);	 
+	        conn.setRequestMethod("POST");
+	        conn.setRequestProperty("Authorization", "key="+AUTH_KEY_FCM);
+	        conn.setRequestProperty("Content-Type", "application/json");	 
+	        JSONObject json = new JSONObject();	 
+	        json.put("to", deviceToken.trim());
+	        JSONObject info = new JSONObject();
+	        info.put("title", "School"); // Notification title
+	        info.put("body", messsage); // Notification	                                                                // body
+	        json.put("notification", info);
+	        try {
+	            OutputStreamWriter wr = new OutputStreamWriter(
+	                    conn.getOutputStream());
+	            wr.write(json.toString());
+	            wr.flush();	 
+	            BufferedReader br = new BufferedReader(new InputStreamReader(
+	                    (conn.getInputStream())));
+	 
+	            String output;
+	            System.out.println("Output from Server .... \n");
+	            while ((output = br.readLine()) != null) {
+	                System.out.println(output);
+	            }
+	            result = "success";
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            result = "Fail";
+	        }
+	        System.out.println("GCM Notification is sent successfully");
+			return result;
+	 
+	    }
+	
+	
+	    
+		public static void sendPushNotification(List<String> deviceTokenList) {		
+			System.out.println(deviceTokenList);
+		    Sender sender = new Sender(AUTH_KEY_FCM);
+		    Message msg = new Message.Builder().addData("message", "lfkfjlkdjgljk")
+		            .build();
+		    try {
+		        MulticastResult result = sender.send(msg,deviceTokenList,5);
+		        for (Result r : result.getResults()) {
+		            if (r.getMessageId() != null) 
+		                System.out.println("Push Notification Sent Successfully");
+		             else 
+		                System.out.println("ErrorCode " + r.getErrorCodeName());
+		        }
+		    } catch (IOException e) {
+		        System.out.println("Error " + e.getLocalizedMessage());
+		    }
+		   }
+	
+	
+/*	public final static String AUTH_KEY_FCM = "fiw0EAaY-hY:APA91bGwoXyeJjK_f_o9NLLHYjw0uLAwI46pfIpgJiRjaQ0M2aymdMX7wyOo13rD43zIT_eHKCB4UgYpPwhRkntcFFcW1CMpqxGcHWur9MDUfohqzm2LxMH7Yl5ia9N5dQNXT31qrFdn";
+	public final static String API_URL_FCM = "https://fcm.googleapis.com/fcm/send";
+*/
+
+/*	public static void main(String[] args) {	
+		List<String> list=new ArrayList<String>();
+		list.add("fiw0EAaY-hY:APA91bGwoXyeJjK_f_o9NLLHYjw0uLAwI46pfIpgJiRjaQ0M2aymdMX7wyOo13rD43zIT_eHKCB4UgYpPwhRkntcFFcW1CMpqxGcHWur9MDUfohqzm2LxMH7Yl5ia9N5dQNXT31qrFdn");
+		list.add("fiw0EAaY-hY:APA91bGwoXyeJjK_f_o9NLLHYjw0uLAwI46pfIpgJiRjaQ0M2aymdMX7wyOo13rD43zIT_eHKCB4UgYpPwhRkntcFFcW1CMpqxGcHWur9MDUfohqzm2LxMH7Yl5ia9N5dQNXT31qrFdn");
+		list.add("fiw0EAaY-hY:APA91bGwoXyeJjK_f_o9NLLHYjw0uLAwI46pfIpgJiRjaQ0M2aymdMX7wyOo13rD43zIT_eHKCB4UgYpPwhRkntcFFcW1CMpqxGcHWur9MDUfohqzm2LxMH7Yl5ia9N5dQNXT31qrFdn");
+		list.add("fiw0EAaY-hY:APA91bGwoXyeJjK_f_o9NLLHYjw0uLAwI46pfIpgJiRjaQ0M2aymdMX7wyOo13rD43zIT_eHKCB4UgYpPwhRkntcFFcW1CMpqxGcHWur9MDUfohqzm2LxMH7Yl5ia9N5dQNXT31qrFdn");
+		TestPushNOtification.sendPushNotification(list);
+		
+		try {
+			TestPushNOtification.sendPushNotification("euoQ9YYXmts:APA91bEM3ukPq2AFeZy2MYSp80REglDb-L7y0ee11BiMOA8UOs35IWvn8vvCxczJWFm2z97S_tSToRb73hh0xTBNYfFs1HR3JEsi5MH15oGO9aHGZ_bXsZY4z7bne52vrfmpWWG1yLFV","dkjldkfgjlkfj");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}*/
+		
+		private static TaskScheduler scheduler = new ConcurrentTaskScheduler();
+
+		/*@PostConstruct
+		private static void executeJob() {
+		    scheduler.scheduleAtFixedRate(new Runnable() {
+		        @Override
+		        public void run() {
+		            System.out.println(new Date());
+		        }
+		    }, 1000);
+		}*/
+	    public static void main(String[] args) {
+	    	
+	    	
+			try {
+				TestPushNOtification.sendPushNotification("ebOBWax9ji0:APA91bEvLs60Rg2OdtbrlNO0BhDPkQW0nK_TX-HxqTq0nfFE2-KfLS31W6nr0EAJaip5AXJGFaljmgLbsPRr6jC0FCpfbt2PL6BGbm0lhahKD8604ptUxwHv3Ad0vrOAWoomkLCHeLrD5Rxg7yIZR5GOxk5OCR6R8A", "zdflkjdflkjfl");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+}
+	  

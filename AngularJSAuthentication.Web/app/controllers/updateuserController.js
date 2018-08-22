@@ -5,26 +5,27 @@ app.controller('updateuserController', ['$scope', '$location', '$timeout', 'auth
     $scope.message = "";
 
     $scope.user = {
-        userName: "",
-        password: "",
-        confirmPassword: "",
-        companyId: "",
-        accessFailedCount: "",
-        email: "",
-        emailConfirmed: "",
-        id: "",
-        lockOutEndDateUtc: "",
-        lockOutEnabledDateUtc: "",
-        phoneNumber: "",
-        phoneNumberConfirmed: "",
-        securityStamp: "",
-        twoFactorEnabled: "",
-        firstName: "",
-        lastName: "",
-        role: {
-            id: "",
-            name: ""
-        }
+        //userName: "",
+        //password: "",
+        //confirmPassword: "",
+        //companyId: "",
+        //accessFailedCount: "",
+        //email: "",
+        //emailConfirmed: "",
+        //id: "",
+        //lockOutEndDateUtc: "",
+        //lockOutEnabledDateUtc: "",
+        //phoneNumber: "",
+        //phoneNumberConfirmed: "",
+        //securityStamp: "",
+        //twoFactorEnabled: "",
+        //firstName: "",
+        //lastName: "",
+        //role: {
+        //    id: "",
+        //    name: ""
+        //}
+
     };
 
     $scope.updateuser = function () {

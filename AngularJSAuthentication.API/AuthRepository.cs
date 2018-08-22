@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Web; 
 using LeadWomb.Data;
 using LeadWomb.Models;
-using System;
 using LeadWomb.Model;
 namespace AngularJSAuthentication.API
 {
@@ -29,6 +28,74 @@ namespace AngularJSAuthentication.API
             _ctx = new AuthContext();
             _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
 
+        }
+        public void CreateIntegration(Integration integration)
+        {
+            context.CreateIntegration(integration);
+        }
+        public void UpdateIntegration(Integration integration)
+        {
+            context.UpdateIntegration(integration);
+        }
+        public List<Integration> GetCompanyIntegrations()
+        {
+            return context.GetCompanyIntegrations();
+        }
+        public bool AddToken(string userName, string token)
+        {
+            return context.AddToken(userName, token);
+        }
+        public List<Integration> GetIntegrations(long companyID)
+        {
+            return context.GetIntegrations(companyID);
+        }
+
+        public Integration GetIntegrationByID(int integrationID)
+        {
+            return context.GetIntegrationByID(integrationID);
+
+        }
+
+        public void CreateDocument(Document document)
+        {
+            context.CreateDocument(document);
+        }
+        public bool CreateProject(Project project)
+        {
+            return context.CreateProject(project);
+        }
+        public bool AddCompany(Company company)
+        {
+            return context.CreateCompany(company);
+        }
+        public bool UpdateCompany(long companyId, Company company)
+        {
+            company.CompanyId = companyId;
+            return context.UpdateCompany(company);
+        }
+        public List<Company> GetCompanies()
+        {
+            return context.GetCompanies();
+        }
+        public Company GetCompanybyCompanyId(long companyId)
+        {
+            return context.GetCompanyByCompanyId(companyId);
+        }
+        public Document GetDocument(int projectID, int documentID)
+        {
+          return context.GetDocument(projectID, documentID);
+        }
+        public List<Document> GetDocuments(string userName)
+        {
+           return context.GetDocuments(userName);
+        }
+        public List<Document> GetProjectDocuments(int projectID)
+        {
+            return context.GetDocuments(projectID);
+        }
+        public List<ApplicationUser> GetProjectUsers(int projectId)
+        {
+            return context.GetProjectUsers(projectId);
         }
 
         public string RegisterUser(ApplicationUser userModel)
@@ -144,6 +211,14 @@ namespace AngularJSAuthentication.API
         public List<ApplicationUser> GetUsersOfCompany(string userName, string roleID)
         {
            return context.GetUsersOfCompany(userName, null);
+        }
+        public List<Project> GetProjects(string userName)
+        {
+           return context.GetProjects(userName);
+        }
+        public List<ApplicationUser> GetCompanyUsers(long companyID)
+        {
+            return context.GetUsersByCompanyId(companyID);
         }
     }
 }

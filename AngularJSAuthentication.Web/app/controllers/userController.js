@@ -3,14 +3,22 @@ app.controller('userController', ['$scope', 'usersService', '$timeout', '$locati
 
     $scope.users = [];
     $scope.roles = [];
+    $scope.Projects = [];
+    usersService.getProjects().then(function (results) {
 
+        $scope.Projects = results.data;
+
+    }, function (error) {
+        //alert(error.data.message);
+    });
     usersService.getUsers().then(function (results) {
 
         $scope.users = results.data;
 
     }, function (error) {
         //alert(error.data.message);
-    });
+        });
+
     usersService.getRoles().then(function (results) {
 
         $scope.roles = results.data;
@@ -26,6 +34,7 @@ app.controller('userController', ['$scope', 'usersService', '$timeout', '$locati
     $scope.registration = usersService.getListUser();
 
     $scope.selectedRole = $scope.registration.role;
+    $scope.selectedProject = $scope.registration.project;
     $scope.updateuser = function (_registration) {
         _registration.userName = _registration.phoneNumber;
         // _registration.phoneNumberConfirmed = _registration.phoneNumber == $scope.confirmPhoneNumber ? true :false;
@@ -76,6 +85,7 @@ app.controller('userController', ['$scope', 'usersService', '$timeout', '$locati
         $scope.message = "";
         registration.userName = registration.phoneNumber;
         $scope.registration.role = $scope.selectedRole;
+        $scope.registration.project = $scope.selectedProject;
         authService.updateUser(registration).then(function (response) {
 
             $scope.savedSuccessfully = true;

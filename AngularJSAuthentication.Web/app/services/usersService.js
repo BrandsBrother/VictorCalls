@@ -15,6 +15,17 @@ app.factory('usersService', ['$http', 'ngAuthSettings','authService', function (
             return results;
         });
     };
+    var _getProjects = function () {
+        var config = {
+            params: {
+                userName: authService.authentication.userName
+
+            }
+        };
+        return $http.get(serviceBase + 'api/Account/Projects',config).then(function (results) {
+            return results;
+        });
+    };
     var _deleteUser = function (userID) {
         return $http.delete(serviceBase + 'api/Account/Users?userID=' + userID).then(function (results) {
             return results;
@@ -32,6 +43,7 @@ app.factory('usersService', ['$http', 'ngAuthSettings','authService', function (
     usersServiceFactory.getUsers = _getUsers;
     usersServiceFactory.getRoles = _getRoles;
     usersServiceFactory.deleteUser = _deleteUser;
+    usersServiceFactory.getProjects = _getProjects;
     return usersServiceFactory;
 
 }]);
