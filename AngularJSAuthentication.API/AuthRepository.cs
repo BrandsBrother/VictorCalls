@@ -111,7 +111,9 @@ namespace AngularJSAuthentication.API
         }
         public List<Role> GetRoles()
         {
-           return  context.GetRoles();
+            List<Role> roles = context.GetRoles();
+            roles.RemoveAll(x=>x.Name.ToLower().Equals("superadmin"));
+            return roles;
         }
         public async Task<IdentityUser> FindUser(string userName, string password)
         {
@@ -207,14 +209,25 @@ namespace AngularJSAuthentication.API
             _userManager.Dispose();
 
         }
-
+        public List<ApplicationUser> GetUsersbyCompany(int CompanyId, string roleID)
+        {
+            return context.GetUsersbyCompany(CompanyId, null);
+        }
         public List<ApplicationUser> GetUsersOfCompany(string userName, string roleID)
         {
            return context.GetUsersOfCompany(userName, null);
         }
+        public ApplicationUser GetUser(string username)
+        {
+            return context.GetUser(username);
+        }
         public List<Project> GetProjects(string userName)
         {
            return context.GetProjects(userName);
+        }
+        public List<Project> GetProjects(int companyID)
+        {
+            return context.GetProjects(companyID);
         }
         public List<ApplicationUser> GetCompanyUsers(long companyID)
         {

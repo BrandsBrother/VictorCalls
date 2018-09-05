@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.Threading.Tasks;
 using System.Data;
+using LeadWomb.Models;
 
 namespace AngularJSAuthentication.API.Controllers
 {
@@ -98,16 +99,16 @@ namespace AngularJSAuthentication.API.Controllers
 
         [Route("Company")]
         [HttpGet]
-        public IHttpActionResult GetLeadsByCompany(string userName, int? statusID)
+        public IHttpActionResult GetLeadsByCompany(long companyID, int? statusID)
         {
-            return Ok(leadRepository.GetLeadsByCompany(userName, statusID));
+            return Ok(leadRepository.GetLeadsByCompany(companyID, statusID));
 
         }
         [Route("CompanyWithPaging")]
         [HttpGet]
         public IHttpActionResult GetLeadsByCompanyPage([FromUri]Filter filter)
         {
-            return Ok(leadRepository.GetLeadsByCompanyWithPaging(filter.userName, filter.pageSize, 
+            return Ok(leadRepository.GetLeadsByCompanyWithPaging(filter.CompanyID, filter.pageSize, 
                 filter.pageNumber, filter.statusID,filter.projectId,filter.assignedTo,filter.leadName,
                 filter.leadNumber,filter.DateFrom,filter.DateTo));
 
@@ -128,16 +129,16 @@ namespace AngularJSAuthentication.API.Controllers
         }
         [Route("Company/RawLeads")]
         [HttpGet]
-        public IHttpActionResult GetRawLeadsByCompany(string userName)
+        public IHttpActionResult GetRawLeadsByCompany(long companyID)
         {
-            return Ok(leadRepository.GetRawLeadsByCompany(userName));
+            return Ok(leadRepository.GetRawLeadsByCompany(companyID));
 
         }
         [Route("Company/RawLeadsWithPaging")]
         [HttpGet]
-        public IHttpActionResult GetRawLeadsByCompanyWithPaging(string userName, int pageSize, int pageNumber)
+        public IHttpActionResult GetRawLeadsByCompanyWithPaging(long  companyID, int pageSize, int pageNumber)
         {
-            return Ok(leadRepository.GetRawLeadsByCompanyWithPaging(userName, pageSize, pageNumber));
+            return Ok(leadRepository.GetRawLeadsByCompanyWithPaging(companyID, pageSize, pageNumber));
 
         }
         //[Route("")]
@@ -164,9 +165,13 @@ namespace AngularJSAuthentication.API.Controllers
         public IHttpActionResult Put([FromBody]Leads value)
         {
             leadRepository.UpdateLeads(value);
-            IEnumerable<ITokeneable> tokens = value.Items.Cast<ITokeneable>();
-            //Send notifications to related devices.
-            new AngularJSAuthentication.API.Notifications.VictorCallsNotifications().SendNotification(tokens, "Data update notification", true, false, false, false);
+            if (value.Items != null)
+            {
+                IEnumerable<ITokeneable> tokens = value.Items.Cast<ITokeneable>();
+                //Send notifications to related devices.
+                new AngularJSAuthentication.API.Notifications.VictorCallsNotifications().SendNotification(tokens, "Data update notification", true, false, false, false);
+
+            }
             return Ok();
         }
         [HttpPut]
@@ -195,7 +200,7 @@ namespace AngularJSAuthentication.API.Controllers
         }
         [HttpPost]
         [Route("ExcelUpload")]
-        public async Task<IHttpActionResult> BulkUpload()
+        public async Task<IHttpActionResult> BulkUpload(string userName)
         {
             
             string root = System.Web.HttpContext.Current.Server.MapPath("~/UploadFile");
@@ -203,7 +208,7 @@ namespace AngularJSAuthentication.API.Controllers
             // Read the form data.
             var provider = new MultipartFormDataStreamProvider(root);
             await Request.Content.ReadAsMultipartAsync(provider);
-
+            ApplicationUser user = new AccountController().GetUser(userName);
             if (provider.FileData.Count > 0 && provider.FileData[0] != null)
             {
                 MultipartFileData file = provider.FileData[0];
@@ -235,7 +240,10 @@ namespace AngularJSAuthentication.API.Controllers
                     DataTable table = leadRepository.ReadExcel(randomFileName, fileExtension);
                     int counter = 0;
                     Dictionary<string, string> dictionary = new Dictionary<string, string>();
-                    
+                    table.Columns.Add("CreateUser_ID", typeof(string));
+                    table.Columns.Add("CreateDateTimeOffset", typeof(DateTime));
+                    table.Columns.Add("IsAssigned", typeof(bool));
+                    table.Columns.Add("CompanyId", typeof(long));
                     foreach (DataRow row in table.Rows)
                     {
                         if (counter == 0)
@@ -244,7 +252,10 @@ namespace AngularJSAuthentication.API.Controllers
                         }
                         else
                         {
-                            
+                            row["CreateUser_ID"] = user.Id;
+                            row["CreateDateTimeOffset"] = DateTime.Now;
+                            row["IsAssigned"] = false;
+                            row["CompanyId"] = user.CompanyId;
                         }
                         counter++;
                     }
@@ -264,8 +275,11 @@ namespace AngularJSAuthentication.API.Controllers
             columns = FillRowColumns("F1", row["F1"].ToString(),columns);
             columns = FillRowColumns("F2", row["F2"].ToString(), columns);
             columns = FillRowColumns("F3", row["F3"].ToString(), columns);
-            columns = FillRowColumns("F4", row["F4"].ToString(), columns);               
-            
+            columns = FillRowColumns("F4", row["F4"].ToString(), columns);
+            columns.Add("CreateUser_ID", "CreateUser_ID");
+            columns.Add("CreateDateTimeOffset", "CreateDateTimeOffset");
+            columns.Add("IsAssigned", "IsAssigned");
+            columns.Add("CompanyId", "CompanyId");
             return columns;
         }
         public Dictionary<string, string> FillRowColumns(string columnName,string value,Dictionary<string,string> columns)

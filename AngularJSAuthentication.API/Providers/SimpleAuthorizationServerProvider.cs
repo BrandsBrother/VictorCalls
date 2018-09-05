@@ -102,20 +102,24 @@ namespace AngularJSAuthentication.API.Providers
             identity.AddClaim(new Claim(ClaimTypes.Role,user.RoleId ));
             identity.AddClaim(new Claim("sub", context.UserName));
             identity.AddClaim(new Claim("CompanyId", user.CompanyId.ToString()));
+            identity.AddClaim(new Claim("RoleName", user.Role.Name));
 
             var props = new AuthenticationProperties(new Dictionary<string, string>
                 {
-                    { 
+                    {
                         "as:client_id", (context.ClientId == null) ? string.Empty : context.ClientId
                     },
-                    { 
+                    {
                         "userName", context.UserName
                     },
                 {
-                    "roleid",user.RoleId 
+                    "roleid",user.RoleId
                 },
                 {
                     "CompanyId",user.CompanyId.ToString()
+                },
+                {
+                    "rolename",user.Role.Name
                 }
 
                 });

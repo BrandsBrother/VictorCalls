@@ -8,7 +8,7 @@ namespace LeadWomb.Model
 {
     public class Filter
     {
-        public string userName { get; set; }
+        public long CompanyID { get; set; }
         public int pageSize { get; set; }
         public int pageNumber { get; set; }
         public int? statusID { get; set; }

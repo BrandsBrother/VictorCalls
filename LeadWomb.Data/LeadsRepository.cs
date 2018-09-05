@@ -113,9 +113,9 @@ namespace LeadWomb.Data
             }
             return recordings;
         }
-        public IList<Leads> GetLeadsByCompanyWithPaging(string userName, int pageSize, int pageNumber,
+        public IList<Leads> GetLeadsByCompanyWithPaging(long companyID, int pageSize, int pageNumber,
             int? statusID, int? projectID, string assignedTo, string leadName, int? leadNumber,
-            DateTime? dateFrom,DateTime? dateTo)
+            DateTime? dateFrom, DateTime? dateTo)
         {
 
             SqlCommand command = null;
@@ -129,7 +129,7 @@ namespace LeadWomb.Data
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "sp_GetLeadsbyCompanyWithPaging";
 
-                command.Parameters.Add(new SqlParameter("@userName", userName));
+                command.Parameters.Add(new SqlParameter("@CompanyID", companyID));
                 command.Parameters.Add(new SqlParameter("@statusID", statusID));
 
                 command.Parameters.Add(new SqlParameter("@PageSize", pageSize));
@@ -138,7 +138,7 @@ namespace LeadWomb.Data
                 command.Parameters.Add(new SqlParameter("@Lead_Id", leadNumber));
                 command.Parameters.Add(new SqlParameter("@AssignedTo", assignedTo));
                 command.Parameters.Add(new SqlParameter("@ProjectId", projectID));
-                if (dateFrom != null&& dateFrom!=DateTime.MinValue )
+                if (dateFrom != null && dateFrom != DateTime.MinValue)
                 {
                     command.Parameters.Add(new SqlParameter("@DateFrom", dateFrom));
                 }
@@ -243,7 +243,7 @@ namespace LeadWomb.Data
             return AssignLeadIds(leads);
 
         }
-        public IList<Leads> GetLeadsByCompany(string userName, int? statusID)
+        public IList<Leads> GetLeadsByCompany(long companyID, int? statusID)
         {
             SqlCommand command = null;
             List<Leads> leads = new List<Leads>();
@@ -256,7 +256,7 @@ namespace LeadWomb.Data
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "sp_GetLeadsbyCompany";
 
-                command.Parameters.Add(new SqlParameter("@userName", userName));
+                command.Parameters.Add(new SqlParameter("@CompanyID", companyID));
                 command.Parameters.Add(new SqlParameter("@statusID", statusID));
                 command.Connection = connection;
                 SqlDataAdapter companyAdapter = new SqlDataAdapter(command);
@@ -373,7 +373,7 @@ namespace LeadWomb.Data
             return AssignLeadIds(leads);
 
         }
-        public IList<Leads> GetRawLeadsByCompanyWithPaging(string userName, int pageSize, int pageNumber)
+        public IList<Leads> GetRawLeadsByCompanyWithPaging(long CompanyID, int pageSize, int pageNumber)
         {
             SqlCommand command = null;
             List<Leads> leads = new List<Leads>();
@@ -386,7 +386,7 @@ namespace LeadWomb.Data
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "sp_GetRawLeadsbyCompanyWithPaging";
 
-                command.Parameters.Add(new SqlParameter("@userName", userName));
+                command.Parameters.Add(new SqlParameter("@CompanyId", CompanyID));
                 command.Parameters.Add(new SqlParameter("@PageSize", pageSize));
                 command.Parameters.Add(new SqlParameter("@PageNumber", pageNumber));
 
@@ -465,7 +465,7 @@ namespace LeadWomb.Data
 
         }
 
-        public IList<Leads> GetRawLeadsByCompany(string userName)
+        public IList<Leads> GetRawLeadsByCompany(long companyID)
         {
             SqlCommand command = null;
             List<Leads> leads = new List<Leads>();
@@ -478,7 +478,7 @@ namespace LeadWomb.Data
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "sp_GetRawLeadsbyCompany";
 
-                command.Parameters.Add(new SqlParameter("@userName", userName));
+                command.Parameters.Add(new SqlParameter("@CompanyId", companyID));
 
                 command.Connection = connection;
                 SqlDataAdapter companyAdapter = new SqlDataAdapter(command);
@@ -655,7 +655,7 @@ namespace LeadWomb.Data
                     assignedUser.ID = row.Id;
                     assignedUser.AssignedTo = row.AssignedTo;
                     lead.LeadId = Convert.ToInt32(row[dataTable.Lead_IDColumn]);
-                 
+
                     item.ProjectName = row[dataTable.ProjNameColumn] != DBNull.Value ? row[dataTable.ProjNameColumn].ToString() : string.Empty;
                     item.QueryRemarks = row[dataTable.QueryRemarksColumn] != DBNull.Value ? row[dataTable.QueryRemarksColumn].ToString() : string.Empty;
                     item.RangeFrom = row[dataTable.RangeFromColumn] != DBNull.Value ? Convert.ToInt32(row[dataTable.RangeFromColumn]) : 0;
@@ -845,7 +845,7 @@ namespace LeadWomb.Data
             }
             new GetLeadsByCompanyIdandStatusIdTableAdapter().UpdateLeads(table,
                 lead.LeadId, lead.EditUserId, DateTime.Now, lead.Name, lead.Email, lead.PhoneNumber, true, lead.CompanyId, null);
-            
+
             return true;
         }
 
@@ -978,6 +978,23 @@ namespace LeadWomb.Data
         {
             table.Rows[0].Delete();
             table.AcceptChanges();
+            foreach (DataRow row in table.Rows)
+            {
+                string columnValue = string.Empty;
+                columnList.TryGetValue("PhoneNumber", out columnValue);
+                if (row[columnValue] == null)
+                {
+                    row.Delete();
+                }
+                else
+                {
+                    if (row[columnValue].ToString() == string.Empty)
+                    {
+                        row.Delete();
+                    }
+                }
+            }
+            table.AcceptChanges();
             using (SqlConnection connection = new SqlConnection(global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString))
             {
                 using (sqlBulkCopy = new SqlBulkCopy(connection))
@@ -1009,6 +1026,7 @@ namespace LeadWomb.Data
                 {
                     OleDbDataAdapter oleAdpt = new OleDbDataAdapter("select * from [Sheet1$]", con); //here we read data from sheet1  
                     oleAdpt.Fill(dtexcel); //fill excel data into dataTable  
+
 
 
                 }
@@ -1078,7 +1096,7 @@ namespace LeadWomb.Data
             }
             return attendences;
         }
-                public bool CreateOrUpdateAttendence(Attendence attendence)
+        public bool CreateOrUpdateAttendence(Attendence attendence)
         {
             connection = new SqlConnection(global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString);
             SqlCommand command = new SqlCommand();

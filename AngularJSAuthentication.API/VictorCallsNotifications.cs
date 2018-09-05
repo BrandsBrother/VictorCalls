@@ -109,7 +109,7 @@ namespace AngularJSAuthentication.API.Notifications
                 tRequest.ContentType = "application/json";
                 foreach (ITokeneable token in tokens)
                 {
-                    if (token.Token != null)
+                    if (!string.IsNullOrEmpty(token.Token))
                     {
                         var payload = new
                         {

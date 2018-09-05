@@ -61,6 +61,82 @@ namespace LeadWomb.Data
             }
             return document;
         }
+        public List<ApplicationUser> GetUsersbyCompany(int CompanyId, string roleID)
+        {
+            List<ApplicationUser> users = null;
+            SqlConnection connection = new SqlConnection(global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString);
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "sp_GetUsersbyCompanyandRoleID";
+            command.Parameters.Add(new SqlParameter("@CompanyId", CompanyId));
+            command.Parameters.Add(new SqlParameter("@roleID", roleID));
+            DataSet dataSet = new DataSet();
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(dataSet);
+            if (dataSet != null && dataSet.Tables.Count > 0)
+            {
+                DataTable table = dataSet.Tables[0];
+                if (table != null && table.Rows.Count > 0)
+                {
+                    users = new List<ApplicationUser>();
+                    foreach (DataRow row in table.Rows)
+                    {
+                        ApplicationUser user = new ApplicationUser();
+                        user.Role = new Role();
+                        user.Project = new Project();
+                        user.Id = row["Id"].ToString();
+                        user.FirstName = row["FirstName"].ToString();
+                        user.AccessFailedCount = Convert.ToInt32(row["AccessFailedCount"]);
+                        user.CompanyId = Convert.ToInt64(row["CompanyId"]);
+                        user.CreatedDateTime = Convert.ToDateTime(row["CreatedDateTime"]);
+                        user.Email = row["Email"] == DBNull.Value ? string.Empty : row["Email"].ToString();
+                        user.LastName = row["LastName"].ToString();
+                        user.LockoutEnabled = Convert.ToBoolean(row["LockoutEnabled"]);
+                        user.LockoutEndDateUtc = row["LockoutEndDateUtc"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(row["LockoutEndDateUtc"]);
+                        user.PhoneNumber = row["PhoneNumber"].ToString();
+                        user.Project.ProjectId = row["ProjectId"] == DBNull.Value ? 0 : Convert.ToInt32(row["ProjectId"]);
+                        user.Role.RoleID = row["RoleId"].ToString();
+                        //user.Role.Name = row["Name"].ToString();
+                        user.SecurityStamp = row["SecurityStamp"] == DBNull.Value ? string.Empty : row["SecurityStamp"].ToString();
+                        user.TwoFactorEnabled = Convert.ToBoolean(row["TwoFactorEnabled"]);
+                        user.UserName = row["UserName"].ToString();
+                        user.Token = row["Token"] != DBNull.Value ? row["Token"].ToString() : string.Empty;
+
+                        users.Add(user);
+                    }
+                }
+            }
+            return users;
+
+
+        }
+        public ApplicationUser GetUser(string username)
+        {
+            ApplicationUser user = null;
+            SqlConnection connection = new SqlConnection(global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString);
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "Sp_GetUser";
+            command.Parameters.AddWithValue("@username", username);
+            DataSet dataSet = new DataSet();
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(dataSet);
+            if (dataSet.Tables.Count > 0)
+
+            {
+                user = new ApplicationUser();
+                foreach (DataRow row in dataSet.Tables[0].Rows)
+                {
+                  user.CompanyId =  Convert.ToInt64(row["CompanyId"]);
+                  user.Id =  row["Id"].ToString();
+                }
+        }
+            return user;
+        }
+          
+
         public bool CreateCompany(Company company)
         {
             SqlConnection connection = new SqlConnection(global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString);
@@ -501,6 +577,8 @@ namespace LeadWomb.Data
                     user.TwoFactorEnabled = row.TwoFactorEnabled;
                     user.UserName = row.UserName;
                     user.Id = row.Id;
+                    user.Role = new Role();
+                    user.Role.Name = row.RoleName;
 
                 }
             }
@@ -547,6 +625,35 @@ namespace LeadWomb.Data
                     project.District = row["District"]!=DBNull.Value? Convert.ToString(row["District"]):string.Empty;
                     project.Longitude = row["Longitude"]!=DBNull.Value? Convert.ToString(row["Longitude"]):string.Empty;
                     project.Lattitude = row["Lattitude"]!=DBNull.Value? Convert.ToString(row["Lattitude"]):string.Empty;
+                    project.CompanyId = Convert.ToInt64(row["companyId"]);
+                    projects.Add(project);
+                }
+            }
+            return projects;
+        }
+        public List<Project> GetProjects(int companyID)
+        {
+            SqlConnection connection = new SqlConnection(global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString);
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "sp_GetProjects";
+            command.Parameters.Add(new SqlParameter("@CompanyId", companyID));
+            DataSet dataSet = new DataSet();
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(dataSet);
+            List<Project> projects = new List<Project>();
+            if (dataSet != null && dataSet.Tables.Count > 0)
+            {
+                foreach (DataRow row in dataSet.Tables[0].Rows)
+                {
+                    Project project = new Project();
+                    project.ProjectId = Convert.ToInt32(row["projectId"]);
+                    project.ProjectName = row["Name"] != DBNull.Value ? Convert.ToString(row["Name"]) : string.Empty;
+                    project.Description = row["Description"] != DBNull.Value ? Convert.ToString(row["Description"]) : string.Empty;
+                    project.District = row["District"] != DBNull.Value ? Convert.ToString(row["District"]) : string.Empty;
+                    project.Longitude = row["Longitude"] != DBNull.Value ? Convert.ToString(row["Longitude"]) : string.Empty;
+                    project.Lattitude = row["Lattitude"] != DBNull.Value ? Convert.ToString(row["Lattitude"]) : string.Empty;
                     project.CompanyId = Convert.ToInt64(row["companyId"]);
                     projects.Add(project);
                 }
@@ -668,7 +775,7 @@ namespace LeadWomb.Data
                    user.SecurityStamp = row.IsSecurityStampNull()?string.Empty:row.SecurityStamp;
                    user.TwoFactorEnabled = row.TwoFactorEnabled;
                    user.UserName = row.UserName;
-                    user.Token = row.Token;
+                    user.Token = row.IsTokenNull()?null: row.Token;
                    users.Add(user);
                }
             }

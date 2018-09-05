@@ -56,20 +56,25 @@ namespace AngularJSAuthentication.API.Controllers
             _repo.RegisterUser(userModel);
            
             List<ApplicationUser> users = _repo.GetProjectUsers(userModel.ProjectId);
-            IEnumerable<ITokeneable> tokens = users.Cast<ITokeneable>();
-            new VictorCallsNotifications().SendNotification(tokens, "Data updated notifications", false, false,true, false);
-
+            if (users != null)
+            {
+                IEnumerable<ITokeneable> tokens = users.Cast<ITokeneable>();
+                new VictorCallsNotifications().SendNotification(users, "Data updated notifications", false, false, true, false);
+            }
             return Ok();
         }
-        [Authorize]
         [HttpPost]
         [Route("Project")]
         public IHttpActionResult CreateProject([FromBody]Project project)
         {
             _repo.CreateProject(project);
             List<ApplicationUser> users = _repo.GetCompanyUsers(project.CompanyId);
-            IEnumerable<ITokeneable> tokens =  users.Cast<ITokeneable>();
-            new VictorCallsNotifications().SendNotification(tokens, "Data update notification", false, true, false, false);
+            if (users != null)
+            {
+                IEnumerable<ITokeneable> tokens = users.Cast<ITokeneable>();
+                new VictorCallsNotifications().SendNotification(tokens, "Data update notification", false, true, false, false);
+
+            }
             return Ok();
         }
         [HttpPut]
@@ -91,7 +96,23 @@ namespace AngularJSAuthentication.API.Controllers
         {
             return Ok(_repo.GetProjects(userName));
         }
-       
+
+        public ApplicationUser GetUser(string userName)
+        {
+            return _repo.GetUser(userName);
+        }
+        [HttpGet]
+        [Route("Users")]
+        public List<ApplicationUser> GetUsersbyCompany(int CompanyId)
+        {
+            return _repo.GetUsersbyCompany(CompanyId, null);
+        }
+        [HttpGet]
+        [Route("Projects")]
+        public IHttpActionResult GetProjects(int companyID)
+        {
+            return Ok(_repo.GetProjects(companyID));
+        }
 
         [HttpGet]
         [Route("Project/{projectID:int}/Documents")]
@@ -262,15 +283,19 @@ namespace AngularJSAuthentication.API.Controllers
             if (provider.FormData.Count > 0)
             {
                 Document document = new Document();
-                document.ProjectID = Convert.ToInt32(provider.FormData["projectID"]);
+                document.ProjectID = projectID;
                 document.Name = fileWithoutQuote;
                 document.Link = provider.FormData["link"];
                 _repo.CreateDocument(document);
             }
             List<ApplicationUser> users = _repo.GetProjectUsers(projectID);
-            IEnumerable<ITokeneable> tokens = users.Cast<ITokeneable>();
-            new VictorCallsNotifications().SendNotification(tokens, "Data updated notifications",
-                false, false, false, true);
+            if (users != null)
+            {
+                IEnumerable<ITokeneable> tokens = users.Cast<ITokeneable>();
+                new VictorCallsNotifications().SendNotification(tokens, "Data updated notifications",
+                    false, false, false, true);
+
+            }
             return Ok();        //return Request.CreateResponse(HttpStatusCode.Created);
            
         }
