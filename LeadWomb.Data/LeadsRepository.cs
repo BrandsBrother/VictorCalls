@@ -630,86 +630,151 @@ namespace LeadWomb.Data
         /// <param name="StatusId"></param>
         /// <param name="AssignedTo"></param>
         /// <returns></returns>
-        public IList<Leads> GetLeads(string userName, int? statusID)
+        public IList<Leads> GetLeads(string userName,
+               int? statusID, int? projectID, string LeadName, int? Lead_Id,
+               DateTime? dateFrom, DateTime? dateTo)
         {
-            List<Leads> leads = null;
 
-            LeadWombDataset.sp_GetLeadsByUserNameDataTable dataTable = adapter.GetLeadsByUserName(userName, statusID);
-
-            if (dataTable != null && dataTable.Rows.Count > 0)
+            SqlCommand command = null;
+            List<Leads> leads = new List<Leads>();
+            List<LeadItems> existingLeads = new List<LeadItems>();
+            try
             {
-                leads = new List<Leads>();
-                DateTime createDateTimeOffset;
-                DateTime editDateTime = DateTime.MinValue;
-                Leads lead = null;
-                int oldID = 0;
-                foreach (LeadWombDataset.sp_GetLeadsByUserNameRow row in dataTable.Rows)
+
+                command = new SqlCommand();
+                SqlConnection connection = new SqlConnection(global::LeadWomb.Data.Properties.Settings.Default.LeadPoliceConnectionString);
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "sp_GetLeadsByUserName";
+
+                command.Parameters.Add(new SqlParameter("@UserName", userName));
+                command.Parameters.Add(new SqlParameter("@statusID", statusID));
+
+                command.Parameters.Add(new SqlParameter("@LeadName", LeadName));
+                command.Parameters.Add(new SqlParameter("@Lead_Id", Lead_Id));
+                command.Parameters.Add(new SqlParameter("@ProjectId", projectID));
+                if (dateFrom != null && dateFrom != DateTime.MinValue)
                 {
-                    if (lead == null)
+                    command.Parameters.Add(new SqlParameter("@DateFrom", Convert.ToDateTime(dateFrom)));
+                }
+                if (dateTo != null && dateTo != DateTime.MinValue)
+                {
+                    command.Parameters.Add(new SqlParameter("@DateTo", Convert.ToDateTime(dateTo)));
+                }
+                command.Connection = connection;
+                SqlDataAdapter companyAdapter = new SqlDataAdapter(command);
+                DataSet dataSet = new DataSet();
+                command.Connection.Open();
+                companyAdapter.Fill(dataSet);
+                if (dataSet != null && dataSet.Tables.Count > 0)
+                {
+                    DataTable leadData = dataSet.Tables[0];
+                    DataTable userData = new DataTable();
+                    List<AssignedUser> existingUsers = new List<AssignedUser>();
+                    foreach (DataRow row in userData.Rows)
                     {
-                        lead = new Leads();
-                        lead.Items = new List<LeadItems>();
-                    }
-                    LeadItems item = new LeadItems();
-                    AssignedUser assignedUser = new AssignedUser();
-                    assignedUser.ID = row.Id;
-                    assignedUser.AssignedTo = row.AssignedTo;
-                    lead.LeadId = Convert.ToInt32(row[dataTable.Lead_IDColumn]);
-
-                    item.ProjectName = row[dataTable.ProjNameColumn] != DBNull.Value ? row[dataTable.ProjNameColumn].ToString() : string.Empty;
-                    item.QueryRemarks = row[dataTable.QueryRemarksColumn] != DBNull.Value ? row[dataTable.QueryRemarksColumn].ToString() : string.Empty;
-                    item.RangeFrom = row[dataTable.RangeFromColumn] != DBNull.Value ? Convert.ToInt32(row[dataTable.RangeFromColumn]) : 0;
-                    item.RangeTo = row[dataTable.RangeToColumn] != DBNull.Value ? Convert.ToInt32(row[dataTable.RangeToColumn]) : 0;
-                    item.RecivedOn = row[dataTable.ReceivedOnColumn] != DBNull.Value ? Convert.ToDateTime(row[dataTable.ReceivedOnColumn]) : DateTime.MinValue;
-                    item.Status = row[dataTable.StatusColumn] != DBNull.Value ? Convert.ToInt32(row[dataTable.StatusColumn]) : 0;
-                    lead.Status = item.Status;
-                    item.StatusDate = row[dataTable.StatusDateColumn] != DBNull.Value ? Convert.ToDateTime(row[dataTable.StatusDateColumn]) : DateTime.MinValue;
-                    item.StatusId = Convert.ToInt32(row[dataTable.StatusIdColumn]);
-                    item.AssignedTo = row[dataTable.AssignedToColumn] != null ? row[dataTable.AssignedToColumn].ToString() : string.Empty;
-                    item.TypeOfProperty = row[dataTable.TypeOfPropertyColumn] != DBNull.Value ? Convert.ToInt32(row[dataTable.TypeOfPropertyColumn]) : 0;
-                    item.LeadItemID = Convert.ToInt32(row["LeadItemId"]);
-                    if (row[dataTable.BuilderInterestColumn] != DBNull.Value && row[dataTable.BuilderInterestColumn].ToString() != string.Empty)
-                    {
-                        item.BuilderInterest = Convert.ToBoolean(row[dataTable.BuilderInterestColumn]);
-                    }
-                    if (row[dataTable.CmpctLabelColumn] != DBNull.Value)
-                    {
-                        item.CompactLabel = row[dataTable.CmpctLabelColumn].ToString();
-                    }
-                    item.CompanyId = Convert.ToInt64(row[dataTable.CompanyIdColumn]);
-                    if (DateTime.TryParse(row[dataTable.CreateDateTimeOffsetColumn].ToString(), out createDateTimeOffset))
-                    {
-                        lead.CreateDateTime = createDateTimeOffset;
-                    }
-                    lead.CreateUserID = row[dataTable.CreateUser_IDColumn].ToString();
-                    lead.EditUserId = row[dataTable.EditUser_IDColumn] != null ? row[dataTable.EditUser_IDColumn].ToString() : string.Empty;
+                        LeadItems item = new LeadItems();
+                        // AssignedUser existingUser = new AssignedUser();
+                        item.AssignedTo = row["Id"].ToString();
+                        item.UserName = row["userName"].ToString();
+                        item.IsAssigned = false;
+                        existingLeads.Add(item);
 
 
-                    if (row[dataTable.EmailColumn] != DBNull.Value)
-                    {
-                        lead.Email = row[dataTable.EmailColumn].ToString();
                     }
-                    item.LeadID = Convert.ToInt32(row[dataTable.Lead_IDColumn]);
-                    lead.LeadId = Convert.ToInt32(row[dataTable.Lead_IDColumn]);
-                    lead.Name = row[dataTable.NameColumn].ToString();
-                    lead.PhoneNumber = row[dataTable.PhoneNumberColumn].ToString();
-                    //new lead
-                    if (oldID > 0 && oldID != lead.LeadId)
+                    int oldID = 0;
+                    Leads lead = null;
+                    foreach (DataRow row in leadData.Rows)
+                    {
+
+                        if (lead == null)
+                        {
+                            lead = new Leads();
+                            lead.Items = new List<LeadItems>();
+                        }
+
+                        //lead.Items = new List<LeadItems>();
+
+                        // lead = CopyTo(lead, existingLeads);
+
+                        LeadItems item = new LeadItems();
+
+                        AssignedUser assignedUser = new AssignedUser();
+                        lead.LeadId = Convert.ToInt32(row["Lead_ID"]);
+                        assignedUser.ID = row["Id"].ToString();
+                        //item.AssignedTo = row["AssignedTo"] != null ? row["AssignedTo"].ToString() : string.Empty;
+                        item.AssignedTo = row["AssignedTo"].ToString();
+                        item.UserName = row["userName"].ToString();
+                        item.TypeOfProperty = row["TypeOfProperty"] != DBNull.Value ? Convert.ToInt32(row["TypeOfProperty"]) : 0;
+                        item.ProjectName = row["ProjName"] != DBNull.Value ? row["ProjName"].ToString() : string.Empty;
+                        item.QueryRemarks = row["QueryRemarks"] != DBNull.Value ? row["QueryRemarks"].ToString() : string.Empty;
+                        item.RangeFrom = row["RangeFrom"] != DBNull.Value ? Convert.ToInt32(row["RangeFrom"]) : 0;
+                        item.RangeTo = row["RangeTo"] != DBNull.Value ? Convert.ToInt32(row["RangeTo"]) : 0;
+                        item.RecivedOn = row["ReceivedOn"] != DBNull.Value ? Convert.ToDateTime(row["ReceivedOn"]) : DateTime.MinValue;
+                        item.Status = row["Status"] != DBNull.Value ? Convert.ToInt32(row["Status"]) : 0;
+                        item.StatusDate = row["StatusDate"] != DBNull.Value ? Convert.ToDateTime(row["StatusDate"]) : DateTime.MinValue;
+                        item.StatusId = row["StatusId"] != DBNull.Value ? Convert.ToInt32(row["StatusId"]) : 0;
+                        item.LeadItemID = Convert.ToInt32(row["LeadItemId"]);
+                        //item.AssignedTo = row["AssignedTo"] != null ? row["AssignedTo"].ToString() : string.Empty;
+                        if (row["BuilderInterest"] != DBNull.Value && row["BuilderInterest"].ToString() != string.Empty)
+                        {
+                            item.BuilderInterest = Convert.ToBoolean(row["BuilderInterest"]);
+                        }
+                        if (row["CmpctLabel"] != DBNull.Value)
+                        {
+                            item.CompactLabel = row["CmpctLabel"].ToString();
+                        }
+                        item.CompanyId = Convert.ToInt64(row["CompanyId"]);
+                        DateTime createDateTimeOffset = SqlDateTime.MinValue.Value;
+                        if (DateTime.TryParse(row["CreateDateTimeOffset"].ToString(), out createDateTimeOffset))
+                        {
+                            lead.CreateDateTime = createDateTimeOffset;
+                        }
+                        lead.CreateUserID = row["CreateUser_ID"].ToString();
+                        lead.EditUserId = row["EditUser_ID"] != null ? row["EditUser_ID"].ToString() : string.Empty;
+
+                        lead.CompanyId = Convert.ToInt64(row["CompanyId"]);
+                        if (row["Email"] != DBNull.Value)
+                        {
+                            lead.Email = row["Email"].ToString();
+                        }
+                        item.LeadID = Convert.ToInt32(row["Lead_ID"]);
+
+                        lead.LeadId = Convert.ToInt32(row["Lead_ID"]);
+                        lead.Name = row["Name"].ToString();
+                        lead.PhoneNumber = row["PhoneNumber"].ToString();
+                        lead.CmpctLabel = row["CmpctLabel"].ToString();
+                        lead.Status = row["Status"] != DBNull.Value ? Convert.ToInt32(row["Status"]) : 0;
+                        //new lead
+                        if (oldID > 0 && oldID != lead.LeadId)
+                        {
+                            leads.Add(lead);
+                            lead = new Leads();
+                            lead.Items = new List<LeadItems>();
+                        }
+                        oldID = lead.LeadId;
+                        lead.Items.Add(item);
+                        //leads = CreateOrUpdateForUser(lead, leads, item);
+                    }
+                    if (lead != null)
                     {
                         leads.Add(lead);
-                        lead = new Leads();
-                        lead.Items = new List<LeadItems>();
-                    }
-                    oldID = lead.LeadId;
-                    lead.Items.Add(item);
-                    //leads = CreateOrUpdateForUser(lead, leads, item);
-                }
-                if (lead != null)
-                {
-                    leads.Add(lead);
+                    }    //    }
+
                 }
             }
-            return leads;
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                if (command != null && command.Connection != null)
+                {
+                    command.Connection.Close();
+                }
+            }
+
+            return AssignLeadIds(leads);
+
         }
 
         /// <summary>
@@ -982,6 +1047,10 @@ namespace LeadWomb.Data
             {
                 string columnValue = string.Empty;
                 columnList.TryGetValue("PhoneNumber", out columnValue);
+                if (string.IsNullOrEmpty(columnValue))
+                {
+                    columnList.TryGetValue("Name", out columnValue);
+                }
                 if (row[columnValue] == null)
                 {
                     row.Delete();
@@ -1019,7 +1088,7 @@ namespace LeadWomb.Data
             if (fileExt.CompareTo(".xls") == 0)
                 conn = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties='Excel 8.0;HRD=Yes;IMEX=1';"; //for below excel 2007  
             else
-                conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties='Excel 12.0;HDR=NO';"; //for above excel 2007  
+                 conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties='Excel 12.0;HDR=NO';"; //for above excel 2007  
             using (OleDbConnection con = new OleDbConnection(conn))
             {
                 try

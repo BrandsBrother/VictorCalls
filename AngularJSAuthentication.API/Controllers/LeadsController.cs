@@ -30,9 +30,12 @@ namespace AngularJSAuthentication.API.Controllers
             accountContext = new AccountContext();
         }
         [Route("")]
-        public IHttpActionResult Get(string userName, int? statusID)
+        public IHttpActionResult Get(string userName,
+             int? statusID, int? projectID, string LeadName, int? Lead_Id,
+             DateTime? dateFrom, DateTime? dateTo)
+
         {
-            return Ok(leadRepository.GetLeads(userName, statusID));
+            return Ok(leadRepository.GetLeads(userName, statusID, projectID, LeadName, Lead_Id, dateFrom, dateTo));
         }
         [Route("LeadStatusCounts")]
         [HttpGet]
