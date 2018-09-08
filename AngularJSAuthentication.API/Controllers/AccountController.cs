@@ -28,6 +28,7 @@ using System.Text;
 using FcmSharp;
 using AngularJSAuthentication.API;
 using AngularJSAuthentication.API.Notifications;
+using System.Configuration;
 
 namespace AngularJSAuthentication.API.Controllers
 {
@@ -35,7 +36,7 @@ namespace AngularJSAuthentication.API.Controllers
     public class AccountController : ApiController
     {
         private AuthRepository _repo = null;
-       
+        private const string DatabaseType = "DatabaseType";
         private IAuthenticationManager Authentication
         {
             get { return Request.GetOwinContext().Authentication; }
@@ -43,8 +44,8 @@ namespace AngularJSAuthentication.API.Controllers
 
         public AccountController()
         {
-           
-            _repo = new AuthRepository();
+              
+            _repo = new AuthRepository(ConfigurationManager.AppSettings[DatabaseType]);
         }
 
         // POST api/Account/Register

@@ -24,5 +24,6 @@ namespace LeadWomb.Model
         public int CompanyType { get; set; }
         public string Logopath { get; set; }
         public List<Integration> Integrations { get; set; }
+        public List<Project> Projects { get; set; }
     }
 }

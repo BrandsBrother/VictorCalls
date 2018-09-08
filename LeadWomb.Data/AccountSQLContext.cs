@@ -13,7 +13,10 @@ using System.Data.OleDb;
 
 namespace LeadWomb.Data
 {
-    public class AccountContext
+    /// <summary>
+    /// This class is for SQL connection
+    /// </summary>
+    public class AccountSQLContext : IAccountContext
     {
         private const string APILINK = "http://api.victorcalls.com/api/Project/{0}/Document/{1}";
         QueriesTableAdapter tableAdapter = new QueriesTableAdapter();

@@ -21,10 +21,22 @@ namespace AngularJSAuthentication.API
 
         private UserManager<IdentityUser> _userManager;
 
-        private AccountContext context = null;
-        public AuthRepository()
+        private IAccountContext context = null;
+        public AuthRepository(string databaseType)
         {
-            context = new AccountContext();
+            if (databaseType.ToUpper() == "SQL")
+            {
+                context = new AccountSQLContext();
+            }
+            else if (databaseType.ToUpper() == "MONGO")
+            {
+                context = new AccountMONGOContext();
+            }
+            else
+            {
+
+            }
+
             _ctx = new AuthContext();
             _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
 

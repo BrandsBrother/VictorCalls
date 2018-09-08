@@ -49,7 +49,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AccountAdapter.xsd</DependentUpon>
     </Compile>
-    <Compile Include="AccountContext.cs" />
+    <Compile Include="AccountSQLContext.cs" />
+    <Compile Include="AccountMONGOContext.cs" />
+    <Compile Include="IAccountContext.cs" />
     <Compile Include="LeadsRepository.cs" />
     <Compile Include="LeadWombDataset.cs">
       <DependentUpon>LeadWombDataset.xsd</DependentUpon>

@@ -22,12 +22,12 @@ namespace AngularJSAuthentication.API.Controllers
 
 
         private LeadsRepository leadRepository = null;
-        private AccountContext accountContext = null;
+        private AccountSQLContext accountContext = null;
         // GET api/leads
         public LeadsController()
         {
             leadRepository = new LeadsRepository();
-            accountContext = new AccountContext();
+            accountContext = new AccountSQLContext();
         }
         [Route("")]
         public IHttpActionResult Get(string userName,

@@ -5,6 +5,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace AngularJSAuthentication.API.Providers
 {
     public class SimpleAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
+        private const string DatabaseType = "DatabaseType";
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
 
@@ -35,7 +37,7 @@ namespace AngularJSAuthentication.API.Providers
                 return Task.FromResult<object>(null);
             }
 
-            using (AuthRepository _repo = new AuthRepository())
+            using (AuthRepository _repo = new AuthRepository(ConfigurationManager.AppSettings[DatabaseType]))
             {
                 client = _repo.FindClient(context.ClientId);
             }
@@ -86,7 +88,7 @@ namespace AngularJSAuthentication.API.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
-            using (AuthRepository _repo = new AuthRepository())
+            using (AuthRepository _repo = new AuthRepository(ConfigurationManager.AppSettings[DatabaseType]))
             {
                 user =  _repo.ValidateUser(context.UserName, context.Password);
 

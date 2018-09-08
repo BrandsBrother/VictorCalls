@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,10 +14,10 @@ namespace AngularJSAuthentication.API.Controllers
     {
 
         private AuthRepository _repo = null;
-
+        private const string DatabaseType = "DatabaseType";
         public RefreshTokensController()
         {
-            _repo = new AuthRepository();
+            _repo = new AuthRepository(ConfigurationManager.AppSettings[DatabaseType]);
         }
 
         [Authorize(Users="Admin")]

@@ -4,6 +4,7 @@ using Microsoft.Owin.Security.Infrastructure;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace AngularJSAuthentication.API.Providers
 {
     public class SimpleRefreshTokenProvider : IAuthenticationTokenProvider
     {
-       
+        private const string DatabaseType = "DatabaseType";
         public async Task CreateAsync(AuthenticationTokenCreateContext context)
         {
             var clientid = context.Ticket.Properties.Dictionary["as:client_id"];
@@ -25,7 +26,7 @@ namespace AngularJSAuthentication.API.Providers
 
             var refreshTokenId = Guid.NewGuid().ToString("n");
 
-            using (AuthRepository _repo = new AuthRepository())
+            using (AuthRepository _repo = new AuthRepository(ConfigurationManager.AppSettings[DatabaseType]))
             {
                 var refreshTokenLifeTime = context.OwinContext.Get<string>("as:clientRefreshTokenLifeTime"); 
                
@@ -61,7 +62,7 @@ namespace AngularJSAuthentication.API.Providers
 
             string hashedTokenId = Helper.GetHash(context.Token);
 
-            using (AuthRepository _repo = new AuthRepository())
+            using (AuthRepository _repo = new AuthRepository(ConfigurationManager.AppSettings[DatabaseType]))
             {
                 var refreshToken = await _repo.FindRefreshToken(hashedTokenId);
 
